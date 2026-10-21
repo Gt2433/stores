@@ -1,0 +1,3379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر MBD الإلكتروني | متجرك الرقمي الفاخر</title>
+    <!-- خطوط جوجل: Cairo و Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* نظام ألوان الوضع المضيء */
+            --bg-primary: #f8fafc;
+            --bg-surface: rgba(255, 255, 255, 0.88);
+            --bg-surface-solid: #ffffff;
+            --bg-elevated: #f1f5f9;
+            --border-color: rgba(226, 232, 240, 0.85);
+            --border-highlight: rgba(99, 102, 241, 0.4);
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+            --accent-color: #6366f1;
+            --accent-hover: #4f46e5;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
+            --ambient-glow: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 60%);
+            --search-kbd-bg: #e2e8f0;
+            --search-kbd-text: #475569;
+            --badge-bg: rgba(99, 102, 241, 0.1);
+        }
+
+        [data-theme="dark"] {
+            /* نظام ألوان الوضع المظلم */
+            --bg-primary: #0a0e17;
+            --bg-surface: rgba(15, 23, 42, 0.85);
+            --bg-surface-solid: #0f172a;
+            --bg-elevated: #1e293b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(129, 140, 248, 0.45);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-gradient: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #f472b6 100%);
+            --accent-color: #818cf8;
+            --accent-hover: #6366f1;
+            --accent-glow: rgba(129, 140, 248, 0.35);
+            --success-color: #34d399;
+            --danger-color: #f87171;
+            --warning-color: #fbbf24;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 12px 28px -5px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 24px 45px -10px rgba(0, 0, 0, 0.7);
+            --ambient-glow: radial-gradient(circle at 50% 0%, rgba(129, 140, 248, 0.18) 0%, transparent 65%);
+            --search-kbd-bg: #1e293b;
+            --search-kbd-text: #94a3b8;
+            --badge-bg: rgba(129, 140, 248, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 480px;
+            background: var(--ambient-glow);
+            pointer-events: none;
+            z-index: 0;
+            transition: background 0.4s ease;
+        }
+
+        /* ==================== الشريط العلوي (Top Navbar) ==================== */
+        .header-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar-container {
+            max-width: 1380px;
+            margin: 0 auto;
+            padding: 0.85rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        /* الشعار واسم البراند */
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+            color: inherit;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .brand-logo-wrapper {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: var(--accent-gradient);
+            box-shadow: 0 4px 18px var(--accent-glow);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+
+        .brand-section:hover .brand-logo-wrapper {
+            transform: scale(1.06) rotate(-3deg);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        .brand-logo-svg {
+            width: 25px;
+            height: 25px;
+            fill: #ffffff;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .brand-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.55rem;
+            letter-spacing: 0.5px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .brand-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.15rem 0.45rem;
+            background: var(--bg-elevated);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            -webkit-text-fill-color: initial;
+        }
+
+        .brand-subtext {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* مجموعة الشعار وزر البحث المجاور له */
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        /* ==================== شريط البحث المتمدد في الهيدر ==================== */
+        .expandable-search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            border-radius: 13px;
+            overflow: hidden;
+            transition: width 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        background-color 0.25s ease, 
+                        border-color 0.25s ease, 
+                        box-shadow 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+
+        .expandable-search-wrapper:hover {
+            border-color: var(--accent-color);
+        }
+
+        /* حالة التمدد إلى اليسار لوسط الشريط */
+        .expandable-search-wrapper.expanded {
+            width: clamp(280px, 34vw, 450px);
+            background: var(--bg-surface-solid);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        /* زر أيقونة البحث الأساسي */
+        .search-icon-btn {
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            outline: none;
+            display: grid;
+            place-items: center;
+            color: var(--text-primary);
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: color 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 2;
+        }
+
+        .search-icon-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2.2;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .expandable-search-wrapper:hover .search-icon-btn svg {
+            transform: scale(1.1);
+        }
+
+        .expandable-search-wrapper.expanded .search-icon-btn {
+            color: var(--accent-color);
+        }
+
+        /* حقل الإدخال النصي داخل الشريط المتمدد */
+        .navbar-search-input {
+            flex: 1;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding: 0 0.5rem 0 0.25rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.22s ease 0.1s;
+            min-width: 0;
+        }
+
+        .navbar-search-input::placeholder {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .expandable-search-wrapper.expanded .navbar-search-input {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* زر الإغلاق والمسح ✕ */
+        .search-action-clear {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-elevated);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            margin-left: 0.45rem;
+            flex-shrink: 0;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.8);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .search-action-clear:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+            transform: scale(1.05);
+        }
+
+        .expandable-search-wrapper.expanded .search-action-clear {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        /* أزرار الإجراءات في الشريط */
+        .actions-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: 13px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-surface-solid);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 16px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .icon-btn:active {
+            transform: translateY(0) scale(0.96);
+        }
+
+        .icon-btn svg {
+            width: 21px;
+            height: 21px;
+            stroke-width: 2;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), stroke 0.25s ease;
+        }
+
+        /* زر السلة والمفضلة مع شارات العداد */
+        .cart-btn-wrapper,
+        .wishlist-nav-wrapper {
+            position: relative;
+        }
+
+        .cart-badge,
+        .wishlist-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            border: 2px solid var(--bg-surface-solid);
+            transform: scale(0);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .cart-badge {
+            background: var(--accent-gradient);
+            box-shadow: 0 2px 8px var(--accent-glow);
+        }
+
+        .wishlist-badge {
+            background: linear-gradient(135deg, #ef4444 0%, #f43f5e 100%);
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
+        }
+
+        .cart-badge.has-items,
+        .wishlist-badge.has-items {
+            transform: scale(1);
+        }
+
+        .cart-badge.bump,
+        .wishlist-badge.bump {
+            animation: badgeBump 0.35s ease;
+        }
+
+        .wishlist-nav-btn:hover svg {
+            stroke: var(--danger-color);
+            fill: rgba(239, 68, 68, 0.15);
+            transform: scale(1.12);
+        }
+
+        @keyframes badgeBump {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.35); }
+            100% { transform: scale(1); }
+        }
+
+        /* زر الإعدادات */
+        .settings-btn:hover svg {
+            transform: rotate(60deg);
+            stroke: var(--accent-color);
+        }
+
+        /* زر الثيم */
+        .theme-btn {
+            overflow: hidden;
+        }
+
+        .theme-btn .icon-sun,
+        .theme-btn .icon-moon {
+            position: absolute;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        [data-theme="light"] .theme-btn .icon-moon {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+        }
+        [data-theme="light"] .theme-btn .icon-sun {
+            opacity: 0;
+            transform: rotate(90deg) scale(0.3);
+        }
+
+        [data-theme="dark"] .theme-btn .icon-moon {
+            opacity: 0;
+            transform: rotate(-90deg) scale(0.3);
+        }
+        [data-theme="dark"] .theme-btn .icon-sun {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+            color: #facc15;
+            stroke: #facc15;
+        }
+
+        /* القائمة المنسدلة للإعدادات */
+        .settings-dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            width: 260px;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            box-shadow: var(--shadow-lg);
+            padding: 0.85rem;
+            display: none;
+            flex-direction: column;
+            gap: 0.35rem;
+            z-index: 150;
+            animation: fadeInDown 0.22s ease-out;
+        }
+
+        .settings-dropdown.active {
+            display: flex;
+        }
+
+        .settings-header {
+            padding: 0.4rem 0.5rem 0.6rem 0.5rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .settings-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0.75rem;
+            border-radius: 11px;
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .settings-item:hover {
+            background: var(--bg-elevated);
+        }
+
+        .settings-item-label {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .settings-item-label svg {
+            width: 17px;
+            height: 17px;
+            color: var(--text-secondary);
+        }
+
+        .toggle-switch {
+            width: 38px;
+            height: 22px;
+            background: var(--border-color);
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.checked {
+            background: var(--accent-color);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            width: 16px;
+            height: 16px;
+            background: #ffffff;
+            border-radius: 50%;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .toggle-switch.checked::after {
+            transform: translateX(-16px);
+        }
+
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+
+        [data-tooltip]::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 50%;
+            transform: translateX(50%) translateY(-4px);
+            padding: 0.35rem 0.65rem;
+            background: #0f172a;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 8px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 200;
+        }
+
+        [data-tooltip]:hover::before {
+            opacity: 1;
+            transform: translateX(50%) translateY(0);
+        }
+
+        [data-theme="dark"] [data-tooltip]::before {
+            background: #ffffff;
+            color: #0f172a;
+        }
+
+        /* ==================== متجر المنتجات (Store Section) ==================== */
+        .store-main-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1380px;
+            margin: 2.5rem auto 5rem auto;
+            padding: 0 1.75rem;
+        }
+
+        /* الترويسة الرئيسية للمتجر */
+        .store-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .store-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 1.2rem;
+            border-radius: 30px;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 1.25rem;
+        }
+
+        .store-title {
+            font-size: 2.6rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .store-title span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .store-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* تبويبات تصنيفات المنتجات */
+        .category-tabs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 0.6rem 1.35rem;
+            border-radius: 14px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-surface-solid);
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-tab:hover {
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .category-tab.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        /* ==================== شبكة بطاقات المنتجات (Products Grid) ==================== */
+        /* الوضع الأساسي (الشاشات الصغيرة / الهواتف): منتجين في كل سطر */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2.2rem;
+        }
+
+        /* الشاشات المتوسطة (التابلت 680px وأكثر): 3 منتجات في الصف الواحد */
+        @media (min-width: 680px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.4rem;
+            }
+        }
+
+        /* الشاشات الكبيرة (أجهزة الحاسوب واللابتوب 1024px وأكثر): 4 منتجات في الصف الواحد */
+        @media (min-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.75rem;
+            }
+        }
+
+        /* الشاشات العريضة جداً (1440px وأكثر): 5 منتجات في الصف الواحد */
+        @media (min-width: 1440px) {
+            .products-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        /* تصميم بطاقة المنتج الفاخرة */
+        .product-card {
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-highlight);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* رأس صورة المنتج */
+        .product-media-wrapper {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            background: var(--bg-elevated);
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+
+        /* شارة المنتج (جديد، خصم، إلخ) */
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            z-index: 5;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .badge-discount {
+            background: rgba(239, 68, 68, 0.9);
+            color: #ffffff;
+        }
+
+        .badge-new {
+            background: rgba(16, 185, 129, 0.9);
+            color: #ffffff;
+        }
+
+        .badge-bestseller {
+            background: var(--accent-gradient);
+            color: #ffffff;
+        }
+
+        /* زر المفضلة فوق الصورة */
+        .wishlist-btn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .wishlist-btn:hover {
+            transform: scale(1.15);
+            color: var(--danger-color);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .wishlist-btn.active {
+            color: var(--danger-color);
+            background: #ffe4e6;
+            border-color: #fda4af;
+        }
+
+        [data-theme="dark"] .wishlist-btn.active {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .wishlist-btn svg {
+            width: 19px;
+            height: 19px;
+            stroke-width: 2.2;
+            transition: fill 0.2s ease, transform 0.2s ease;
+        }
+
+        .wishlist-btn.active svg {
+            fill: var(--danger-color);
+            stroke: var(--danger-color);
+            animation: heartBeat 0.35s ease;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* تفاصيل ومحتوى البطاقة */
+        .product-body {
+            padding: 1.35rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-category-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-category {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* التقييم بالنجوم */
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--warning-color);
+        }
+
+        .rating-stars {
+            display: inline-flex;
+            gap: 2px;
+        }
+
+        .rating-reviews {
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-weight: 500;
+        }
+
+        /* عنوان المنتج ووصفه */
+        .product-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 0.45rem;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .product-title:hover {
+            color: var(--accent-color);
+        }
+
+        .product-description {
+            font-size: 0.86rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* الفوتر: السعر + زري الإجراءات (أضف للسلة والتفاصيل) */
+        .product-footer {
+            margin-top: auto;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 0.65rem;
+            line-height: 1.2;
+            flex-wrap: wrap;
+        }
+
+        .price-current {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+        }
+
+        .price-currency {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .price-old {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+
+        /* صف زري أسفل البطاقة (أضف للسلة + التفاصيل) */
+        .product-card-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            width: 100%;
+        }
+
+        /* زر إضافة إلى السلة */
+        .add-to-cart-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.68rem 0.95rem;
+            border-radius: 13px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex: 1.15;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px var(--accent-glow);
+        }
+
+        .add-to-cart-btn:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        .add-to-cart-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2.2;
+        }
+
+        .add-to-cart-btn.added {
+            background: var(--success-color);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+        }
+
+        /* زر التفاصيل الثاني أسفل البطاقة */
+        .details-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.68rem 0.85rem;
+            border-radius: 13px;
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border: 1.5px solid var(--border-color);
+            font-family: inherit;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex: 0.85;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .details-btn:hover {
+            background: var(--bg-surface-solid);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .details-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2.2;
+        }
+
+        /* ==================== نافذة تفاصيل المنتج الفاخرة (Product Details Modal) ==================== */
+        .product-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 14, 23, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 290;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .product-modal-container {
+            position: relative;
+            width: 100%;
+            max-width: 980px;
+            max-height: 90vh;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 28px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform: translateY(28px) scale(0.96);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .product-modal-overlay.active .product-modal-container {
+            transform: translateY(0) scale(1);
+        }
+
+        .product-modal-close-btn {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.15rem;
+            transition: all 0.25s ease;
+        }
+
+        .product-modal-close-btn:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+            transform: rotate(90deg) scale(1.08);
+        }
+
+        .product-modal-content {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 2.25rem;
+            padding: 2.25rem;
+        }
+
+        /* عمود المعرض والصور الكبيرة للتمعن */
+        .modal-gallery-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-main-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background: var(--bg-elevated);
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1.5px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .modal-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease, opacity 0.25s ease;
+        }
+
+        .modal-main-image:hover {
+            transform: scale(1.05);
+        }
+
+        .modal-badge-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            backdrop-filter: blur(8px);
+            z-index: 2;
+            color: #ffffff;
+        }
+
+        /* شريط الصور المصغرة للتنقل والمعاينة */
+        .modal-thumbnails-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            overflow-x: auto;
+            padding-bottom: 0.35rem;
+        }
+
+        .modal-thumb {
+            width: 76px;
+            height: 76px;
+            border-radius: 14px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-elevated);
+            overflow: hidden;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0.65;
+        }
+
+        .modal-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-thumb:hover {
+            opacity: 0.95;
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        .modal-thumb.active {
+            opacity: 1;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transform: scale(1.04);
+        }
+
+        /* عمود تفاصيل ومعلومات المنتج */
+        .modal-info-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.65rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .modal-category-label {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        .modal-stock-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--success-color);
+            background: rgba(16, 185, 129, 0.12);
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+        }
+
+        .modal-product-title {
+            font-size: 1.65rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.35;
+            margin-bottom: 0.65rem;
+        }
+
+        .modal-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--warning-color);
+            margin-bottom: 1.15rem;
+        }
+
+        .modal-reviews-count {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* صندوق السعر والتوفير */
+        .modal-price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 0.85rem;
+            padding: 0.85rem 1.15rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-current-price {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+
+        .modal-old-price {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+
+        .modal-save-pill {
+            margin-right: auto;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--danger-color);
+            background: rgba(239, 68, 68, 0.12);
+            padding: 0.25rem 0.65rem;
+            border-radius: 8px;
+        }
+
+        /* الوصف الكامل وقائمة المواصفات */
+        .modal-desc-heading {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.45rem;
+        }
+
+        .modal-description {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-specs-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .modal-spec-item svg {
+            color: var(--accent-color);
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+        }
+
+        /* أزرار العمليات والشراء */
+        .modal-actions-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-top: auto;
+        }
+
+        .modal-quantity-row {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .modal-qty-selector {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .modal-qty-btn {
+            width: 38px;
+            height: 38px;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: background 0.2s ease;
+        }
+
+        .modal-qty-btn:hover {
+            background: var(--border-color);
+        }
+
+        .modal-qty-display {
+            width: 45px;
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .modal-main-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .modal-add-cart-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.35rem;
+            border-radius: 14px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 16px var(--accent-glow);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-add-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        .modal-buy-now-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.35rem;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-buy-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45);
+        }
+
+        .modal-fav-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-muted);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .modal-fav-btn:hover {
+            border-color: var(--danger-color);
+            color: var(--danger-color);
+        }
+
+        .modal-fav-btn.active {
+            background: #ffe4e6;
+            border-color: #fda4af;
+            color: var(--danger-color);
+        }
+
+        [data-theme="dark"] .modal-fav-btn.active {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        /* شارات الثقة والضمان */
+        .modal-trust-perks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.65rem;
+            padding-top: 1.15rem;
+            margin-top: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .modal-perk-item {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        /* ==================== درج السلة الجانبي (Cart Drawer) ==================== */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 250;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer,
+        .wishlist-drawer {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: 420px;
+            background: var(--bg-surface-solid);
+            border-right: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            z-index: 260;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.active,
+        .wishlist-drawer.active {
+            transform: translateX(0);
+        }
+
+        .cart-drawer-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-drawer-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cart-close-btn:hover {
+            background: var(--border-color);
+        }
+
+        .cart-items-list {
+            padding: 1.25rem 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cart-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: var(--text-muted);
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .cart-item-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.85rem;
+            border-radius: 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+        }
+
+        .cart-item-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: var(--bg-surface-solid);
+        }
+
+        .cart-item-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .cart-item-name {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .cart-item-price {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--accent-color);
+        }
+
+        .cart-item-remove {
+            color: var(--danger-color);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .cart-item-remove:hover {
+            background: rgba(239, 68, 68, 0.15);
+        }
+
+        .cart-drawer-footer {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cart-total-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+
+        .cart-checkout-btn {
+            width: 100%;
+            padding: 0.95rem;
+            border-radius: 14px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 16px var(--accent-glow);
+            transition: all 0.25s ease;
+        }
+
+        .cart-checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+
+        /* رسالة التنبيه Toast */
+        .toast-notification {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-surface-solid);
+            color: var(--text-primary);
+            padding: 0.85rem 1.6rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.92rem;
+            font-weight: 700;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 300;
+        }
+
+        .toast-notification.active {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تجاوب الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .navbar-container {
+                padding: 0.75rem 1rem;
+                gap: 0.75rem;
+            }
+
+            .expandable-search-wrapper.expanded {
+                width: clamp(165px, calc(100vw - 230px), 270px);
+            }
+
+            .navbar-search-input {
+                font-size: 0.85rem;
+            }
+
+            .store-title {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                /* ضمان ظهور منتجين في كل سطر على الشاشات الصغيرة مع تباعد متناسق */
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem;
+            }
+
+            .store-main-container {
+                padding: 0 0.85rem;
+            }
+
+            /* ملاءمة أبعاد وتفاصيل البطاقة لتتسع منتجين بجانب بعض بأناقة */
+            .product-card {
+                border-radius: 18px;
+            }
+
+            .product-media-wrapper {
+                height: 165px;
+            }
+
+            .product-badge {
+                font-size: 0.65rem;
+                padding: 0.22rem 0.55rem;
+                top: 0.5rem;
+                right: 0.5rem;
+            }
+
+            .wishlist-btn {
+                width: 32px;
+                height: 32px;
+                top: 0.5rem;
+                left: 0.5rem;
+            }
+
+            .wishlist-btn svg {
+                width: 15px;
+                height: 15px;
+            }
+
+            .product-body {
+                padding: 0.85rem 0.75rem;
+            }
+
+            .product-title {
+                font-size: 0.88rem;
+                margin-bottom: 0.35rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                line-height: 1.35;
+            }
+
+            .product-category {
+                font-size: 0.68rem;
+            }
+
+            .product-rating {
+                font-size: 0.72rem;
+                gap: 2px;
+            }
+
+            .rating-reviews {
+                display: none;
+            }
+
+            .product-description {
+                display: none; /* إخفاء الوصف المطول على الهواتف لتبقى البطاقتان متناسقتين في الارتفاع */
+            }
+
+            .product-footer {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+                padding-top: 0.5rem;
+            }
+
+            .price-box {
+                flex-direction: row;
+                align-items: baseline;
+                justify-content: space-between;
+            }
+
+            .price-current {
+                font-size: 1.05rem;
+            }
+
+            .price-old {
+                font-size: 0.75rem;
+            }
+
+            .product-card-actions {
+                display: flex;
+                gap: 0.35rem;
+                width: 100%;
+            }
+
+            .product-card-actions .add-to-cart-btn,
+            .product-card-actions .details-btn {
+                width: auto;
+                padding: 0.52rem 0.25rem;
+                font-size: 0.72rem;
+                border-radius: 10px;
+                gap: 0.2rem;
+            }
+
+            .product-card-actions .add-to-cart-btn svg,
+            .product-card-actions .details-btn svg {
+                width: 13px;
+                height: 13px;
+            }
+
+            /* تجاوب نافذة تفاصيل المنتج على الموبايل */
+            .product-modal-container {
+                max-width: 100%;
+                max-height: 94vh;
+                border-radius: 22px;
+            }
+
+            .product-modal-content {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                padding: 1.25rem 1rem;
+            }
+
+            .modal-main-image-wrapper {
+                height: 240px;
+            }
+
+            .modal-thumb {
+                width: 64px;
+                height: 64px;
+            }
+
+            .modal-specs-list {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-main-buttons {
+                flex-direction: column;
+            }
+
+            .modal-add-cart-btn,
+            .modal-buy-now-btn {
+                width: 100%;
+            }
+
+            .modal-trust-perks {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-drawer,
+            .wishlist-drawer {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الشريط العلوي الفاخر -->
+    <header class="header-navbar" id="mainHeader">
+        <div class="navbar-container">
+            
+            <!-- الشعار الوهمي واسم البراند MBD + زر البحث بجانبه -->
+            <div class="brand-group">
+                <a href="#" class="brand-section" id="brandLink">
+                    <div class="brand-logo-wrapper">
+                        <!-- شعار وهمي هندسي حديث SVG -->
+                        <svg class="brand-logo-svg" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor"/>
+                            <path d="M2 17L12 22L22 17" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="brand-info">
+                        <div class="brand-name">
+                            MBD
+                        </div>
+                    </div>
+                </a>
+
+                <!-- شريط البحث المتمدد لليسار في الشريط العلوي -->
+                <div class="expandable-search-wrapper" id="searchWrapper">
+                    <button 
+                        type="button" 
+                        class="search-icon-btn" 
+                        id="searchToggleBtn" 
+                        data-tooltip="البحث (Ctrl+K)" 
+                        aria-label="البحث"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        class="navbar-search-input" 
+                        placeholder="ابحث عن منتج، سماعات، ساعات..." 
+                        autocomplete="off"
+                    >
+                    <button 
+                        type="button" 
+                        class="search-action-clear" 
+                        id="searchClearBtn" 
+                        title="مسح / إغلاق"
+                    >✕</button>
+                </div>
+            </div>
+
+            <!-- أزرار الإجراءات على اليسار (المفضلة + السلة + الثيم + الإعدادات) -->
+            <div class="actions-group">
+                
+                <!-- زر قائمة المفضلة مع العداد -->
+                <div class="wishlist-nav-wrapper">
+                    <button 
+                        type="button" 
+                        class="icon-btn wishlist-nav-btn" 
+                        id="wishlistBtn" 
+                        data-tooltip="المفضلة" 
+                        aria-label="قائمة المفضلة"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                    <span class="wishlist-badge" id="wishlistBadge">0</span>
+                </div>
+
+                <!-- زر سلة التسوق مع العداد -->
+                <div class="cart-btn-wrapper">
+                    <button 
+                        type="button" 
+                        class="icon-btn" 
+                        id="cartBtn" 
+                        data-tooltip="سلة التسوق" 
+                        aria-label="سلة التسوق"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                    </button>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </div>
+
+                <!-- زر تبديل الوضع المظلم والمضيء -->
+                <button 
+                    type="button" 
+                    class="icon-btn theme-btn" 
+                    id="themeToggleBtn" 
+                    data-tooltip="تبديل المظهر" 
+                    aria-label="تبديل الوضع الليلي والنهاري"
+                >
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+
+                <!-- زر الإعدادات مع قائمة منسدلة -->
+                <div style="position: relative;">
+                    <button 
+                        type="button" 
+                        class="icon-btn settings-btn" 
+                        id="settingsBtn" 
+                        data-tooltip="الإعدادات" 
+                        aria-label="الإعدادات"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </button>
+
+                    <!-- القائمة المنسدلة للإعدادات -->
+                    <div class="settings-dropdown" id="settingsDropdown">
+                        <div class="settings-header">
+                            <span>إعدادات النظام</span>
+                            <span style="font-size: 0.75rem; color: var(--accent-color);">MBD</span>
+                        </div>
+                        
+                        <div class="settings-item" onclick="toggleSettingSwitch('notifSwitch')">
+                            <div class="settings-item-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                                <span>إشعارات العروض</span>
+                            </div>
+                            <div class="toggle-switch checked" id="notifSwitch"></div>
+                        </div>
+
+                        <div class="settings-item" onclick="toggleSettingSwitch('currencySwitch')">
+                            <div class="settings-item-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><line x1="12" y1="6" x2="12" y2="8"></line><line x1="12" y1="16" x2="12" y2="18"></line></svg>
+                                <span>العملة الافتراضية (د.ج)</span>
+                            </div>
+                            <div class="toggle-switch checked" id="currencySwitch"></div>
+                        </div>
+
+                        <div class="settings-item" onclick="showToast('تم حفظ التفضيلات بنجاح!')">
+                            <div class="settings-item-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                                <span>حفظ التفضيلات</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي للمتجر -->
+    <main class="store-main-container">
+        
+        <!-- الترويسة الرئيسية للمتجر -->
+        <section class="store-header">
+            <h1 class="store-title">
+                استكشف منتجات <span>MBD</span> الفاخرة
+            </h1>
+        </section>
+
+        <!-- ==================== شبكة بطاقات المنتجات ==================== -->
+        <section class="products-grid" id="productsGrid">
+            
+            <!-- بطاقة المنتج 1 -->
+            <article class="product-card" data-category="audio" id="product-1" onclick="openProductModal(1)">
+                <div class="product-media-wrapper">
+                    <span class="product-badge badge-discount">خصم 25%</span>
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(1, 'سماعات MBD Studio Max Pro', 7500, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80', this)" title="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img 
+                        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=650&q=80" 
+                        alt="سماعات MBD Studio Max Pro" 
+                        class="product-image"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="product-body">
+                    <h3 class="product-title">سماعات MBD Studio Max Pro</h3>
+
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <div class="price-current">
+                                <span>7,500</span>
+                                <span class="price-currency">د.ج</span>
+                            </div>
+                            <span class="price-old">9,900 د.ج</span>
+                        </div>
+
+                        <div class="product-card-actions">
+                            <button 
+                                class="add-to-cart-btn" 
+                                onclick="event.stopPropagation(); addToCart(1, 'سماعات MBD Studio Max Pro', 7500, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=200&q=80', this)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button 
+                                class="details-btn" 
+                                onclick="event.stopPropagation(); openProductModal(1)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- بطاقة المنتج 2 -->
+            <article class="product-card" data-category="wearables" id="product-2" onclick="openProductModal(2)">
+                <div class="product-media-wrapper">
+                    <span class="product-badge badge-new">جديد 2026</span>
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(2, 'ساعة MBD Ultra Watch Gen 2', 18500, 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80', this)" title="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img 
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=650&q=80" 
+                        alt="ساعة MBD Ultra Watch Gen 2" 
+                        class="product-image"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="product-body">
+                    <h3 class="product-title">ساعة MBD Ultra Watch Gen 2</h3>
+
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <div class="price-current">
+                                <span>18,500</span>
+                                <span class="price-currency">د.ج</span>
+                            </div>
+                            <span class="price-old">22,000 د.ج</span>
+                        </div>
+
+                        <div class="product-card-actions">
+                            <button 
+                                class="add-to-cart-btn" 
+                                onclick="event.stopPropagation(); addToCart(2, 'ساعة MBD Ultra Watch Gen 2', 18500, 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80', this)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button 
+                                class="details-btn" 
+                                onclick="event.stopPropagation(); openProductModal(2)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- بطاقة المنتج 3 -->
+            <article class="product-card" data-category="accessories" id="product-3" onclick="openProductModal(3)">
+                <div class="product-media-wrapper">
+                    <span class="product-badge badge-bestseller">الأكثر طلباً ⭐</span>
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(3, 'منصة شحن MBD MagFlow 3-in-1', 4200, 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=200&q=80', this)" title="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img 
+                        src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=650&q=80" 
+                        alt="منصة شحن MBD MagFlow 3-in-1" 
+                        class="product-image"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="product-body">
+                    <h3 class="product-title">منصة شحن MBD MagFlow 3-in-1</h3>
+
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <div class="price-current">
+                                <span>4,200</span>
+                                <span class="price-currency">د.ج</span>
+                            </div>
+                            <span class="price-old">5,500 د.ج</span>
+                        </div>
+
+                        <div class="product-card-actions">
+                            <button 
+                                class="add-to-cart-btn" 
+                                onclick="event.stopPropagation(); addToCart(3, 'منصة شحن MBD MagFlow 3-in-1', 4200, 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=200&q=80', this)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button 
+                                class="details-btn" 
+                                onclick="event.stopPropagation(); openProductModal(3)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- بطاقة المنتج 4 -->
+            <article class="product-card" data-category="audio" id="product-4" onclick="openProductModal(4)">
+                <div class="product-media-wrapper">
+                    <span class="product-badge badge-discount">خصم 20%</span>
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(4, 'مكبر صوت MBD SoundPulse Mini', 5900, 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=200&q=80', this)" title="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img 
+                        src="https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=650&q=80" 
+                        alt="مكبر صوت MBD SoundPulse Mini" 
+                        class="product-image"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="product-body">
+                    <h3 class="product-title">مكبر صوت MBD SoundPulse Mini</h3>
+
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <div class="price-current">
+                                <span>5,900</span>
+                                <span class="price-currency">د.ج</span>
+                            </div>
+                            <span class="price-old">7,500 د.ج</span>
+                        </div>
+
+                        <div class="product-card-actions">
+                            <button 
+                                class="add-to-cart-btn" 
+                                onclick="event.stopPropagation(); addToCart(4, 'مكبر صوت MBD SoundPulse Mini', 5900, 'https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=200&q=80', this)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button 
+                                class="details-btn" 
+                                onclick="event.stopPropagation(); openProductModal(4)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- بطاقة المنتج 5 -->
+            <article class="product-card" data-category="accessories" id="product-5" onclick="openProductModal(5)">
+                <div class="product-media-wrapper">
+                    <span class="product-badge badge-new">جديد</span>
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(5, 'لوحة مفاتيح MBD Pro Mechanical RGB', 8500, 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=200&q=80', this)" title="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img 
+                        src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=650&q=80" 
+                        alt="لوحة مفاتيح MBD Pro Mechanical RGB" 
+                        class="product-image"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">لوحة مفاتيح MBD Pro Mechanical RGB</h3>
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <div class="price-current">
+                                <span>8,500</span>
+                                <span class="price-currency">د.ج</span>
+                            </div>
+                            <span class="price-old">11,000 د.ج</span>
+                        </div>
+                        <div class="product-card-actions">
+                            <button 
+                                class="add-to-cart-btn" 
+                                onclick="event.stopPropagation(); addToCart(5, 'لوحة مفاتيح MBD Pro Mechanical RGB', 8500, 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=200&q=80', this)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button 
+                                class="details-btn" 
+                                onclick="event.stopPropagation(); openProductModal(5)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- بطاقة المنتج 6 -->
+            <article class="product-card" data-category="accessories" id="product-6" onclick="openProductModal(6)">
+                <div class="product-media-wrapper">
+                    <span class="product-badge badge-discount">خصم 30%</span>
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(6, 'شاحن GaN فائق السرعة MBD 65W', 2800, 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=200&q=80', this)" title="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img 
+                        src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=650&q=80" 
+                        alt="شاحن GaN فائق السرعة MBD 65W" 
+                        class="product-image"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">شاحن GaN فائق السرعة MBD 65W</h3>
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <div class="price-current">
+                                <span>2,800</span>
+                                <span class="price-currency">د.ج</span>
+                            </div>
+                            <span class="price-old">3,900 د.ج</span>
+                        </div>
+                        <div class="product-card-actions">
+                            <button 
+                                class="add-to-cart-btn" 
+                                onclick="event.stopPropagation(); addToCart(6, 'شاحن GaN فائق السرعة MBD 65W', 2800, 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=200&q=80', this)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button 
+                                class="details-btn" 
+                                onclick="event.stopPropagation(); openProductModal(6)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- بطاقة المنتج 7 -->
+            <article class="product-card" data-category="wearables" id="product-7" onclick="openProductModal(7)">
+                <div class="product-media-wrapper">
+                    <span class="product-badge badge-bestseller">حصري ⭐</span>
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(7, 'نظارة صوتية ذكية MBD SoundGlass', 13500, 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=200&q=80', this)" title="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img 
+                        src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=650&q=80" 
+                        alt="نظارة صوتية ذكية MBD SoundGlass" 
+                        class="product-image"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">نظارة صوتية ذكية MBD SoundGlass</h3>
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <div class="price-current">
+                                <span>13,500</span>
+                                <span class="price-currency">د.ج</span>
+                            </div>
+                            <span class="price-old">16,500 د.ج</span>
+                        </div>
+                        <div class="product-card-actions">
+                            <button 
+                                class="add-to-cart-btn" 
+                                onclick="event.stopPropagation(); addToCart(7, 'نظارة صوتية ذكية MBD SoundGlass', 13500, 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=200&q=80', this)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button 
+                                class="details-btn" 
+                                onclick="event.stopPropagation(); openProductModal(7)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- بطاقة المنتج 8 -->
+            <article class="product-card" data-category="accessories" id="product-8" onclick="openProductModal(8)">
+                <div class="product-media-wrapper">
+                    <span class="product-badge badge-discount">خصم 15%</span>
+                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(8, 'ماوس مريح احترافي MBD Master Mouse', 5200, 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=200&q=80', this)" title="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img 
+                        src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=650&q=80" 
+                        alt="ماوس مريح احترافي MBD Master Mouse" 
+                        class="product-image"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">ماوس مريح احترافي MBD Master Mouse</h3>
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <div class="price-current">
+                                <span>5,200</span>
+                                <span class="price-currency">د.ج</span>
+                            </div>
+                            <span class="price-old">6,800 د.ج</span>
+                        </div>
+                        <div class="product-card-actions">
+                            <button 
+                                class="add-to-cart-btn" 
+                                onclick="event.stopPropagation(); addToCart(8, 'ماوس مريح احترافي MBD Master Mouse', 5200, 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=200&q=80', this)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button 
+                                class="details-btn" 
+                                onclick="event.stopPropagation(); openProductModal(8)"
+                            >
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <!-- ==================== نافذة تفاصيل المنتج الفاخرة (Product Details Modal) ==================== -->
+    <div class="product-modal-overlay" id="productModalOverlay">
+        <div class="product-modal-container" id="productModalContainer">
+            <button class="product-modal-close-btn" id="closeProductModalBtn" title="إغلاق (Esc)">✕</button>
+            <div class="product-modal-content">
+                
+                <!-- عمود المعرض والصور الكبيرة -->
+                <div class="modal-gallery-col">
+                    <div class="modal-main-image-wrapper">
+                        <span class="modal-badge-tag" id="modalBadgeTag"></span>
+                        <img src="" alt="" class="modal-main-image" id="modalMainImage">
+                    </div>
+                    <div class="modal-thumbnails-row" id="modalThumbnailsRow">
+                        <!-- تضاف الصور المصغرة ديناميكياً -->
+                    </div>
+                </div>
+
+                <!-- عمود تفاصيل ومعلومات المنتج -->
+                <div class="modal-info-col">
+                    <div class="modal-header-meta">
+                        <span class="modal-category-label" id="modalCategoryLabel"></span>
+                        <span class="modal-stock-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>متوفر في المخزون (شحن فوري)</span>
+                        </span>
+                    </div>
+
+                    <h2 class="modal-product-title" id="modalProductTitle"></h2>
+
+                    <div class="modal-rating-row">
+                        <span class="rating-stars" id="modalRatingStars">★★★★★</span>
+                        <span id="modalRatingScore">4.9</span>
+                        <span class="modal-reviews-count" id="modalReviewsCount"></span>
+                    </div>
+
+                    <div class="modal-price-box">
+                        <div class="modal-current-price" id="modalCurrentPrice"></div>
+                        <div class="modal-old-price" id="modalOldPrice"></div>
+                        <div class="modal-save-pill" id="modalSavePill"></div>
+                    </div>
+
+                    <h4 class="modal-desc-heading">وصف المنتج</h4>
+                    <p class="modal-description" id="modalDescription"></p>
+
+                    <h4 class="modal-desc-heading">أبرز المواصفات والمميزات</h4>
+                    <ul class="modal-specs-list" id="modalSpecsList">
+                        <!-- تضاف المواصفات ديناميكياً -->
+                    </ul>
+
+                    <div class="modal-actions-container">
+                        <div class="modal-quantity-row">
+                            <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted);">الكمية:</span>
+                            <div class="modal-qty-selector">
+                                <button type="button" class="modal-qty-btn" id="modalQtyMinus">-</button>
+                                <span class="modal-qty-display" id="modalQtyDisplay">1</span>
+                                <button type="button" class="modal-qty-btn" id="modalQtyPlus">+</button>
+                            </div>
+                        </div>
+
+                        <div class="modal-main-buttons">
+                            <button type="button" class="modal-add-cart-btn" id="modalAddToCartBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button type="button" class="modal-buy-now-btn" id="modalBuyNowBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                <span>شراء فوري</span>
+                            </button>
+                            <button type="button" class="modal-fav-btn" id="modalFavBtn" title="إضافة للمفضلة">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            </button>
+                        </div>
+
+                        <!-- شارات الثقة والضمان -->
+                        <div class="modal-trust-perks">
+                            <div class="modal-perk-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                                <span>توصيل سريع لـ 58 ولاية</span>
+                            </div>
+                            <div class="modal-perk-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                                <span>ضمان أصلي لمدة عام</span>
+                            </div>
+                            <div class="modal-perk-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning-color)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span>استبدال واسترجاع 7 أيام</span>
+                            </div>
+                            <div class="modal-perk-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                                <span>الدفع عند الاستلام</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- درج قائمة المفضلة المنبثق (Wishlist Drawer) -->
+    <div class="wishlist-drawer" id="wishlistDrawer">
+        <div class="cart-drawer-header">
+            <div class="cart-drawer-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--danger-color)" stroke="var(--danger-color)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span>قائمة المفضلة</span>
+            </div>
+            <button class="cart-close-btn" id="closeWishlistBtn">✕</button>
+        </div>
+
+        <div class="cart-items-list" id="wishlistItemsList">
+            <div class="cart-empty-state">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <p>قائمة المفضلة فارغة حالياً. اضغط على أيقونة القلب على أي منتج لحفظه هنا!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- درج سلة التسوق المنبثق (Cart Drawer) -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-drawer-header">
+            <div class="cart-drawer-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span>سلة المشتريات</span>
+            </div>
+            <button class="cart-close-btn" id="closeCartBtn">✕</button>
+        </div>
+
+        <div class="cart-items-list" id="cartItemsList">
+            <div class="cart-empty-state">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <p>سلتك فارغة حالياً. أضف بعض المنتجات للبدء!</p>
+            </div>
+        </div>
+
+        <div class="cart-drawer-footer">
+            <div class="cart-total-row">
+                <span>المجموع الكلي:</span>
+                <span id="cartTotalPrice" style="color: var(--accent-color);">0 د.ج</span>
+            </div>
+            <button class="cart-checkout-btn" onclick="checkoutOrder()">إتمام الطلب والدفع</button>
+        </div>
+    </div>
+
+    <!-- إشعار عائم Toast -->
+    <div class="toast-notification" id="toast">
+        <span id="toastMessage">تم تنفيذ العملية</span>
+    </div>
+
+    <!-- برمجة التفاعل (JavaScript) -->
+    <script>
+        // عناصر واجهة المستخدم
+        const htmlElement = document.documentElement;
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const settingsBtn = document.getElementById('settingsBtn');
+        const settingsDropdown = document.getElementById('settingsDropdown');
+        const searchWrapper = document.getElementById('searchWrapper');
+        const searchToggleBtn = document.getElementById('searchToggleBtn');
+        const navbarSearchInput = document.getElementById('navbarSearchInput');
+        const searchClearBtn = document.getElementById('searchClearBtn');
+        const cartBtn = document.getElementById('cartBtn');
+        const cartBadge = document.getElementById('cartBadge');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartItemsList = document.getElementById('cartItemsList');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // حالة سلة المشتريات
+        let cart = [];
+
+        // ==================== نظام الوضع المظلم والمضيء ====================
+        function initTheme() {
+            const savedTheme = localStorage.getItem('mbd-theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                setTheme(prefersDark ? 'dark' : 'light');
+            }
+        }
+
+        function setTheme(theme) {
+            htmlElement.setAttribute('data-theme', theme);
+            localStorage.setItem('mbd-theme', theme);
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+            showToast(newTheme === 'dark' ? 'تم التبديل إلى الوضع المظلم 🌙' : 'تم التبديل إلى الوضع المضيء ☀️');
+        });
+
+        // ==================== قائمة الإعدادات ====================
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            settingsDropdown.classList.toggle('active');
+        });
+
+        function toggleSettingSwitch(switchId) {
+            const el = document.getElementById(switchId);
+            if (el) {
+                el.classList.toggle('checked');
+                const isChecked = el.classList.contains('checked');
+                showToast(isChecked ? 'تم تفعيل الخاصية' : 'تم تعطيل الخاصية');
+            }
+        }
+
+        // ==================== شريط البحث المتمدد في الهيدر ====================
+        function openExpandableSearch() {
+            searchWrapper.classList.add('expanded');
+            setTimeout(() => {
+                navbarSearchInput.focus();
+            }, 120);
+        }
+
+        function closeExpandableSearch() {
+            navbarSearchInput.value = '';
+            searchWrapper.classList.remove('expanded');
+            resetProductFilter();
+            navbarSearchInput.blur();
+        }
+
+        // النقر على زر أيقونة البحث بجانب الشعار للتمدد
+        searchToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!searchWrapper.classList.contains('expanded')) {
+                openExpandableSearch();
+            } else {
+                if (navbarSearchInput.value.trim().length === 0) {
+                    closeExpandableSearch();
+                } else {
+                    navbarSearchInput.focus();
+                }
+            }
+        });
+
+        // زر المسح أو الإغلاق (✕)
+        searchClearBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (navbarSearchInput.value.length > 0) {
+                navbarSearchInput.value = '';
+                resetProductFilter();
+                navbarSearchInput.focus();
+                showToast('تم مسح البحث');
+            } else {
+                closeExpandableSearch();
+            }
+        });
+
+        // البحث الفوري التفاعلي أثناء الكتابة مباشرة دون نوافذ منبثقة
+        navbarSearchInput.addEventListener('input', () => {
+            const val = navbarSearchInput.value.trim().toLowerCase();
+            if (val.length > 0) {
+                const matchCount = filterProducts(val);
+                if (matchCount === 0) {
+                    showToast(`لا توجد منتجات مطابقة لـ "${val}"`);
+                }
+            } else {
+                resetProductFilter();
+            }
+        });
+
+        // منع إغلاق البحث عند النقر داخل صندوق البحث
+        searchWrapper.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        function filterProducts(query) {
+            const cards = document.querySelectorAll('.product-card');
+            let count = 0;
+            cards.forEach(card => {
+                const titleEl = card.querySelector('.product-title');
+                const title = titleEl ? titleEl.textContent.toLowerCase() : '';
+                const descEl = card.querySelector('.product-description');
+                const desc = descEl ? descEl.textContent.toLowerCase() : '';
+                const catAttr = (card.getAttribute('data-category') || '').toLowerCase();
+                const catEl = card.querySelector('.product-category');
+                const catText = catEl ? catEl.textContent.toLowerCase() : '';
+
+                if (title.includes(query) || desc.includes(query) || catAttr.includes(query) || catText.includes(query)) {
+                    card.style.display = 'flex';
+                    count++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            return count;
+        }
+
+        function resetProductFilter() {
+            document.querySelectorAll('.product-card').forEach(c => c.style.display = 'flex');
+        }
+
+        // اختصار لوحة المفاتيح Ctrl + K و Escape
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                openExpandableSearch();
+            }
+            if (e.key === 'Escape') {
+                closeExpandableSearch();
+                settingsDropdown.classList.remove('active');
+                closeCart();
+                closeWishlist();
+                closeProductModal();
+            }
+        });
+
+        // إغلاق القوائم والبحث عند النقر في أي مكان خارجها
+        document.addEventListener('click', (e) => {
+            if (!settingsDropdown.contains(e.target) && e.target !== settingsBtn) {
+                settingsDropdown.classList.remove('active');
+            }
+            if (!searchWrapper.contains(e.target)) {
+                if (navbarSearchInput.value.trim().length === 0) {
+                    searchWrapper.classList.remove('expanded');
+                }
+            }
+        });
+
+        // ==================== بيانات المنتجات ونافذة التفاصيل (Product Details Modal) ====================
+        const productsData = [
+            {
+                id: 1,
+                name: "سماعات MBD Studio Max Pro",
+                price: 7500,
+                oldPrice: 9900,
+                badge: "جديد 2026",
+                category: "audio",
+                categoryName: "صوتيات احترافية",
+                rating: 4.9,
+                reviews: 142,
+                desc: "سماعات رأس لاسلكية متميزة مصممة لتجربة استماع احترافية نقية مع تقنية عزل الضوضاء النشط (ANC) الهجين. تتمتع بوسادات أذن محشوة برغوة الذاكرة ومكسوة بالجلد الطبيعي الفاخر، وتوفر بطارية تدوم حتى 40 ساعة متواصلة.",
+                specs: [
+                    "عزل ضوضاء نشط هجين متقدم (Hybrid Active Noise Cancelling)",
+                    "بطارية خارقة تدوم حتى 40 ساعة متواصلة مع شحن سريع عبر Type-C",
+                    "محركات صوتية ديناميكية 40 ملم بدقة صوتية عالية High-Res Audio",
+                    "اتصال Bluetooth 5.3 متعدد النقاط مع ميكروفونات ذكية لعزل ضجيج الرياح",
+                    "هيكل ألومنيوم مرن وقابل للطي مع حقيبة تنقل فاخرة مقاومة للصدمات"
+                ],
+                images: [
+                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1200&q=85"
+                ]
+            },
+            {
+                id: 2,
+                name: "ساعة MBD Ultra Watch Gen 2",
+                price: 18500,
+                oldPrice: 22000,
+                badge: "الأعلى تقييماً",
+                category: "watches",
+                categoryName: "ساعات ذكية",
+                rating: 5.0,
+                reviews: 218,
+                desc: "ساعة ذكية رائدة بهيكل من التيتانيوم المصقول وشاشة AMOLED ساطعة ومقاومة للخدش تحت أشعة الشمس المباشرة. مزودة بمستشعرات صحية شاملة وتتبع دقيق للأنشطة الرياضية ونظام تحديد مواقع فائق الدقة GPS، مع مقاومة للماء حتى عمق 50 متراً.",
+                specs: [
+                    "شاشة AMOLED فائقة السطوع 2000 شمعة مع زجاج ياقوتي مضاد للخدش",
+                    "هيكل من التيتانيوم ومقاومة للماء بمعيار 5ATM والغوص حتى 50 متراً",
+                    "تتبع نبضات القلب، تشبع الأكسجين، النوم، وتخطيط القلب ECG على مدار الساعة",
+                    "عمر بطارية يصل إلى 7 أيام من الاستخدام العادي و14 يوماً بوضع التوفير",
+                    "ميكروفون ومكبر صوت مدمج للمكالمات البلوتوث والرد الفوري على الإشعارات"
+                ],
+                images: [
+                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=1200&q=85"
+                ]
+            },
+            {
+                id: 3,
+                name: "منصة شحن MBD MagFlow 3-in-1",
+                price: 4200,
+                oldPrice: 5500,
+                badge: "الأكثر طلباً ⭐",
+                category: "accessories",
+                categoryName: "ملحقات وشواحن",
+                rating: 4.8,
+                reviews: 97,
+                desc: "محطة شحن لاسلكي مغناطيسية أنيقة 3 في 1 تتيح لك شحن هاتفك الذكي وساعتك الذكية وسماعات الأذن في مكان واحد بكل ترتيب وبسرعة فائقة تصل إلى 15W. مصنوعة من سبائك الزنك بتصميم قابل للطي ومثالي لسطح المكتب والسفر.",
+                specs: [
+                    "شحن لاسلكي سريع بقوة 15 واط متوافق كلياً مع MagSafe والهواتف الذكية",
+                    "شحن متزامن لـ 3 أجهزة (هاتف + ساعة ذكية + سماعات لاسلكية)",
+                    "حماية ذكية متقدمة من ارتفاع درجات الحرارة والشحن الزائد والدائرة القصيرة",
+                    "قاعدة ألومنيوم غير قابلة للانزلاق مع إضاءة خافتة لطيفة لغرفة النوم",
+                    "تصميم قابل للطي وسهل التوضيب في حقيبة اليد أثناء التنقل"
+                ],
+                images: [
+                    "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=1200&q=85"
+                ]
+            },
+            {
+                id: 4,
+                name: "مكبر صوت MBD SoundPulse Mini",
+                price: 5900,
+                oldPrice: 7500,
+                badge: "خصم 20%",
+                category: "audio",
+                categoryName: "صوتيات محمولة",
+                rating: 4.7,
+                reviews: 83,
+                desc: "مكبر صوت بلوتوث محمول يوفر صوتاً محيطياً مبهراً 360 درجة مع مضخم باس عميق. مقاوم للماء والغبار وفق معيار IPX7، مما يجعله الرفيق المثالي للرحلات والخرجات مع بطارية تدوم حتى 16 ساعة.",
+                specs: [
+                    "صوت محيطي نقي 360 درجة بقدرة 20 واط RMS مع مضخم Bass مزدوج",
+                    "مقاومة كاملة للماء والغمر بمعيار IPX7 ومقاومة للصدمات",
+                    "بطارية تدوم حتى 16 ساعة مع منفذ شحن USB-C سريع",
+                    "إمكانية ربط مكبرين معاً بضغطة زر واحدة لتوزيع ستيريو حقيقي (TWS)",
+                    "ميكروفون عالي الحساسية لإجراء المكالمات الهاتفية بوضوح تام"
+                ],
+                images: [
+                    "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1200&q=85"
+                ]
+            },
+            {
+                id: 5,
+                name: "لوحة مفاتيح MBD Pro Mechanical RGB",
+                price: 8500,
+                oldPrice: 11000,
+                badge: "جديد",
+                category: "accessories",
+                categoryName: "ملحقات الحواسيب والألعاب",
+                rating: 4.9,
+                reviews: 110,
+                desc: "لوحة مفاتيح ميكانيكية احترافية مزودة بمفاتيح خطية سريعة الاستجابة وإضاءة RGB خلفية قابلة للتخصيص بأكثر من 16.8 مليون لون. مصنوعة بهيكل علوي من الألمنيوم المصقول لتوفير أقصى قدر من الثبات أثناء الكتابة والألعاب المكثفة.",
+                specs: [
+                    "سويتشات ميكانيكية سريعة بعمر افتراضي يتجاوز 70 مليون ضغطة",
+                    "إضاءة خلفية RGB ديناميكية مذهلة قابلة للتخصيص الكامل",
+                    "لوح علوي من سبائك الألومنيوم المستخدمة في الطيران",
+                    "كابل مجدول قابل للفصل Type-C مع استجابة فائقة 1000Hz",
+                    "أغطية مفاتيح PBT مزدوجة الحقن ومقاومة للتآكل والبهتان"
+                ],
+                images: [
+                    "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1541140532154-b024d705b909?auto=format&fit=crop&w=1200&q=85"
+                ]
+            },
+            {
+                id: 6,
+                name: "شاحن GaN فائق السرعة MBD 65W",
+                price: 2800,
+                oldPrice: 3900,
+                badge: "خصم 30%",
+                category: "accessories",
+                categoryName: "ملحقات وشواحن",
+                rating: 4.8,
+                reviews: 165,
+                desc: "شاحن جداري صغير الحجم بتقنية نيتريد الغاليوم (GaN) المتقدمة بقدرة 65 واط. قادر على شحن الحواسيب المحمولة والهواتف الذكية والأجهزة اللوحية بأعلى سرعة ممكنة وبأقل قدر من توليد الحرارة.",
+                specs: [
+                    "تقنية GaN III المتطورة لحجم أصغر بنسبة 50% وكفاءة طاقة أعلى",
+                    "قدرة شحن فائقة تصل إلى 65 واط Power Delivery 3.0",
+                    "منفذان USB-C ومنفذ USB-A لشحن 3 أجهزة بنفس الوقت",
+                    "نظام أمان وحماية شامل ضد التردد والحرارة والشحن الزائد",
+                    "دبابيس قابلة للطي ومناسب جداً للحقيبة والسفر"
+                ],
+                images: [
+                    "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1622445262464-84b1456045b6?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1586105251261-72a756497a11?auto=format&fit=crop&w=1200&q=85"
+                ]
+            },
+            {
+                id: 7,
+                name: "نظارة صوتية ذكية MBD SoundGlass",
+                price: 13500,
+                oldPrice: 16500,
+                badge: "حصري ⭐",
+                category: "wearables",
+                categoryName: "إلكترونيات قابلة للارتداء",
+                rating: 4.8,
+                reviews: 194,
+                desc: "نظارة شمسية ذكية تجمع بين الأناقة العصرية وسماعات أذن مدمجة مفتوحة للأذن بتقنية التوصيل الموجه. تتيح لك الاستماع للموسيقى وإجراء مكالمات هاتفية بصوت نقي للغاية مع إبقاء أذنيك حرتين ومدركتين لما حولك.",
+                specs: [
+                    "مكبرات صوت دقيقة موجهة مباشرة للأذن تمنع تسرب الصوت للخارج",
+                    "عدسات مستقطبة مضادة للأشعة فوق البنفسجية UV400 تحمي العينين تماماً",
+                    "ميكروفونات مدمجة بخاصية تنقية الضوضاء لإجراء مكالمات واضحة",
+                    "عمر بطارية يصل إلى 6 ساعات تشغيل متواصل و12 ساعة مع الشحن المغناطيسي",
+                    "مقاومة للتعرق ورذاذ الماء بتصنيف IPX4 وهيكل خفيف ومريح"
+                ],
+                images: [
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1508296695146-257a814070b4?auto=format&fit=crop&w=1200&q=85"
+                ]
+            },
+            {
+                id: 8,
+                name: "ماوس مريح احترافي MBD Master Mouse",
+                price: 5200,
+                oldPrice: 6800,
+                badge: "خصم 15%",
+                category: "accessories",
+                categoryName: "ملحقات الحواسيب",
+                rating: 4.9,
+                reviews: 76,
+                desc: "فأرة تحكم لاسلكية مريحة هندسياً لراحة المعصم واليد أثناء ساعات العمل الطويلة. مزودة بعجلة تمرير فائقة السرعة MagSpeed ومستشعر دقيق 4000 DPI يعمل على كافة الأسطح بما فيها الزجاج.",
+                specs: [
+                    "تصميم هندسي طبي يدعم راحة اليد ويقلل إجهاد عضلات المعصم",
+                    "عجلة تمرير كهرومغناطيسية MagSpeed تتيح التمرير حتى 1000 سطر في الثانية",
+                    "مستشعر ضوئي Darkfield عالي الدقة 4000 DPI يعمل على كافة الأسطح",
+                    "اتصال لاسلكي ثلاثي عبر البلوتوث أو مستقبل 2.4GHz والتبديل السريع",
+                    "بطارية تدوم حتى 70 يوماً بشحنة واحدة وشحن سريع دقيقة واحدة = 3 ساعات"
+                ],
+                images: [
+                    "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1200&q=85",
+                    "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=85"
+                ]
+            }
+        ];
+
+        // عناصر نافذة تفاصيل المنتج
+        const productModalOverlay = document.getElementById('productModalOverlay');
+        const productModalContainer = document.getElementById('productModalContainer');
+        const closeProductModalBtn = document.getElementById('closeProductModalBtn');
+        const modalMainImage = document.getElementById('modalMainImage');
+        const modalThumbnailsRow = document.getElementById('modalThumbnailsRow');
+        const modalBadgeTag = document.getElementById('modalBadgeTag');
+        const modalCategoryLabel = document.getElementById('modalCategoryLabel');
+        const modalProductTitle = document.getElementById('modalProductTitle');
+        const modalRatingStars = document.getElementById('modalRatingStars');
+        const modalRatingScore = document.getElementById('modalRatingScore');
+        const modalReviewsCount = document.getElementById('modalReviewsCount');
+        const modalCurrentPrice = document.getElementById('modalCurrentPrice');
+        const modalOldPrice = document.getElementById('modalOldPrice');
+        const modalSavePill = document.getElementById('modalSavePill');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalSpecsList = document.getElementById('modalSpecsList');
+        const modalQtyMinus = document.getElementById('modalQtyMinus');
+        const modalQtyPlus = document.getElementById('modalQtyPlus');
+        const modalQtyDisplay = document.getElementById('modalQtyDisplay');
+        const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
+        const modalBuyNowBtn = document.getElementById('modalBuyNowBtn');
+        const modalFavBtn = document.getElementById('modalFavBtn');
+
+        let currentModalProductId = null;
+        let currentModalQty = 1;
+
+        // دالة فتح نافذة تفاصيل المنتج
+        function openProductModal(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            currentModalProductId = productId;
+            currentModalQty = 1;
+
+            // تحديث النصوص والبيانات
+            modalProductTitle.textContent = product.name;
+            modalCategoryLabel.textContent = product.categoryName;
+            modalBadgeTag.textContent = product.badge;
+            modalRatingScore.textContent = product.rating.toFixed(1);
+            modalReviewsCount.textContent = `(${product.reviews} تقييم)`;
+
+            // الأسعار والخصم
+            modalCurrentPrice.innerHTML = `<span>${product.price.toLocaleString()}</span> <span style="font-size: 1.15rem; color: var(--accent-color);">د.ج</span>`;
+            modalOldPrice.textContent = `${product.oldPrice.toLocaleString()} د.ج`;
+            const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
+            const savedAmount = (product.oldPrice - product.price).toLocaleString();
+            modalSavePill.textContent = `وفر ${discount}% (${savedAmount} د.ج)`;
+
+            // الوصف
+            modalDescription.textContent = product.desc;
+
+            // قائمة المواصفات
+            modalSpecsList.innerHTML = product.specs.map(spec => `
+                <li class="modal-spec-item">
+                    <svg class="modal-spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>${spec}</span>
+                </li>
+            `).join('');
+
+            // الصور والمعرض
+            modalMainImage.src = product.images[0];
+            modalMainImage.alt = product.name;
+
+            modalThumbnailsRow.innerHTML = product.images.map((imgUrl, idx) => `
+                <div class="modal-thumb ${idx === 0 ? 'active' : ''}" onclick="switchModalImage('${imgUrl}', this)">
+                    <img src="${imgUrl}" alt="${product.name} - صورة ${idx + 1}">
+                </div>
+            `).join('');
+
+            // إعادة ضبط الكمية
+            modalQtyDisplay.textContent = '1';
+
+            // حالة زر المفضلة في النافذة
+            const isFav = wishlist.some(item => item.id === product.id);
+            if (isFav) {
+                modalFavBtn.classList.add('active');
+            } else {
+                modalFavBtn.classList.remove('active');
+            }
+
+            // إظهار النافذة وقفل التمرير بالخلفية
+            productModalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // دالة إغلاق نافذة تفاصيل المنتج
+        function closeProductModal() {
+            if (productModalOverlay) {
+                productModalOverlay.classList.remove('active');
+            }
+            document.body.style.overflow = '';
+        }
+
+        // دالة تبديل الصورة المعروضة في المعرض
+        function switchModalImage(imageUrl, thumbElement) {
+            modalMainImage.src = imageUrl;
+            document.querySelectorAll('.modal-thumb').forEach(thumb => thumb.classList.remove('active'));
+            if (thumbElement) thumbElement.classList.add('active');
+        }
+
+        // أزرار التحكم في كمية المنتج داخل النافذة
+        modalQtyMinus.addEventListener('click', () => {
+            if (currentModalQty > 1) {
+                currentModalQty--;
+                modalQtyDisplay.textContent = currentModalQty;
+            }
+        });
+
+        modalQtyPlus.addEventListener('click', () => {
+            if (currentModalQty < 20) {
+                currentModalQty++;
+                modalQtyDisplay.textContent = currentModalQty;
+            }
+        });
+
+        // زر إضافة للسلة من داخل النافذة
+        modalAddToCartBtn.addEventListener('click', () => {
+            if (!currentModalProductId) return;
+            const product = productsData.find(p => p.id === currentModalProductId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === product.id);
+            if (existing) {
+                existing.quantity += currentModalQty;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    img: product.images[0],
+                    quantity: currentModalQty
+                });
+            }
+
+            updateCartUI();
+            showToast(`🛍️ تمت إضافة (${currentModalQty}) من "${product.name}" إلى السلة`);
+
+            // تأثير نبض الزر
+            modalAddToCartBtn.classList.add('added');
+            const originalText = modalAddToCartBtn.innerHTML;
+            modalAddToCartBtn.innerHTML = `<span>تمت الإضافة بنجاح ✓</span>`;
+            setTimeout(() => {
+                modalAddToCartBtn.classList.remove('added');
+                modalAddToCartBtn.innerHTML = originalText;
+            }, 1200);
+        });
+
+        // زر الشراء الفوري من داخل النافذة
+        modalBuyNowBtn.addEventListener('click', () => {
+            if (!currentModalProductId) return;
+            const product = productsData.find(p => p.id === currentModalProductId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === product.id);
+            if (existing) {
+                existing.quantity += currentModalQty;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    img: product.images[0],
+                    quantity: currentModalQty
+                });
+            }
+
+            updateCartUI();
+            closeProductModal();
+            openCart();
+            showToast(`⚡ جاري التوجه لإتمام طلب "${product.name}"!`);
+        });
+
+        // زر المفضلة من داخل النافذة
+        modalFavBtn.addEventListener('click', () => {
+            if (!currentModalProductId) return;
+            const product = productsData.find(p => p.id === currentModalProductId);
+            if (!product) return;
+
+            toggleWishlist(product.id, product.name, product.price, product.images[0], null);
+            const isFav = wishlist.some(item => item.id === product.id);
+            if (isFav) {
+                modalFavBtn.classList.add('active');
+            } else {
+                modalFavBtn.classList.remove('active');
+            }
+        });
+
+        // أحداث إغلاق النافذة
+        closeProductModalBtn.addEventListener('click', closeProductModal);
+        productModalOverlay.addEventListener('click', (e) => {
+            if (e.target === productModalOverlay) {
+                closeProductModal();
+            }
+        });
+
+        // ==================== تصفية المنتجات حسب التبويبات ====================
+        function filterCategory(category, buttonElement) {
+            document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+            buttonElement.classList.add('active');
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // عناصر المفضلة
+        const wishlistBtn = document.getElementById('wishlistBtn');
+        const wishlistBadge = document.getElementById('wishlistBadge');
+        const wishlistDrawer = document.getElementById('wishlistDrawer');
+        const closeWishlistBtn = document.getElementById('closeWishlistBtn');
+        const wishlistItemsList = document.getElementById('wishlistItemsList');
+
+        let wishlist = [];
+
+        // ==================== نظام قائمة المفضلة التفاعلي ====================
+        function toggleWishlist(id, name, price, img, btn) {
+            const index = wishlist.findIndex(item => item.id === id);
+            if (index > -1) {
+                // إزالة من المفضلة
+                wishlist.splice(index, 1);
+                if (btn) btn.classList.remove('active');
+                showToast(`تمت إزالة "${name}" من المفضلة`);
+            } else {
+                // إضافة للمفضلة
+                wishlist.push({ id, name, price, img });
+                if (btn) btn.classList.add('active');
+                showToast(`❤️ تمت إضافة "${name}" إلى المفضلة`);
+            }
+
+            // مزامنة حالة الأزرار على البطاقات في الصفحة
+            syncProductHeartButtons();
+            updateWishlistUI();
+        }
+
+        function removeFromWishlist(id) {
+            wishlist = wishlist.filter(item => item.id !== id);
+            syncProductHeartButtons();
+            updateWishlistUI();
+            showToast('تمت إزالة المنتج من المفضلة');
+        }
+
+        function syncProductHeartButtons() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                const cardId = parseInt(card.id.replace('product-', ''));
+                const heartBtn = card.querySelector('.wishlist-btn');
+                if (heartBtn) {
+                    const isFav = wishlist.some(item => item.id === cardId);
+                    if (isFav) {
+                        heartBtn.classList.add('active');
+                    } else {
+                        heartBtn.classList.remove('active');
+                    }
+                }
+            });
+
+            if (currentModalProductId && modalFavBtn) {
+                const isFav = wishlist.some(item => item.id === currentModalProductId);
+                if (isFav) {
+                    modalFavBtn.classList.add('active');
+                } else {
+                    modalFavBtn.classList.remove('active');
+                }
+            }
+        }
+
+        function updateWishlistUI() {
+            // تحديث العداد
+            const count = wishlist.length;
+            wishlistBadge.textContent = count;
+            if (count > 0) {
+                wishlistBadge.classList.add('has-items', 'bump');
+                setTimeout(() => wishlistBadge.classList.remove('bump'), 350);
+            } else {
+                wishlistBadge.classList.remove('has-items');
+            }
+
+            // تحديث محتوى درج المفضلة
+            if (wishlist.length === 0) {
+                wishlistItemsList.innerHTML = `
+                    <div class="cart-empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        <p>قائمة المفضلة فارغة حالياً. اضغط على أيقونة القلب على أي منتج لحفظه هنا!</p>
+                    </div>
+                `;
+            } else {
+                let html = '';
+                wishlist.forEach(item => {
+                    html += `
+                        <div class="cart-item-row">
+                            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                            <div class="cart-item-info">
+                                <span class="cart-item-name">${item.name}</span>
+                                <span class="cart-item-price">${item.price.toLocaleString()} د.ج</span>
+                            </div>
+                            <button 
+                                class="add-to-cart-btn" 
+                                style="padding: 0.45rem 0.75rem; font-size: 0.75rem;" 
+                                onclick="addToCart(${item.id}, '${item.name}', ${item.price}, '${item.img}', this)"
+                                title="إضافة للسلة"
+                            >
+                                + السلة
+                            </button>
+                            <button class="cart-item-remove" onclick="removeFromWishlist(${item.id})" title="حذف من المفضلة">✕</button>
+                        </div>
+                    `;
+                });
+                wishlistItemsList.innerHTML = html;
+            }
+        }
+
+        function openWishlist() {
+            closeCart();
+            wishlistDrawer.classList.add('active');
+            cartOverlay.classList.add('active');
+        }
+
+        function closeWishlist() {
+            wishlistDrawer.classList.remove('active');
+            if (!cartDrawer.classList.contains('active')) {
+                cartOverlay.classList.remove('active');
+            }
+        }
+
+        wishlistBtn.addEventListener('click', openWishlist);
+        closeWishlistBtn.addEventListener('click', closeWishlist);
+
+        // ==================== سلة المشتريات التفاعلية ====================
+        function addToCart(id, name, price, img, btn) {
+            // تأثير الزر
+            btn.classList.add('added');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<span>تمت الإضافة ✓</span>`;
+
+            setTimeout(() => {
+                btn.classList.remove('added');
+                btn.innerHTML = originalText;
+            }, 1200);
+
+            // إضافة العنصر
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ id, name, price, img, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`🛍️ تمت إضافة "${name}" إلى السلة`);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+            showToast('تم حذف المنتج من السلة');
+        }
+
+        function updateCartUI() {
+            // تحديث العداد
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartBadge.textContent = totalCount;
+            if (totalCount > 0) {
+                cartBadge.classList.add('has-items', 'bump');
+                setTimeout(() => cartBadge.classList.remove('bump'), 350);
+            } else {
+                cartBadge.classList.remove('has-items');
+            }
+
+            // تحديث محتوى الدرج
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="cart-empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        <p>سلتك فارغة حالياً. أضف بعض المنتجات للبدء!</p>
+                    </div>
+                `;
+                cartTotalPrice.textContent = '0 د.ج';
+            } else {
+                let html = '';
+                let total = 0;
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    html += `
+                        <div class="cart-item-row">
+                            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                            <div class="cart-item-info">
+                                <span class="cart-item-name">${item.name}</span>
+                                <span class="cart-item-price">${item.price.toLocaleString()} د.ج × ${item.quantity}</span>
+                            </div>
+                            <button class="cart-item-remove" onclick="removeFromCart(${item.id})" title="حذف">✕</button>
+                        </div>
+                    `;
+                });
+                cartItemsList.innerHTML = html;
+                cartTotalPrice.textContent = `${total.toLocaleString()} د.ج`;
+            }
+        }
+
+        function openCart() {
+            cartDrawer.classList.add('active');
+            cartOverlay.classList.add('active');
+        }
+
+        function closeCart() {
+            cartDrawer.classList.remove('active');
+            cartOverlay.classList.remove('active');
+        }
+
+        cartBtn.addEventListener('click', openCart);
+        closeCartBtn.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', () => {
+            closeCart();
+            closeWishlist();
+        });
+
+        function checkoutOrder() {
+            if (cart.length === 0) {
+                showToast('السلة فارغة حالياً! أضف منتجات قبل إتمام الطلب.');
+            } else {
+                showToast('🎉 جاري تحويلك لصفحة الدفع الآمن...');
+            }
+        }
+
+        // ==================== الإشعارات المنبثقة Toast ====================
+        let toastTimeout;
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.add('active');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('active');
+            }, 2500);
+        }
+
+        // تشغيل التهيئة الأولية
+        initTheme();
+    </script>
+</body>
+</html>

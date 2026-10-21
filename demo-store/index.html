@@ -68,6 +68,40 @@
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: transparent;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        *::-webkit-scrollbar,
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
+
+        html, body,
+        .product-modal-container,
+        .cart-items-list,
+        .wishlist-items-list,
+        .cart-drawer,
+        .wishlist-drawer,
+        .modal-thumbnails-row {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        .product-modal-container::-webkit-scrollbar,
+        .cart-items-list::-webkit-scrollbar,
+        .wishlist-items-list::-webkit-scrollbar,
+        .cart-drawer::-webkit-scrollbar,
+        .wishlist-drawer::-webkit-scrollbar,
+        .modal-thumbnails-row::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
         }
 
         body {
@@ -2389,16 +2423,8 @@
                         <!-- شارات الثقة والضمان -->
                         <div class="modal-trust-perks">
                             <div class="modal-perk-item">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
                                 <span>توصيل سريع لـ 58 ولاية</span>
-                            </div>
-                            <div class="modal-perk-item">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                                <span>ضمان أصلي لمدة عام</span>
-                            </div>
-                            <div class="modal-perk-item">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning-color)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                <span>استبدال واسترجاع 7 أيام</span>
                             </div>
                             <div class="modal-perk-item">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>

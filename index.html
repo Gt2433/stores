@@ -68,6 +68,45 @@
             margin: 0;
             padding: 0;
             -webkit-tap-highlight-color: transparent;
+            scrollbar-width: none !important; /* إخفاء شريط التمرير في Firefox */
+            -ms-overflow-style: none !important; /* إخفاء شريط التمرير في Edge و IE */
+        }
+
+        /* إخفاء شريط التمرير بالكامل في Chrome و Safari و Edge و Opera */
+        *::-webkit-scrollbar,
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
+
+        html, body,
+        .quick-buy-modal,
+        .product-modal-container,
+        .cart-items-list,
+        .wishlist-items-list,
+        .cart-drawer,
+        .wishlist-drawer,
+        .qb-options-list,
+        .modal-thumbnails-row {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        .quick-buy-modal::-webkit-scrollbar,
+        .product-modal-container::-webkit-scrollbar,
+        .cart-items-list::-webkit-scrollbar,
+        .wishlist-items-list::-webkit-scrollbar,
+        .cart-drawer::-webkit-scrollbar,
+        .wishlist-drawer::-webkit-scrollbar,
+        .qb-options-list::-webkit-scrollbar,
+        .modal-thumbnails-row::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
         }
 
         body {
@@ -453,22 +492,30 @@
             stroke: #facc15;
         }
 
-        /* القائمة المنسدلة للإعدادات */
+        /* القائمة المنسدلة للإعدادات المطورة */
         .settings-dropdown {
             position: absolute;
-            top: calc(100% + 12px);
+            top: calc(100% + 14px);
             left: 0;
-            width: 260px;
+            width: 310px;
+            max-width: calc(100vw - 28px);
             background: var(--bg-surface-solid);
             border: 1px solid var(--border-color);
-            border-radius: 18px;
-            box-shadow: var(--shadow-lg);
-            padding: 0.85rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.35), 0 0 25px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1.15rem;
             display: none;
             flex-direction: column;
-            gap: 0.35rem;
+            gap: 1.1rem;
             z-index: 150;
-            animation: fadeInDown 0.22s ease-out;
+            animation: fadeInDown 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [dir="ltr"] .settings-dropdown {
+            left: auto;
+            right: 0;
         }
 
         .settings-dropdown.active {
@@ -476,74 +523,113 @@
         }
 
         .settings-header {
-            padding: 0.4rem 0.5rem 0.6rem 0.5rem;
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--border-color);
-            margin-bottom: 0.35rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
-        .settings-item {
+        .settings-header-title {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0.6rem 0.75rem;
-            border-radius: 11px;
+            gap: 0.55rem;
+            font-size: 0.92rem;
+            font-weight: 700;
             color: var(--text-primary);
-            font-size: 0.88rem;
-            cursor: pointer;
-            transition: background 0.2s ease;
         }
 
-        .settings-item:hover {
-            background: var(--bg-elevated);
-        }
-
-        .settings-item-label {
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-        }
-
-        .settings-item-label svg {
+        .settings-header-title svg {
             width: 17px;
             height: 17px;
+            color: var(--accent-color);
+        }
+
+        .settings-badge {
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 0.18rem 0.5rem;
+            background: rgba(99, 102, 241, 0.14);
+            color: var(--accent-color);
+            border-radius: 6px;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            letter-spacing: 0.5px;
+        }
+
+        .settings-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .settings-group-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
             color: var(--text-secondary);
         }
 
-        .toggle-switch {
-            width: 38px;
-            height: 22px;
-            background: var(--border-color);
-            border-radius: 20px;
-            position: relative;
+        .settings-group-label svg {
+            width: 15px;
+            height: 15px;
+            color: var(--accent-color);
+        }
+
+        .settings-segmented-control {
+            display: flex;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .settings-seg-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.55rem 0.35rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: 9px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
         }
 
-        .toggle-switch.checked {
+        .settings-seg-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2.2;
+        }
+
+        .settings-seg-btn .curr-symbol {
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .settings-seg-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .settings-seg-btn.active {
             background: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            font-weight: 700;
         }
 
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            right: 3px;
-            width: 16px;
-            height: 16px;
-            background: #ffffff;
-            border-radius: 50%;
-            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        .toggle-switch.checked::after {
-            transform: translateX(-16px);
+        .settings-seg-btn.active svg {
+            stroke: #ffffff;
         }
 
         /* Tooltips */
@@ -1363,23 +1449,24 @@
 
         .modal-main-buttons {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             gap: 0.75rem;
+            width: 100%;
         }
 
         .modal-add-cart-btn {
-            flex: 1;
+            width: 100%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 0.85rem 1.35rem;
+            gap: 0.55rem;
+            padding: 0.88rem 1.35rem;
             border-radius: 14px;
             background: var(--accent-gradient);
             color: #ffffff;
             border: none;
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             font-weight: 800;
             cursor: pointer;
             box-shadow: 0 4px 16px var(--accent-glow);
@@ -1391,19 +1478,30 @@
             box-shadow: 0 8px 24px var(--accent-glow);
         }
 
+        .modal-add-cart-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .modal-buy-fav-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
         .modal-buy-now-btn {
             flex: 1;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 0.85rem 1.35rem;
+            gap: 0.55rem;
+            padding: 0.88rem 1.35rem;
             border-radius: 14px;
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: #ffffff;
             border: none;
             font-family: inherit;
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             font-weight: 800;
             cursor: pointer;
             box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
@@ -1415,9 +1513,13 @@
             box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45);
         }
 
+        .modal-buy-now-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
         .modal-fav-btn {
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             border-radius: 14px;
             background: var(--bg-elevated);
             border: 1.5px solid var(--border-color);
@@ -1425,13 +1527,14 @@
             display: grid;
             place-items: center;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
             flex-shrink: 0;
         }
 
         .modal-fav-btn:hover {
             border-color: var(--danger-color);
             color: var(--danger-color);
+            transform: translateY(-2px);
         }
 
         .modal-fav-btn.active {
@@ -1443,6 +1546,637 @@
         [data-theme="dark"] .modal-fav-btn.active {
             background: rgba(239, 68, 68, 0.2);
             border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        /* ==================== نافذة الشراء الفوري الزجاجية (Quick Buy Glassmorphism Modal) ==================== */
+        .quick-buy-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 14, 23, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 350;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .quick-buy-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .quick-buy-modal {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            max-height: 92vh;
+            background: var(--bg-surface);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1.5px solid var(--border-color);
+            border-radius: 26px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform: translateY(24px) scale(0.96);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 1.85rem;
+        }
+
+        .quick-buy-overlay.active .quick-buy-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .quick-buy-close-btn {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.1rem;
+            transition: all 0.25s ease;
+        }
+
+        .quick-buy-close-btn:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+            transform: rotate(90deg) scale(1.08);
+        }
+
+        /* ترويسة نافذة الشراء الفوري */
+        .quick-buy-header {
+            margin-bottom: 1.25rem;
+            padding-left: 2.5rem;
+        }
+
+        .quick-buy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-buy-title {
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .quick-buy-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* بطاقة ملخص المنتج في الشراء الفوري */
+        .quick-buy-product-summary {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 1rem;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 1.35rem;
+        }
+
+        .qb-summary-img {
+            width: 58px;
+            height: 58px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .qb-summary-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .qb-summary-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .qb-summary-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.2rem;
+            font-size: 0.84rem;
+        }
+
+        .qb-summary-qty {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .qb-summary-price {
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+
+        /* الحقول ونموذج الطلب */
+        .qb-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+        }
+
+        .qb-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            position: relative;
+        }
+
+        .qb-label {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .qb-label .qb-req {
+            color: var(--danger-color);
+            font-weight: 800;
+        }
+
+        .qb-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .qb-input-icon {
+            position: absolute;
+            right: 0.95rem;
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: color 0.2s ease;
+        }
+
+        .qb-input {
+            width: 100%;
+            padding: 0.82rem 2.65rem 0.82rem 1rem;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 13px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .qb-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .qb-input.has-error {
+            border-color: var(--danger-color) !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25) !important;
+        }
+
+        /* القوائم المنسدلة المخصصة (Custom Dropdowns) */
+        .qb-custom-select {
+            position: relative;
+            user-select: none;
+        }
+
+        .qb-select-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.82rem 1.15rem;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .qb-select-trigger:hover {
+            border-color: var(--accent-color);
+        }
+
+        .qb-custom-select.active .qb-select-trigger {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .qb-custom-select.disabled .qb-select-trigger {
+            opacity: 0.55;
+            cursor: not-allowed;
+            background: var(--bg-elevated);
+        }
+
+        .qb-select-arrow {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2.2;
+            color: var(--text-muted);
+            transition: transform 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .qb-custom-select.active .qb-select-arrow {
+            transform: rotate(180deg);
+            color: var(--accent-color);
+        }
+
+        .qb-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            left: 0;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            box-shadow: var(--shadow-lg);
+            z-index: 50;
+            max-height: 250px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .qb-custom-select.active .qb-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .qb-dropdown-search-wrap {
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-elevated);
+        }
+
+        .qb-dropdown-search-input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .qb-dropdown-search-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .qb-options-list {
+            overflow-y: auto;
+            max-height: 190px;
+            padding: 0.35rem;
+        }
+
+        .qb-option-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.65rem 0.85rem;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .qb-option-item:hover,
+        .qb-option-item.highlighted {
+            background: var(--bg-elevated);
+            color: var(--accent-color);
+        }
+
+        .qb-option-item.selected {
+            background: rgba(99, 102, 241, 0.12);
+            color: var(--accent-color);
+            font-weight: 800;
+        }
+
+        .qb-option-code {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: var(--bg-elevated);
+            padding: 0.15rem 0.45rem;
+            border-radius: 6px;
+        }
+
+        .qb-option-manual {
+            border-top: 1px dashed var(--border-color);
+            margin-top: 0.35rem;
+            padding-top: 0.65rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        /* بطاقات خيارات الدفع والتوصيل التفاعلية */
+        .qb-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .qb-radio-card {
+            position: relative;
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            padding: 0.85rem 1rem;
+            background: var(--bg-surface-solid);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .qb-radio-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        .qb-radio-card.active {
+            border-color: var(--accent-color);
+            background: rgba(99, 102, 241, 0.08);
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .qb-radio-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qb-radio-title {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .qb-radio-indicator {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            display: grid;
+            place-items: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .qb-radio-card.active .qb-radio-indicator {
+            border-color: var(--accent-color);
+            background: var(--accent-color);
+        }
+
+        .qb-radio-card.active .qb-radio-indicator::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ffffff;
+        }
+
+        .qb-radio-desc {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        /* زر إتمام الطلب */
+        .qb-submit-btn {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.38);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-top: 0.5rem;
+        }
+
+        .qb-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(16, 185, 129, 0.5);
+        }
+
+        .qb-submit-btn:disabled {
+            opacity: 0.75;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* مؤشر التحميل البسيط (Loading Spinner) */
+        .qb-spinner {
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffffff;
+            animation: qbSpin 0.75s linear infinite;
+        }
+
+        @keyframes qbSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* شاشة النجاح مع أنيميشن علامة الصح (Success State) */
+        .quick-buy-success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem 0.5rem 0.5rem;
+            animation: qbFadeIn 0.4s ease forwards;
+        }
+
+        @keyframes qbFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .qb-success-icon-wrap {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.12);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            display: grid;
+            place-items: center;
+            margin-bottom: 1.35rem;
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.25);
+            animation: qbPulse 1.8s infinite;
+        }
+
+        @keyframes qbPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
+            }
+            50% {
+                transform: scale(1.06);
+                box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+            }
+        }
+
+        .qb-checkmark-svg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .qb-checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2.5;
+            stroke-miterlimit: 10;
+            stroke: #10b981;
+            fill: none;
+            animation: qbStroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .qb-checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke: #10b981;
+            animation: qbStroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+        }
+
+        @keyframes qbStroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .qb-success-title {
+            font-size: 1.65rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 0.65rem;
+        }
+
+        .qb-success-msg {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 440px;
+            margin-bottom: 1.5rem;
+        }
+
+        .qb-success-receipt {
+            width: 100%;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.15rem 1.35rem;
+            margin-bottom: 1.5rem;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            font-size: 0.88rem;
+        }
+
+        .qb-receipt-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qb-receipt-label {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .qb-receipt-val {
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+
+        .qb-done-btn {
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            border-radius: 14px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 16px var(--accent-glow);
+            transition: all 0.25s ease;
+        }
+
+        .qb-done-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
         }
 
         /* شارات الثقة والضمان */
@@ -1561,52 +2295,134 @@
         .cart-item-row {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 0.85rem;
-            border-radius: 16px;
+            gap: 0.95rem;
+            padding: 0.95rem;
+            border-radius: 18px;
             background: var(--bg-elevated);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
+            position: relative;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .cart-item-row:hover {
+            border-color: var(--border-highlight);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .cart-item-img {
-            width: 65px;
-            height: 65px;
-            border-radius: 12px;
+            width: 72px;
+            height: 72px;
+            border-radius: 14px;
             object-fit: cover;
             background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
         }
 
         .cart-item-info {
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
+            gap: 0.35rem;
+            min-width: 0;
+            padding-left: 1.5rem;
         }
 
         .cart-item-name {
             font-size: 0.92rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .cart-item-price {
-            font-size: 0.88rem;
+        .cart-item-unit-price {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* سطر التحكم بالكمية والسعر الجزئي */
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-top: 0.35rem;
+        }
+
+        .cart-item-qty-selector {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 11px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .cart-qty-btn {
+            width: 28px;
+            height: 28px;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.05rem;
             font-weight: 800;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .cart-qty-btn:hover {
+            background: var(--bg-elevated);
             color: var(--accent-color);
         }
 
+        .cart-qty-btn:active {
+            transform: scale(0.9);
+        }
+
+        .cart-qty-display {
+            min-width: 26px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            user-select: none;
+        }
+
+        .cart-item-subtotal {
+            font-size: 0.98rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            white-space: nowrap;
+        }
+
         .cart-item-remove {
-            color: var(--danger-color);
+            position: absolute;
+            top: 0.65rem;
+            left: 0.65rem;
+            color: var(--text-muted);
             background: transparent;
             border: none;
             cursor: pointer;
-            padding: 0.4rem;
+            width: 26px;
+            height: 26px;
             border-radius: 8px;
-            transition: background 0.2s ease;
+            display: grid;
+            place-items: center;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
         }
 
         .cart-item-remove:hover {
             background: rgba(239, 68, 68, 0.15);
+            color: var(--danger-color);
+            transform: scale(1.1);
         }
 
         .cart-drawer-footer {
@@ -1616,34 +2432,59 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .cart-summary-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
         }
 
         .cart-total-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 1.1rem;
-            font-weight: 800;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .cart-total-row.main-total {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            padding-top: 0.45rem;
+            border-top: 1px dashed var(--border-color);
+            margin-top: 0.2rem;
         }
 
         .cart-checkout-btn {
             width: 100%;
-            padding: 0.95rem;
-            border-radius: 14px;
-            background: var(--accent-gradient);
+            padding: 1rem 1.25rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: #ffffff;
             border: none;
             font-family: inherit;
-            font-size: 1rem;
+            font-size: 1.02rem;
             font-weight: 800;
             cursor: pointer;
-            box-shadow: 0 4px 16px var(--accent-glow);
-            transition: all 0.25s ease;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.38);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .cart-checkout-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px var(--accent-glow);
+            box-shadow: 0 10px 28px rgba(16, 185, 129, 0.5);
+        }
+
+        .cart-checkout-btn:active {
+            transform: translateY(0) scale(0.98);
         }
 
         /* رسالة التنبيه Toast */
@@ -1835,13 +2676,26 @@
                 grid-template-columns: 1fr;
             }
 
-            .modal-main-buttons {
-                flex-direction: column;
+            .modal-buy-fav-row {
+                display: flex;
+                align-items: center;
+                gap: 0.65rem;
+                width: 100%;
             }
 
-            .modal-add-cart-btn,
             .modal-buy-now-btn {
-                width: 100%;
+                flex: 1;
+                width: auto;
+            }
+
+            .quick-buy-modal {
+                padding: 1.35rem 1rem;
+                border-radius: 20px;
+                max-height: 94vh;
+            }
+
+            .qb-options-grid {
+                grid-template-columns: 1fr;
             }
 
             .modal-trust-perks {
@@ -1946,31 +2800,7 @@
                     <span class="cart-badge" id="cartBadge">0</span>
                 </div>
 
-                <!-- زر تبديل الوضع المظلم والمضيء -->
-                <button 
-                    type="button" 
-                    class="icon-btn theme-btn" 
-                    id="themeToggleBtn" 
-                    data-tooltip="تبديل المظهر" 
-                    aria-label="تبديل الوضع الليلي والنهاري"
-                >
-                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-
-                <!-- زر الإعدادات مع قائمة منسدلة -->
+                <!-- زر الإعدادات مع قائمة منسدلة حديثة وفاخرة -->
                 <div style="position: relative;">
                     <button 
                         type="button" 
@@ -1988,30 +2818,59 @@
                     <!-- القائمة المنسدلة للإعدادات -->
                     <div class="settings-dropdown" id="settingsDropdown">
                         <div class="settings-header">
-                            <span>إعدادات النظام</span>
-                            <span style="font-size: 0.75rem; color: var(--accent-color);">MBD</span>
-                        </div>
-                        
-                        <div class="settings-item" onclick="toggleSettingSwitch('notifSwitch')">
-                            <div class="settings-item-label">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                                <span>إشعارات العروض</span>
+                            <div class="settings-header-title">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                                <span data-i18n="settings_title">إعدادات المتجر</span>
                             </div>
-                            <div class="toggle-switch checked" id="notifSwitch"></div>
+                            <span class="settings-badge">MBD</span>
                         </div>
 
-                        <div class="settings-item" onclick="toggleSettingSwitch('currencySwitch')">
-                            <div class="settings-item-label">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><line x1="12" y1="6" x2="12" y2="8"></line><line x1="12" y1="16" x2="12" y2="18"></line></svg>
-                                <span>العملة الافتراضية (د.ج)</span>
+                        <!-- قسم المظهر (الوضع المظلم / المضيء) داخل الإعدادات -->
+                        <div class="settings-group">
+                            <label class="settings-group-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                                <span data-i18n="settings_theme">المظهر العام</span>
+                            </label>
+                            <div class="settings-segmented-control" id="themeSegmented">
+                                <button type="button" class="settings-seg-btn" id="themeLightBtn" onclick="selectTheme('light')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                                    <span data-i18n="theme_light">مضيء</span>
+                                </button>
+                                <button type="button" class="settings-seg-btn" id="themeDarkBtn" onclick="selectTheme('dark')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                                    <span data-i18n="theme_dark">داكن</span>
+                                </button>
                             </div>
-                            <div class="toggle-switch checked" id="currencySwitch"></div>
                         </div>
 
-                        <div class="settings-item" onclick="showToast('تم حفظ التفضيلات بنجاح!')">
-                            <div class="settings-item-label">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                                <span>حفظ التفضيلات</span>
+                        <!-- قسم اللغات الثلاث: العربية، الفرنسية، الإنجليزية -->
+                        <div class="settings-group">
+                            <label class="settings-group-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                <span data-i18n="settings_lang">لغة المتجر</span>
+                            </label>
+                            <div class="settings-segmented-control" id="langSegmented">
+                                <button type="button" class="settings-seg-btn active" id="langArBtn" onclick="selectLanguage('ar')">العربية</button>
+                                <button type="button" class="settings-seg-btn" id="langFrBtn" onclick="selectLanguage('fr')">Français</button>
+                                <button type="button" class="settings-seg-btn" id="langEnBtn" onclick="selectLanguage('en')">English</button>
+                            </div>
+                        </div>
+
+                        <!-- قسم اختيار العملة: الدينار الجزائري والأورو -->
+                        <div class="settings-group">
+                            <label class="settings-group-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+                                <span data-i18n="settings_currency">عملة الدفع</span>
+                            </label>
+                            <div class="settings-segmented-control" id="currencySegmented">
+                                <button type="button" class="settings-seg-btn active" id="currDzdBtn" onclick="selectCurrency('DZD')">
+                                    <span class="curr-symbol">د.ج</span>
+                                    <span>دينار (DZD)</span>
+                                </button>
+                                <button type="button" class="settings-seg-btn" id="currEurBtn" onclick="selectCurrency('EUR')">
+                                    <span class="curr-symbol">€</span>
+                                    <span>Euro (EUR)</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -2426,7 +3285,7 @@
                         <span class="modal-category-label" id="modalCategoryLabel"></span>
                         <span class="modal-stock-badge">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            <span>متوفر في المخزون (شحن فوري)</span>
+                            <span data-i18n="modal_in_stock">متوفر في المخزون (شحن فوري)</span>
                         </span>
                     </div>
 
@@ -2444,17 +3303,17 @@
                         <div class="modal-save-pill" id="modalSavePill"></div>
                     </div>
 
-                    <h4 class="modal-desc-heading">وصف المنتج</h4>
+                    <h4 class="modal-desc-heading" data-i18n="modal_desc_heading">وصف المنتج</h4>
                     <p class="modal-description" id="modalDescription"></p>
 
-                    <h4 class="modal-desc-heading">أبرز المواصفات والمميزات</h4>
+                    <h4 class="modal-desc-heading" data-i18n="modal_specs_heading">أبرز المواصفات والمميزات</h4>
                     <ul class="modal-specs-list" id="modalSpecsList">
                         <!-- تضاف المواصفات ديناميكياً -->
                     </ul>
 
                     <div class="modal-actions-container">
                         <div class="modal-quantity-row">
-                            <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted);">الكمية:</span>
+                            <span data-i18n="modal_qty_label" style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted);">الكمية:</span>
                             <div class="modal-qty-selector">
                                 <button type="button" class="modal-qty-btn" id="modalQtyMinus">-</button>
                                 <span class="modal-qty-display" id="modalQtyDisplay">1</span>
@@ -2465,34 +3324,28 @@
                         <div class="modal-main-buttons">
                             <button type="button" class="modal-add-cart-btn" id="modalAddToCartBtn">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
+                                <span data-i18n="btn_add_cart">أضف للسلة</span>
                             </button>
-                            <button type="button" class="modal-buy-now-btn" id="modalBuyNowBtn">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                                <span>شراء فوري</span>
-                            </button>
-                            <button type="button" class="modal-fav-btn" id="modalFavBtn" title="إضافة للمفضلة">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                            </button>
+                            <div class="modal-buy-fav-row">
+                                <button type="button" class="modal-buy-now-btn" id="modalBuyNowBtn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                    <span data-i18n="btn_quick_buy">شراء فوري</span>
+                                </button>
+                                <button type="button" class="modal-fav-btn" id="modalFavBtn" title="إضافة للمفضلة">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                </button>
+                            </div>
                         </div>
 
                         <!-- شارات الثقة والضمان -->
                         <div class="modal-trust-perks">
                             <div class="modal-perk-item">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-                                <span>توصيل سريع لـ 58 ولاية</span>
-                            </div>
-                            <div class="modal-perk-item">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                                <span>ضمان أصلي لمدة عام</span>
-                            </div>
-                            <div class="modal-perk-item">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning-color)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                <span>استبدال واسترجاع 7 أيام</span>
+                                <span data-i18n="perk_delivery">توصيل سريع لـ 58 ولاية</span>
                             </div>
                             <div class="modal-perk-item">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-                                <span>الدفع عند الاستلام</span>
+                                <span data-i18n="perk_cod">الدفع عند الاستلام</span>
                             </div>
                         </div>
 
@@ -2503,13 +3356,215 @@
         </div>
     </div>
 
+    <!-- نافذة الشراء الفوري الزجاجية الفاخرة (Quick Buy Glassmorphism Modal) -->
+    <div class="quick-buy-overlay" id="quickBuyModalOverlay">
+        <div class="quick-buy-modal" id="quickBuyModalContainer">
+            <button type="button" class="quick-buy-close-btn" id="closeQuickBuyModalBtn" title="إغلاق">✕</button>
+
+            <!-- نموذج الشراء والبيانات -->
+            <div id="quickBuyFormContent">
+                <div class="quick-buy-header">
+                    <div class="quick-buy-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        <span data-i18n="qb_badge">طلب مباشر وفوري</span>
+                    </div>
+                    <h3 class="quick-buy-title" data-i18n="qb_title">إتمام الطلب السريع</h3>
+                    <p class="quick-buy-subtitle" data-i18n="qb_subtitle">املأ بياناتك أدناه وسنتكفل بالتوصيل السريع إلى عنوانك</p>
+                </div>
+
+                <!-- بطاقة ملخص المنتج الجاري شراؤه -->
+                <div class="quick-buy-product-summary">
+                    <img src="" alt="صورة المنتج" class="qb-summary-img" id="qbSummaryImg">
+                    <div class="qb-summary-info">
+                        <div class="qb-summary-title" id="qbSummaryTitle">-</div>
+                        <div class="qb-summary-meta">
+                            <span class="qb-summary-qty" id="qbSummaryQty">الكمية: 1</span>
+                            <span class="qb-summary-price" id="qbSummaryPrice">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="qb-form" id="quickBuyForm" onsubmit="return false;">
+                    <!-- حقل الاسم الكامل -->
+                    <div class="qb-field">
+                        <label class="qb-label" for="qbFullName">
+                            <span data-i18n="qb_name_label">الاسم الكامل (الاسم واللقب)</span>
+                            <span class="qb-req">*</span>
+                        </label>
+                        <div class="qb-input-wrap">
+                            <svg class="qb-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <input type="text" id="qbFullName" class="qb-input" placeholder="مثال: يونس بلحاج" autocomplete="name">
+                        </div>
+                    </div>
+
+                    <!-- حقل رقم الهاتف -->
+                    <div class="qb-field">
+                        <label class="qb-label" for="qbPhone">
+                            <span data-i18n="qb_phone_label">رقم الهاتف</span>
+                            <span class="qb-req">*</span>
+                        </label>
+                        <div class="qb-input-wrap">
+                            <svg class="qb-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <input type="tel" id="qbPhone" class="qb-input" placeholder="05 / 06 / 07 XX XX XX XX" dir="ltr" style="text-align: right;" autocomplete="tel">
+                        </div>
+                    </div>
+
+                    <!-- حقل الولاية (قائمة منسدلة بديزاين الموقع تشمل 58 ولاية) -->
+                    <div class="qb-field">
+                        <label class="qb-label">
+                            <span data-i18n="qb_wilaya_label">الولاية</span>
+                            <span class="qb-req">*</span>
+                        </label>
+                        <div class="qb-custom-select" id="qbWilayaSelect">
+                            <div class="qb-select-trigger" id="qbWilayaTrigger">
+                                <span id="qbWilayaTriggerText">اختر ولايتك (58 ولاية)...</span>
+                                <svg class="qb-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </div>
+                            <div class="qb-dropdown-menu" id="qbWilayaMenu">
+                                <div class="qb-dropdown-search-wrap">
+                                    <input type="text" class="qb-dropdown-search-input" id="qbWilayaSearchInput" placeholder="ابحث باسم الولاية أو رقمها..." autocomplete="off">
+                                </div>
+                                <div class="qb-options-list" id="qbWilayaOptionsList">
+                                    <!-- يتم توليد 58 ولاية برمجياً -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- حقل البلدية (يفتح بعد اختيار الولاية فقط) -->
+                    <div class="qb-field">
+                        <label class="qb-label">
+                            <span data-i18n="qb_baladiya_label">اختر بلديتك</span>
+                            <span class="qb-req">*</span>
+                        </label>
+                        <div class="qb-custom-select disabled" id="qbBaladiyaSelect">
+                            <div class="qb-select-trigger" id="qbBaladiyaTrigger">
+                                <span id="qbBaladiyaTriggerText">يرجى اختيار الولاية أولاً...</span>
+                                <svg class="qb-select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </div>
+                            <div class="qb-dropdown-menu" id="qbBaladiyaMenu">
+                                <div class="qb-dropdown-search-wrap">
+                                    <input type="text" class="qb-dropdown-search-input" id="qbBaladiyaSearchInput" placeholder="ابحث في بلديات الولاية..." autocomplete="off">
+                                </div>
+                                <div class="qb-options-list" id="qbBaladiyaOptionsList">
+                                    <!-- يتم ملؤها ديناميكياً حسب الولاية المختارة -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- خانة إدخال البلدية يدوياً إذا ضغط على لم أجد بلديتي -->
+                    <div class="qb-field" id="qbManualBaladiyaWrapper" style="display: none;">
+                        <label class="qb-label" for="qbManualBaladiyaInput">
+                            <span data-i18n="qb_manual_label">اكتب اسم بلديتك يدوياً</span>
+                            <span class="qb-req">*</span>
+                        </label>
+                        <div class="qb-input-wrap">
+                            <svg class="qb-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <input type="text" id="qbManualBaladiyaInput" class="qb-input" placeholder="اكتب اسم بلديتك أو منطقتك بالتفصيل...">
+                        </div>
+                    </div>
+
+                    <!-- خيارات طريقة الدفع (الدفع عند الاستلام أو CCP) -->
+                    <div class="qb-field">
+                        <label class="qb-label">
+                            <span data-i18n="qb_payment_label">طريقة الدفع</span>
+                            <span class="qb-req">*</span>
+                        </label>
+                        <div class="qb-options-grid">
+                            <div class="qb-radio-card active" data-pay="cod" id="payMethodCod">
+                                <div class="qb-radio-header">
+                                    <div class="qb-radio-title">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success-color)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                                        <span data-i18n="qb_cod_title">الدفع عند الاستلام</span>
+                                    </div>
+                                    <span class="qb-radio-indicator"></span>
+                                </div>
+                                <p class="qb-radio-desc" data-i18n="qb_cod_desc">ادفع نقداً عند استلام طلبك وتفقده</p>
+                            </div>
+
+                            <div class="qb-radio-card" data-pay="ccp" id="payMethodCcp">
+                                <div class="qb-radio-header">
+                                    <div class="qb-radio-title">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                        <span data-i18n="qb_ccp_title">بريدي موب / CCP</span>
+                                    </div>
+                                    <span class="qb-radio-indicator"></span>
+                                </div>
+                                <p class="qb-radio-desc" data-i18n="qb_ccp_desc">تحويل فوري مسبق عبر بريدي موب</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- خيارات طريقة التوصيل (للمنزل أو مكتب التوصيل) -->
+                    <div class="qb-field">
+                        <label class="qb-label">
+                            <span data-i18n="qb_delivery_label">طريقة التوصيل</span>
+                            <span class="qb-req">*</span>
+                        </label>
+                        <div class="qb-options-grid">
+                            <div class="qb-radio-card active" data-delivery="home" id="deliveryMethodHome">
+                                <div class="qb-radio-header">
+                                    <div class="qb-radio-title">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                        <span data-i18n="qb_home_title">التوصيل للمنزل</span>
+                                    </div>
+                                    <span class="qb-radio-indicator"></span>
+                                </div>
+                                <p class="qb-radio-desc" data-i18n="qb_home_desc">توصيل آمن وسريع حتى باب منزلك</p>
+                            </div>
+
+                            <div class="qb-radio-card" data-delivery="desk" id="deliveryMethodDesk">
+                                <div class="qb-radio-header">
+                                    <div class="qb-radio-title">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--warning-color)" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                                        <span data-i18n="qb_desk_title">توصيل لمكتب التوصيل</span>
+                                    </div>
+                                    <span class="qb-radio-indicator"></span>
+                                </div>
+                                <p class="qb-radio-desc" data-i18n="qb_desk_desc">استلام من أقرب نقطة شحن (Stop Desk)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- زر إتمام الطلب -->
+                    <button type="button" class="qb-submit-btn" id="qbSubmitBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span id="qbSubmitBtnText" data-i18n="qb_submit_btn">تأكيد وإتمام الطلب</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- شاشة النجاح والأنيميشن للطلب المكتمل -->
+            <div class="quick-buy-success" id="quickBuySuccessContent">
+                <div class="qb-success-icon-wrap">
+                    <svg class="qb-checkmark-svg" viewBox="0 0 52 52">
+                        <circle class="qb-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="qb-checkmark-check" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h3 class="qb-success-title" data-i18n="qb_success_title">تم إرسال طلبك بنجاح!</h3>
+                <p class="qb-success-msg" data-i18n="qb_success_msg">
+                    سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك بمتجر MBD!
+                </p>
+
+                <div class="qb-success-receipt" id="qbSuccessReceipt">
+                    <!-- تفاصيل الطلب تضاف برمجياً -->
+                </div>
+
+                <button type="button" class="qb-done-btn" id="qbDoneBtn" data-i18n="qb_done_btn">العودة للتسوق</button>
+            </div>
+
+        </div>
+    </div>
+
 
     <!-- درج قائمة المفضلة المنبثق (Wishlist Drawer) -->
     <div class="wishlist-drawer" id="wishlistDrawer">
         <div class="cart-drawer-header">
             <div class="cart-drawer-title">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--danger-color)" stroke="var(--danger-color)" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                <span>قائمة المفضلة</span>
+                <span data-i18n="wishlist_title">قائمة المفضلة</span>
             </div>
             <button class="cart-close-btn" id="closeWishlistBtn">✕</button>
         </div>
@@ -2517,7 +3572,7 @@
         <div class="cart-items-list" id="wishlistItemsList">
             <div class="cart-empty-state">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                <p>قائمة المفضلة فارغة حالياً. اضغط على أيقونة القلب على أي منتج لحفظه هنا!</p>
+                <p data-i18n="wishlist_empty">قائمة المفضلة فارغة حالياً. اضغط على أيقونة القلب على أي منتج لحفظه هنا!</p>
             </div>
         </div>
     </div>
@@ -2528,7 +3583,7 @@
         <div class="cart-drawer-header">
             <div class="cart-drawer-title">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                <span>سلة المشتريات</span>
+                <span data-i18n="cart_title">سلة المشتريات</span>
             </div>
             <button class="cart-close-btn" id="closeCartBtn">✕</button>
         </div>
@@ -2536,16 +3591,25 @@
         <div class="cart-items-list" id="cartItemsList">
             <div class="cart-empty-state">
                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                <p>سلتك فارغة حالياً. أضف بعض المنتجات للبدء!</p>
+                <p data-i18n="cart_empty">سلتك فارغة حالياً. أضف بعض المنتجات للبدء!</p>
             </div>
         </div>
 
         <div class="cart-drawer-footer">
-            <div class="cart-total-row">
-                <span>المجموع الكلي:</span>
-                <span id="cartTotalPrice" style="color: var(--accent-color);">0 د.ج</span>
+            <div class="cart-summary-details">
+                <div class="cart-total-row">
+                    <span data-i18n="cart_items_count">عدد المنتجات في السلة:</span>
+                    <span id="cartItemsCountText" style="color: var(--text-muted); font-weight: 700;">0 عناصر</span>
+                </div>
+                <div class="cart-total-row main-total">
+                    <span data-i18n="cart_total_label">المجموع الكلي:</span>
+                    <span id="cartTotalPrice" style="color: #10b981;">0 د.ج</span>
+                </div>
             </div>
-            <button class="cart-checkout-btn" onclick="checkoutOrder()">إتمام الطلب والدفع</button>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn" onclick="checkoutOrder()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                <span data-i18n="cart_checkout_btn">تنفيذ الشراء وطلب الدفع</span>
+            </button>
         </div>
     </div>
 
@@ -2558,7 +3622,6 @@
     <script>
         // عناصر واجهة المستخدم
         const htmlElement = document.documentElement;
-        const themeToggleBtn = document.getElementById('themeToggleBtn');
         const settingsBtn = document.getElementById('settingsBtn');
         const settingsDropdown = document.getElementById('settingsDropdown');
         const searchWrapper = document.getElementById('searchWrapper');
@@ -2578,7 +3641,455 @@
         // حالة سلة المشتريات
         let cart = [];
 
-        // ==================== نظام الوضع المظلم والمضيء ====================
+        // ==================== نظام اللغات المتعددة (عربية / فرنسية / إنجليزية) ====================
+        let currentLanguage = localStorage.getItem('mbd-lang') || 'ar';
+
+        const translations = {
+            ar: {
+                settings_title: "إعدادات المتجر",
+                settings_theme: "المظهر العام",
+                settings_lang: "لغة المتجر",
+                settings_currency: "عملة الدفع",
+                theme_light: "مضيء",
+                theme_dark: "داكن",
+                search_placeholder: "ابحث عن منتج، سماعات، ساعات...",
+                btn_add_cart: "أضف للسلة",
+                btn_details: "التفاصيل",
+                btn_quick_buy: "الشراء الفوري ⚡",
+                modal_in_stock: "متوفر في المخزون (شحن فوري)",
+                modal_desc_heading: "وصف المنتج",
+                modal_specs_heading: "أبرز المواصفات والمميزات",
+                modal_qty_label: "الكمية:",
+                perk_delivery: "توصيل سريع لـ 58 ولاية",
+                perk_cod: "الدفع عند الاستلام",
+                cart_title: "سلة المشتريات",
+                cart_empty: "سلتك فارغة حالياً. أضف بعض المنتجات للبدء!",
+                cart_items_count: "عدد المنتجات في السلة:",
+                cart_total_label: "المجموع الكلي:",
+                cart_checkout_btn: "تنفيذ الشراء وطلب الدفع",
+                unit_price_label: "سعر القطعة:",
+                items_count_suffix_singular: "عنصر",
+                items_count_suffix_plural: "عناصر",
+                wishlist_title: "قائمة المفضلة",
+                wishlist_empty: "قائمة المفضلة فارغة حالياً. اضغط على أيقونة القلب على أي منتج لحفظه هنا!",
+                wishlist_btn_add_cart: "+ السلة",
+                btn_confirm_order: "تأكيد وإتمام الطلب",
+                qb_badge: "طلب مباشر وفوري",
+                qb_title: "إتمام الطلب السريع",
+                qb_subtitle: "املأ بياناتك أدناه وسنتكفل بالتوصيل السريع إلى عنوانك",
+                qb_name_label: "الاسم الكامل (الاسم واللقب)",
+                qb_name_placeholder: "مثال: يونس بلحاج",
+                qb_phone_label: "رقم الهاتف",
+                qb_phone_placeholder: "05 / 06 / 07 XX XX XX XX",
+                qb_wilaya_label: "الولاية",
+                qb_wilaya_trigger_default: "اختر ولايتك (58 ولاية)...",
+                qb_wilaya_search_placeholder: "ابحث باسم الولاية أو رقمها...",
+                qb_baladiya_label: "اختر بلديتك",
+                qb_baladiya_trigger_disabled: "يرجى اختيار الولاية أولاً...",
+                qb_baladiya_trigger_default: "اختر بلديتك...",
+                qb_baladiya_search_placeholder: "ابحث في بلديات الولاية...",
+                qb_manual_option: "✍️ لم أجد بلديتي (أدخلها يدوياً)...",
+                qb_manual_trigger: "لم أجد بلديتي (كتابة يدوية)",
+                qb_manual_label: "اكتب اسم بلديتك يدوياً",
+                qb_manual_placeholder: "اكتب اسم بلديتك أو منطقتك بالتفصيل...",
+                qb_payment_label: "طريقة الدفع",
+                qb_cod_title: "الدفع عند الاستلام",
+                qb_cod_desc: "ادفع نقداً عند استلام طلبك وتفقده",
+                qb_ccp_title: "بريدي موب / CCP",
+                qb_ccp_desc: "تحويل فوري مسبق عبر بريدي موب",
+                qb_delivery_label: "طريقة التوصيل",
+                qb_home_title: "التوصيل للمنزل",
+                qb_home_desc: "توصيل آمن وسريع حتى باب منزلك",
+                qb_desk_title: "توصيل لمكتب التوصيل",
+                qb_desk_desc: "استلام من أقرب نقطة شحن (Stop Desk)",
+                qb_submit_btn: "تأكيد وإتمام الطلب",
+                qb_processing: "جاري تأكيد وتسجيل طلبك...",
+                qb_success_title: "تم إرسال طلبك بنجاح!",
+                qb_success_msg: "سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك بمتجر MBD!",
+                qb_done_btn: "العودة للتسوق",
+                receipt_order_ref: "رقم الطلب:",
+                receipt_items: "المنتجات المطلوبة:",
+                receipt_single_item: "المنتج والكمية:",
+                receipt_recipient: "المستلم:",
+                receipt_address: "عنوان التوصيل:",
+                receipt_delivery: "طريقة التوصيل:",
+                receipt_home: "التوصيل للمنزل 🏠",
+                receipt_desk: "التوصيل لمكتب التوصيل (Stop Desk) 📦",
+                receipt_payment: "طريقة الدفع:",
+                receipt_cod: "الدفع عند الاستلام (COD) 💵",
+                receipt_ccp: "بريدي موب / CCP 💳",
+                receipt_total: "المبلغ الإجمالي:",
+                toast_theme_dark: "تم التبديل إلى الوضع المظلم 🌙",
+                toast_theme_light: "تم التبديل إلى الوضع المضيء ☀️",
+                toast_lang: "تم تغيير لغة العرض إلى العربية",
+                toast_curr_dzd: "تم اعتماد الدينار الجزائري (د.ج)",
+                toast_curr_eur: "تم اعتماد عملة الأورو (€)",
+                toast_order_success: "🎉 تم إرسال طلبك بنجاح! سنتواصل معك قريباً",
+                toast_cart_empty: "⚠️ سلتك فارغة حالياً! أضف منتجات قبل إتمام الشراء.",
+                toast_form_error: "⚠️ يرجى التأكد من ملء جميع الحقول المطلوبة بشكل صحيح",
+                toast_select_wilaya_first: "⚠️ يرجى اختيار الولاية أولاً لتظهر لك بلدياتها",
+                toast_added_cart: "🛍️ تمت إضافة المنتج إلى السلة",
+                toast_removed_cart: "تم حذف المنتج من السلة",
+                toast_added_fav: "❤️ تمت إضافة المنتج إلى المفضلة",
+                toast_removed_fav: "تمت إزالة المنتج من المفضلة",
+                toast_search_cleared: "تم مسح البحث",
+                toast_no_match: "لا توجد منتجات مطابقة لـ",
+                receipt_not_specified: "غير محدد",
+                doc_title: "متجر MBD الإلكتروني | متجرك الرقمي الفاخر",
+                nav_tooltip_fav: "المفضلة",
+                nav_tooltip_cart: "سلة التسوق",
+                nav_tooltip_settings: "الإعدادات",
+                nav_tooltip_search: "البحث (Ctrl+K)",
+                curr_dzd_symbol: "د.ج",
+                curr_dzd_label: "دينار (DZD)"
+            },
+            fr: {
+                settings_title: "Paramètres du Store",
+                settings_theme: "Apparence générale",
+                settings_lang: "Langue d'affichage",
+                settings_currency: "Devise de paiement",
+                theme_light: "Clair",
+                theme_dark: "Sombre",
+                search_placeholder: "Rechercher écouteurs, montres, chargeurs...",
+                btn_add_cart: "Ajouter au panier",
+                btn_details: "Détails",
+                btn_quick_buy: "Achat Rapide ⚡",
+                modal_in_stock: "En stock (Expédition immédiate)",
+                modal_desc_heading: "Description du produit",
+                modal_specs_heading: "Caractéristiques principales",
+                modal_qty_label: "Quantité :",
+                perk_delivery: "Livraison rapide 58 wilayas",
+                perk_cod: "Paiement à la livraison",
+                cart_title: "Mon Panier",
+                cart_empty: "Votre panier est vide actuellement. Ajoutez de superbes articles !",
+                cart_items_count: "Articles dans le panier :",
+                cart_total_label: "Montant Total :",
+                cart_checkout_btn: "Passer la commande",
+                unit_price_label: "Prix unitaire :",
+                items_count_suffix_singular: "article",
+                items_count_suffix_plural: "articles",
+                wishlist_title: "Mes Favoris",
+                wishlist_empty: "Votre liste de favoris est vide pour le moment.",
+                wishlist_btn_add_cart: "+ Panier",
+                btn_confirm_order: "Confirmer la commande",
+                qb_badge: "Commande Directe & Express",
+                qb_title: "Finalisation Rapide de la Commande",
+                qb_subtitle: "Remplissez vos coordonnées ci-dessous pour une livraison rapide à votre adresse",
+                qb_name_label: "Nom complet (Nom & Prénom)",
+                qb_name_placeholder: "Ex : Younes Belhadj",
+                qb_phone_label: "Numéro de téléphone",
+                qb_phone_placeholder: "05 / 06 / 07 XX XX XX XX",
+                qb_wilaya_label: "Wilaya",
+                qb_wilaya_trigger_default: "Sélectionnez votre wilaya (58 wilayas)...",
+                qb_wilaya_search_placeholder: "Rechercher par nom ou code...",
+                qb_baladiya_label: "Sélectionnez votre commune",
+                qb_baladiya_trigger_disabled: "Veuillez d'abord choisir la wilaya...",
+                qb_baladiya_trigger_default: "Sélectionnez votre commune...",
+                qb_baladiya_search_placeholder: "Rechercher une commune...",
+                qb_manual_option: "✍️ Je ne trouve pas ma commune (saisie manuelle)...",
+                qb_manual_trigger: "Commune personnalisée (manuelle)",
+                qb_manual_label: "Entrez le nom de votre commune",
+                qb_manual_placeholder: "Entrez le nom de votre commune ou région...",
+                qb_payment_label: "Mode de paiement",
+                qb_cod_title: "Paiement à la livraison",
+                qb_cod_desc: "Payez en espèces à la réception de votre colis",
+                qb_ccp_title: "BaridiMob / CCP",
+                qb_ccp_desc: "Virement instantané avant livraison via BaridiMob",
+                qb_delivery_label: "Mode de livraison",
+                qb_home_title: "Livraison à domicile",
+                qb_home_desc: "Livraison rapide et sécurisée à votre porte",
+                qb_desk_title: "Retrait au bureau",
+                qb_desk_desc: "Récupération au point relais le plus proche (Stop Desk)",
+                qb_submit_btn: "Confirmer la commande",
+                qb_processing: "Confirmation de votre commande en cours...",
+                qb_success_title: "Commande envoyée avec succès !",
+                qb_success_msg: "Nous vous contacterons rapidement par téléphone pour confirmer l'expédition. Merci de votre confiance en MBD Store !",
+                qb_done_btn: "Continuer mes achats",
+                receipt_order_ref: "N° de Commande :",
+                receipt_items: "Articles commandés :",
+                receipt_single_item: "Article & Quantité :",
+                receipt_recipient: "Destinataire :",
+                receipt_address: "Adresse de livraison :",
+                receipt_delivery: "Mode de livraison :",
+                receipt_home: "Livraison à domicile 🏠",
+                receipt_desk: "Récupération au bureau (Stop Desk) 📦",
+                receipt_payment: "Mode de paiement :",
+                receipt_cod: "Paiement à la livraison (COD) 💵",
+                receipt_ccp: "BaridiMob / CCP 💳",
+                receipt_total: "Montant Total :",
+                toast_theme_dark: "Passage au mode sombre 🌙",
+                toast_theme_light: "Passage au mode clair ☀️",
+                toast_lang: "Langue changée en Français",
+                toast_curr_dzd: "Devise définie : Dinar Algérien (DA)",
+                toast_curr_eur: "Devise définie : Euro (€)",
+                toast_order_success: "🎉 Votre commande a été enregistrée avec succès !",
+                toast_cart_empty: "⚠️ Votre panier est vide ! Ajoutez des articles avant de commander.",
+                toast_form_error: "⚠️ Veuillez remplir tous les champs obligatoires correctement",
+                toast_select_wilaya_first: "⚠️ Veuillez choisir une wilaya d'abord",
+                toast_added_cart: "🛍️ Article ajouté au panier",
+                toast_removed_cart: "Article retiré du panier",
+                toast_added_fav: "❤️ Article ajouté à vos favoris",
+                toast_removed_fav: "Article retiré de vos favoris",
+                toast_search_cleared: "Recherche effacée",
+                toast_no_match: "Aucun produit correspondant à",
+                receipt_not_specified: "Non spécifié",
+                doc_title: "MBD Store | Votre boutique numérique de luxe",
+                nav_tooltip_fav: "Favoris",
+                nav_tooltip_cart: "Panier",
+                nav_tooltip_settings: "Paramètres",
+                nav_tooltip_search: "Recherche (Ctrl+K)",
+                curr_dzd_symbol: "DA",
+                curr_dzd_label: "Dinar (DZD)"
+            },
+            en: {
+                settings_title: "Store Settings",
+                settings_theme: "Appearance",
+                settings_lang: "Display Language",
+                settings_currency: "Payment Currency",
+                theme_light: "Light",
+                theme_dark: "Dark",
+                search_placeholder: "Search headphones, smartwatches, chargers...",
+                btn_add_cart: "Add to Cart",
+                btn_details: "Details",
+                btn_quick_buy: "Quick Buy ⚡",
+                modal_in_stock: "In Stock (Instant Dispatch)",
+                modal_desc_heading: "Product Description",
+                modal_specs_heading: "Key Specifications",
+                modal_qty_label: "Quantity:",
+                perk_delivery: "Fast Delivery across 58 Wilayas",
+                perk_cod: "Cash on Delivery",
+                cart_title: "Shopping Cart",
+                cart_empty: "Your cart is currently empty. Add some amazing products!",
+                cart_items_count: "Items in cart:",
+                cart_total_label: "Total Amount:",
+                cart_checkout_btn: "Proceed to Checkout",
+                unit_price_label: "Unit price:",
+                items_count_suffix_singular: "item",
+                items_count_suffix_plural: "items",
+                wishlist_title: "My Wishlist",
+                wishlist_empty: "Your wishlist is empty at the moment.",
+                wishlist_btn_add_cart: "+ Cart",
+                btn_confirm_order: "Confirm Order",
+                qb_badge: "Direct & Instant Order",
+                qb_title: "Fast Checkout",
+                qb_subtitle: "Fill in your details below for fast delivery to your address",
+                qb_name_label: "Full Name (First & Last)",
+                qb_name_placeholder: "E.g.: Younes Belhadj",
+                qb_phone_label: "Phone Number",
+                qb_phone_placeholder: "05 / 06 / 07 XX XX XX XX",
+                qb_wilaya_label: "Wilaya",
+                qb_wilaya_trigger_default: "Choose your wilaya (58 wilayas)...",
+                qb_wilaya_search_placeholder: "Search by wilaya or code...",
+                qb_baladiya_label: "Choose your commune / municipality",
+                qb_baladiya_trigger_disabled: "Please select a wilaya first...",
+                qb_baladiya_trigger_default: "Choose your commune...",
+                qb_baladiya_search_placeholder: "Search communes...",
+                qb_manual_option: "✍️ Commune not found (enter manually)...",
+                qb_manual_trigger: "Custom Commune (manual)",
+                qb_manual_label: "Type your commune name manually",
+                qb_manual_placeholder: "Enter your commune or area details...",
+                qb_payment_label: "Payment Method",
+                qb_cod_title: "Cash on Delivery",
+                qb_cod_desc: "Pay in cash upon receiving and inspecting your package",
+                qb_ccp_title: "BaridiMob / CCP",
+                qb_ccp_desc: "Instant upfront transfer via BaridiMob",
+                qb_delivery_label: "Delivery Method",
+                qb_home_title: "Home Delivery",
+                qb_home_desc: "Safe and fast delivery straight to your door",
+                qb_desk_title: "Stop Desk Pickup",
+                qb_desk_desc: "Pickup from the nearest express delivery office (Stop Desk)",
+                qb_submit_btn: "Confirm Order",
+                qb_processing: "Confirming and registering your order...",
+                qb_success_title: "Order Submitted Successfully!",
+                qb_success_msg: "We will contact you shortly by phone to confirm shipping. Thank you for choosing MBD Store!",
+                qb_done_btn: "Back to Shopping",
+                receipt_order_ref: "Order ID:",
+                receipt_items: "Ordered Items:",
+                receipt_single_item: "Product & Quantity:",
+                receipt_recipient: "Recipient:",
+                receipt_address: "Delivery Address:",
+                receipt_delivery: "Delivery Method:",
+                receipt_home: "Home Delivery 🏠",
+                receipt_desk: "Stop Desk Pickup 📦",
+                receipt_payment: "Payment Method:",
+                receipt_cod: "Cash on Delivery (COD) 💵",
+                receipt_ccp: "BaridiMob / CCP 💳",
+                receipt_total: "Total Amount:",
+                toast_theme_dark: "Switched to Dark Mode 🌙",
+                toast_theme_light: "Switched to Light Mode ☀️",
+                toast_lang: "Language switched to English",
+                toast_curr_dzd: "Currency set to Algerian Dinar (DZD)",
+                toast_curr_eur: "Currency set to Euro (€)",
+                toast_order_success: "🎉 Your order has been placed successfully!",
+                toast_cart_empty: "⚠️ Your cart is empty! Add products before checking out.",
+                toast_form_error: "⚠️ Please fill in all required fields correctly",
+                toast_select_wilaya_first: "⚠️ Please select a wilaya first",
+                toast_added_cart: "🛍️ Product added to cart",
+                toast_removed_cart: "Product removed from cart",
+                toast_added_fav: "❤️ Product added to wishlist",
+                toast_removed_fav: "Product removed from wishlist",
+                toast_search_cleared: "Search cleared",
+                toast_no_match: "No products matching",
+                receipt_not_specified: "Not specified",
+                doc_title: "MBD Store | Your Luxury Digital Store",
+                nav_tooltip_fav: "Wishlist",
+                nav_tooltip_cart: "Shopping Cart",
+                nav_tooltip_settings: "Settings",
+                nav_tooltip_search: "Search (Ctrl+K)",
+                curr_dzd_symbol: "DZD",
+                curr_dzd_label: "Dinar (DZD)"
+            }
+        };
+
+        function selectLanguage(lang, silent = false) {
+            currentLanguage = lang;
+            localStorage.setItem('mbd-lang', lang);
+
+            const arBtn = document.getElementById('langArBtn');
+            const frBtn = document.getElementById('langFrBtn');
+            const enBtn = document.getElementById('langEnBtn');
+            if (arBtn && frBtn && enBtn) {
+                arBtn.classList.toggle('active', lang === 'ar');
+                frBtn.classList.toggle('active', lang === 'fr');
+                enBtn.classList.toggle('active', lang === 'en');
+            }
+
+            if (lang === 'ar') {
+                htmlElement.setAttribute('dir', 'rtl');
+                htmlElement.setAttribute('lang', 'ar');
+            } else {
+                htmlElement.setAttribute('dir', 'ltr');
+                htmlElement.setAttribute('lang', lang);
+            }
+
+            applyTranslations(lang);
+            if (!silent) {
+                const t = translations[lang] || translations.ar;
+                showToast(t.toast_lang);
+            }
+        }
+
+        function applyTranslations(lang) {
+            const t = translations[lang] || translations.ar;
+            
+            // تحديث العناصر الحاوية على data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.textContent = t[key];
+                }
+            });
+
+            // تحديث عنوان الصفحة بالكامل
+            if (t.doc_title) {
+                document.title = t.doc_title;
+            }
+
+            // حقل البحث في شريط التنقل
+            if (navbarSearchInput && t.search_placeholder) {
+                navbarSearchInput.placeholder = t.search_placeholder;
+            }
+
+            // تلميحات أزرار الهيدر
+            const wishlistNavBtn = document.getElementById('wishlistBtn');
+            const cartNavBtn = document.getElementById('cartBtn');
+            const settingsNavBtn = document.getElementById('settingsBtn');
+            const searchToggleBtn = document.getElementById('searchToggleBtn');
+            if (wishlistNavBtn && t.nav_tooltip_fav) wishlistNavBtn.setAttribute('data-tooltip', t.nav_tooltip_fav);
+            if (cartNavBtn && t.nav_tooltip_cart) cartNavBtn.setAttribute('data-tooltip', t.nav_tooltip_cart);
+            if (settingsNavBtn && t.nav_tooltip_settings) settingsNavBtn.setAttribute('data-tooltip', t.nav_tooltip_settings);
+            if (searchToggleBtn && t.nav_tooltip_search) searchToggleBtn.setAttribute('data-tooltip', t.nav_tooltip_search);
+
+            // نصوص زر العملة في قائمة الإعدادات
+            const currDzdSymbolEl = document.querySelector('#currDzdBtn .curr-symbol');
+            const currDzdLabelEl = document.querySelector('#currDzdBtn span:not(.curr-symbol)');
+            if (currDzdSymbolEl && t.curr_dzd_symbol) currDzdSymbolEl.textContent = t.curr_dzd_symbol;
+            if (currDzdLabelEl && t.curr_dzd_label) currDzdLabelEl.textContent = t.curr_dzd_label;
+
+            // العنوان الرئيسي للمتجر
+            const storeTitleEl = document.querySelector('.store-title');
+            if (storeTitleEl) {
+                if (lang === 'ar') {
+                    storeTitleEl.innerHTML = 'استكشف منتجات <span>MBD</span> الفاخرة';
+                } else if (lang === 'fr') {
+                    storeTitleEl.innerHTML = 'Découvrez la Collection de Luxe <span>MBD</span>';
+                } else {
+                    storeTitleEl.innerHTML = 'Explore <span>MBD</span> Luxury Collection';
+                }
+            }
+
+            // تحديث بطاقات المنتجات في الشبكة الرئيسية (العناوين، الشارات، الأزرار)
+            updateProductCardsLanguage();
+            updateAllPrices();
+
+            // تحديث الحقول التوضيحية لنموذج الشراء الفوري
+            if (typeof qbFullName !== 'undefined' && qbFullName && t.qb_name_placeholder) {
+                qbFullName.placeholder = t.qb_name_placeholder;
+            }
+            if (typeof qbWilayaSearchInput !== 'undefined' && qbWilayaSearchInput && t.qb_wilaya_search_placeholder) {
+                qbWilayaSearchInput.placeholder = t.qb_wilaya_search_placeholder;
+            }
+            if (typeof qbBaladiyaSearchInput !== 'undefined' && qbBaladiyaSearchInput && t.qb_baladiya_search_placeholder) {
+                qbBaladiyaSearchInput.placeholder = t.qb_baladiya_search_placeholder;
+            }
+            if (typeof qbManualBaladiyaInput !== 'undefined' && qbManualBaladiyaInput && t.qb_manual_placeholder) {
+                qbManualBaladiyaInput.placeholder = t.qb_manual_placeholder;
+            }
+
+            // تحديث نصوص أزرار الاختيار للولاية والبلدية
+            if (typeof qbWilayaTriggerText !== 'undefined' && qbWilayaTriggerText) {
+                if (!quickBuySelectedWilaya) {
+                    qbWilayaTriggerText.textContent = t.qb_wilaya_trigger_default;
+                } else {
+                    qbWilayaTriggerText.textContent = (lang === 'ar') ? quickBuySelectedWilaya.name : (quickBuySelectedWilaya.nameFr || quickBuySelectedWilaya.name);
+                }
+            }
+            if (typeof qbBaladiyaTriggerText !== 'undefined' && qbBaladiyaTriggerText) {
+                if (!quickBuySelectedWilaya) {
+                    qbBaladiyaTriggerText.textContent = t.qb_baladiya_trigger_disabled;
+                } else if (!quickBuySelectedBaladiya) {
+                    qbBaladiyaTriggerText.textContent = t.qb_baladiya_trigger_default;
+                } else if (quickBuyIsManualBaladiya) {
+                    qbBaladiyaTriggerText.textContent = t.qb_manual_trigger;
+                } else {
+                    // ترجمة اسم البلدية المختارة إلى لغة العرض الجديدة
+                    let cIndex = -1;
+                    if (quickBuySelectedWilaya.communes) cIndex = quickBuySelectedWilaya.communes.indexOf(quickBuySelectedBaladiya);
+                    if (cIndex === -1 && quickBuySelectedWilaya.communesFr) cIndex = quickBuySelectedWilaya.communesFr.indexOf(quickBuySelectedBaladiya);
+                    if (cIndex !== -1) {
+                        const list = (lang === 'ar') ? quickBuySelectedWilaya.communes : (quickBuySelectedWilaya.communesFr || quickBuySelectedWilaya.communes);
+                        quickBuySelectedBaladiya = list[cIndex] || quickBuySelectedBaladiya;
+                        qbBaladiyaTriggerText.textContent = quickBuySelectedBaladiya;
+                    }
+                }
+            }
+
+            // تحديث قائمة الولايات المنسدلة باللغة النشطة
+            if (typeof renderWilayasList === 'function' && typeof algerianWilayas !== 'undefined') {
+                renderWilayasList(algerianWilayas);
+            }
+
+            // تحديث قائمة البلديات إذا كانت هناك ولاية مختارة
+            if (typeof quickBuySelectedWilaya !== 'undefined' && quickBuySelectedWilaya && typeof renderBaladiyatList === 'function') {
+                renderBaladiyatList((lang === 'ar') ? quickBuySelectedWilaya.communes : (quickBuySelectedWilaya.communesFr || quickBuySelectedWilaya.communes));
+            }
+
+            // تحديث نافذة التفاصيل إذا كانت مفتوحة حالياً
+            if (typeof currentModalProductId !== 'undefined' && currentModalProductId && typeof productModalOverlay !== 'undefined' && productModalOverlay.classList.contains('active')) {
+                updateModalLanguage(currentModalProductId);
+            }
+
+            // تحديث ملخص الشراء الفوري وزر الإتمام إذا كانت النافذة مفتوحة
+            if (typeof updateQuickBuyModalLanguage === 'function') {
+                updateQuickBuyModalLanguage();
+            }
+
+            // إعادة رسم السلة والمفضلة
+            if (typeof renderCart === 'function') renderCart();
+            if (typeof renderWishlist === 'function') renderWishlist();
+        }
+
+        // ==================== نظام الوضع المظلم والمضيء المدمج داخل الإعدادات ====================
         function initTheme() {
             const savedTheme = localStorage.getItem('mbd-theme');
             if (savedTheme) {
@@ -2592,29 +4103,126 @@
         function setTheme(theme) {
             htmlElement.setAttribute('data-theme', theme);
             localStorage.setItem('mbd-theme', theme);
+            updateThemeSegmentedUI(theme);
         }
 
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            setTheme(newTheme);
-            showToast(newTheme === 'dark' ? 'تم التبديل إلى الوضع المظلم 🌙' : 'تم التبديل إلى الوضع المضيء ☀️');
-        });
+        function updateThemeSegmentedUI(theme) {
+            const lightBtn = document.getElementById('themeLightBtn');
+            const darkBtn = document.getElementById('themeDarkBtn');
+            if (lightBtn && darkBtn) {
+                lightBtn.classList.toggle('active', theme === 'light');
+                darkBtn.classList.toggle('active', theme === 'dark');
+            }
+        }
+
+        function selectTheme(theme) {
+            setTheme(theme);
+            const t = translations[currentLanguage] || translations.ar;
+            showToast(theme === 'dark' ? t.toast_theme_dark : t.toast_theme_light);
+        }
+
+        // ==================== نظام العملة المتعددة (دينار DZD / أورو EUR) ====================
+        let currentCurrency = localStorage.getItem('mbd-currency') || 'DZD';
+        const EUR_EXCHANGE_RATE = 240;
+
+        function formatPrice(amountInDzd) {
+            if (currentCurrency === 'EUR') {
+                const eur = (amountInDzd / EUR_EXCHANGE_RATE).toFixed(2);
+                return `${eur} €`;
+            }
+            const symbol = (currentLanguage === 'ar') ? 'د.ج' : ((currentLanguage === 'fr') ? 'DA' : 'DZD');
+            return `${Math.round(amountInDzd).toLocaleString()} ${symbol}`;
+        }
+
+        function formatPriceParts(amountInDzd) {
+            if (currentCurrency === 'EUR') {
+                return {
+                    value: (amountInDzd / EUR_EXCHANGE_RATE).toFixed(2),
+                    symbol: '€'
+                };
+            }
+            const symbol = (currentLanguage === 'ar') ? 'د.ج' : ((currentLanguage === 'fr') ? 'DA' : 'DZD');
+            return {
+                value: Math.round(amountInDzd).toLocaleString(),
+                symbol: symbol
+            };
+        }
+
+        function selectCurrency(curr, silent = false) {
+            currentCurrency = curr;
+            localStorage.setItem('mbd-currency', curr);
+
+            const dzdBtn = document.getElementById('currDzdBtn');
+            const eurBtn = document.getElementById('currEurBtn');
+            if (dzdBtn && eurBtn) {
+                dzdBtn.classList.toggle('active', curr === 'DZD');
+                eurBtn.classList.toggle('active', curr === 'EUR');
+            }
+
+            updateAllPrices();
+            if (typeof renderCart === 'function') renderCart();
+            if (typeof renderWishlist === 'function') renderWishlist();
+
+            if (typeof currentModalProductId !== 'undefined' && currentModalProductId) {
+                const p = productsData.find(item => item.id === currentModalProductId);
+                if (p && typeof modalCurrentPrice !== 'undefined' && modalCurrentPrice) {
+                    const priceParts = formatPriceParts(p.price);
+                    modalCurrentPrice.innerHTML = `<span>${priceParts.value}</span> <span style="font-size: 1.15rem; color: var(--accent-color);">${priceParts.symbol}</span>`;
+                    modalOldPrice.textContent = formatPrice(p.oldPrice);
+                    const discount = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
+                    const savedAmountFormatted = formatPrice(p.oldPrice - p.price);
+                    modalSavePill.textContent = (currentLanguage === 'ar') ? `وفر ${discount}% (${savedAmountFormatted})` : ((currentLanguage === 'fr') ? `Économisez ${discount}% (${savedAmountFormatted})` : `Save ${discount}% (${savedAmountFormatted})`);
+                }
+            }
+
+            if (typeof quickBuyModalOverlay !== 'undefined' && quickBuyModalOverlay && quickBuyModalOverlay.classList.contains('active')) {
+                if (quickBuyMode === 'single' && quickBuyProduct) {
+                    const total = quickBuyProduct.price * quickBuyQty;
+                    qbSummaryPrice.textContent = formatPrice(total);
+                    const submitSpan = qbSubmitBtn.querySelector('span');
+                    if (submitSpan) {
+                        const t = translations[currentLanguage] || translations.ar;
+                        submitSpan.textContent = `${t.btn_confirm_order || 'تأكيد وإتمام الطلب'} — ${formatPrice(total)}`;
+                    }
+                } else if (quickBuyMode === 'cart' && quickBuyCartItems) {
+                    const totalAmount = quickBuyCartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    qbSummaryPrice.textContent = formatPrice(totalAmount);
+                    const submitSpan = qbSubmitBtn.querySelector('span');
+                    if (submitSpan) {
+                        const t = translations[currentLanguage] || translations.ar;
+                        submitSpan.textContent = `${t.btn_confirm_order || 'تأكيد وإتمام الطلب'} — ${formatPrice(totalAmount)}`;
+                    }
+                }
+            }
+
+            if (!silent) {
+                const t = translations[currentLanguage] || translations.ar;
+                showToast(curr === 'EUR' ? t.toast_curr_eur : t.toast_curr_dzd);
+            }
+        }
+
+        function updateAllPrices() {
+            if (typeof productsData === 'undefined') return;
+            productsData.forEach(p => {
+                const card = document.getElementById(`product-${p.id}`);
+                if (card) {
+                    const valEl = card.querySelector('.price-current span:first-child');
+                    const curEl = card.querySelector('.price-current .price-currency');
+                    const oldEl = card.querySelector('.price-old');
+                    const parts = formatPriceParts(p.price);
+
+                    if (valEl) valEl.textContent = parts.value;
+                    if (curEl) curEl.textContent = parts.symbol;
+                    if (oldEl) oldEl.textContent = formatPrice(p.oldPrice);
+                }
+            });
+        }
 
         // ==================== قائمة الإعدادات ====================
         settingsBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             settingsDropdown.classList.toggle('active');
         });
-
-        function toggleSettingSwitch(switchId) {
-            const el = document.getElementById(switchId);
-            if (el) {
-                el.classList.toggle('checked');
-                const isChecked = el.classList.contains('checked');
-                showToast(isChecked ? 'تم تفعيل الخاصية' : 'تم تعطيل الخاصية');
-            }
-        }
 
         // ==================== شريط البحث المتمدد في الهيدر ====================
         function openExpandableSearch() {
@@ -2652,7 +4260,8 @@
                 navbarSearchInput.value = '';
                 resetProductFilter();
                 navbarSearchInput.focus();
-                showToast('تم مسح البحث');
+                const t = translations[currentLanguage] || translations.ar;
+                showToast(t.toast_search_cleared || 'تم مسح البحث');
             } else {
                 closeExpandableSearch();
             }
@@ -2664,7 +4273,8 @@
             if (val.length > 0) {
                 const matchCount = filterProducts(val);
                 if (matchCount === 0) {
-                    showToast(`لا توجد منتجات مطابقة لـ "${val}"`);
+                    const t = translations[currentLanguage] || translations.ar;
+                    showToast(`${t.toast_no_match || 'لا توجد منتجات مطابقة لـ'} "${val}"`);
                 }
             } else {
                 resetProductFilter();
@@ -2680,6 +4290,9 @@
             const cards = document.querySelectorAll('.product-card');
             let count = 0;
             cards.forEach(card => {
+                const pId = parseInt(card.id.replace('product-', ''), 10);
+                const p = (typeof productsData !== 'undefined') ? productsData.find(item => item.id === pId) : null;
+
                 const titleEl = card.querySelector('.product-title');
                 const title = titleEl ? titleEl.textContent.toLowerCase() : '';
                 const descEl = card.querySelector('.product-description');
@@ -2688,7 +4301,22 @@
                 const catEl = card.querySelector('.product-category');
                 const catText = catEl ? catEl.textContent.toLowerCase() : '';
 
-                if (title.includes(query) || desc.includes(query) || catAttr.includes(query) || catText.includes(query)) {
+                let match = title.includes(query) || desc.includes(query) || catAttr.includes(query) || catText.includes(query);
+
+                // فحص الحقول متعددة اللغات في بيانات المنتج
+                if (!match && p) {
+                    match = (p.name && p.name.toLowerCase().includes(query)) ||
+                            (p.nameFr && p.nameFr.toLowerCase().includes(query)) ||
+                            (p.nameEn && p.nameEn.toLowerCase().includes(query)) ||
+                            (p.desc && p.desc.toLowerCase().includes(query)) ||
+                            (p.descFr && p.descFr.toLowerCase().includes(query)) ||
+                            (p.descEn && p.descEn.toLowerCase().includes(query)) ||
+                            (p.categoryName && p.categoryName.toLowerCase().includes(query)) ||
+                            (p.categoryNameFr && p.categoryNameFr.toLowerCase().includes(query)) ||
+                            (p.categoryNameEn && p.categoryNameEn.toLowerCase().includes(query));
+                }
+
+                if (match) {
                     card.style.display = 'flex';
                     count++;
                 } else {
@@ -2719,7 +4347,7 @@
 
         // إغلاق القوائم والبحث عند النقر في أي مكان خارجها
         document.addEventListener('click', (e) => {
-            if (!settingsDropdown.contains(e.target) && e.target !== settingsBtn) {
+            if (!settingsDropdown.contains(e.target) && !settingsBtn.contains(e.target)) {
                 settingsDropdown.classList.remove('active');
             }
             if (!searchWrapper.contains(e.target)) {
@@ -2734,20 +4362,42 @@
             {
                 id: 1,
                 name: "سماعات MBD Studio Max Pro",
+                nameFr: "Casque MBD Studio Max Pro",
+                nameEn: "MBD Studio Max Pro Headphones",
                 price: 7500,
                 oldPrice: 9900,
                 badge: "جديد 2026",
+                badgeFr: "Nouveau 2026",
+                badgeEn: "New 2026",
                 category: "audio",
                 categoryName: "صوتيات احترافية",
+                categoryNameFr: "Audio Professionnel",
+                categoryNameEn: "Pro Audio",
                 rating: 4.9,
                 reviews: 142,
                 desc: "سماعات رأس لاسلكية متميزة مصممة لتجربة استماع احترافية نقية مع تقنية عزل الضوضاء النشط (ANC) الهجين. تتمتع بوسادات أذن محشوة برغوة الذاكرة ومكسوة بالجلد الطبيعي الفاخر، وتوفر بطارية تدوم حتى 40 ساعة متواصلة.",
+                descFr: "Casque sans fil haut de gamme conçu pour une expérience audio pure avec réduction active du bruit (ANC) hybride. Coussinets confortables à mémoire de forme et autonomie record jusqu'à 40 heures.",
+                descEn: "Premium wireless headphones engineered for an immersive audiophile experience with Hybrid Active Noise Cancellation. Memory foam cushions and up to 40 hours battery life.",
                 specs: [
                     "عزل ضوضاء نشط هجين متقدم (Hybrid Active Noise Cancelling)",
                     "بطارية خارقة تدوم حتى 40 ساعة متواصلة مع شحن سريع عبر Type-C",
                     "محركات صوتية ديناميكية 40 ملم بدقة صوتية عالية High-Res Audio",
                     "اتصال Bluetooth 5.3 متعدد النقاط مع ميكروفونات ذكية لعزل ضجيج الرياح",
                     "هيكل ألومنيوم مرن وقابل للطي مع حقيبة تنقل فاخرة مقاومة للصدمات"
+                ],
+                specsFr: [
+                    "Réduction active du bruit hybride avancée (Hybrid ANC)",
+                    "Autonomie exceptionnelle jusqu'à 40 heures avec charge rapide Type-C",
+                    "Transducteurs dynamiques 40mm certifiés Haute Résolution (Hi-Res)",
+                    "Connexion multipoint Bluetooth 5.3 avec micros réducteurs de souffle",
+                    "Arceau pliable en alliage d'aluminium avec étui de transport rigide"
+                ],
+                specsEn: [
+                    "Advanced Hybrid Active Noise Cancelling (ANC)",
+                    "Monster battery life up to 40 hours with fast Type-C charging",
+                    "40mm dynamic drivers with Hi-Res Audio certification",
+                    "Bluetooth 5.3 multipoint connection with wind-noise reduction mics",
+                    "Foldable aluminum frame with premium shockproof travel case"
                 ],
                 images: [
                     "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=85",
@@ -2759,20 +4409,42 @@
             {
                 id: 2,
                 name: "ساعة MBD Ultra Watch Gen 2",
+                nameFr: "Montre MBD Ultra Watch Gen 2",
+                nameEn: "MBD Ultra Watch Gen 2",
                 price: 18500,
                 oldPrice: 22000,
                 badge: "الأعلى تقييماً",
+                badgeFr: "Mieux Noté ⭐",
+                badgeEn: "Top Rated ⭐",
                 category: "watches",
                 categoryName: "ساعات ذكية",
+                categoryNameFr: "Montres Connectées",
+                categoryNameEn: "Smartwatches",
                 rating: 5.0,
                 reviews: 218,
                 desc: "ساعة ذكية رائدة بهيكل من التيتانيوم المصقول وشاشة AMOLED ساطعة ومقاومة للخدش تحت أشعة الشمس المباشرة. مزودة بمستشعرات صحية شاملة وتتبع دقيق للأنشطة الرياضية ونظام تحديد مواقع فائق الدقة GPS، مع مقاومة للماء حتى عمق 50 متراً.",
+                descFr: "Montre connectée d'élite avec boîtier en titane poli et écran AMOLED ultra-lumineux résistant aux rayures. Capteurs de santé complets, GPS haute précision et étanchéité 50 mètres.",
+                descEn: "Flagship smartwatch featuring a polished titanium case and ultra-bright AMOLED display. Comprehensive health monitoring, high-precision GPS, and 50m water resistance.",
                 specs: [
                     "شاشة AMOLED فائقة السطوع 2000 شمعة مع زجاج ياقوتي مضاد للخدش",
                     "هيكل من التيتانيوم ومقاومة للماء بمعيار 5ATM والغوص حتى 50 متراً",
                     "تتبع نبضات القلب، تشبع الأكسجين، النوم، وتخطيط القلب ECG على مدار الساعة",
                     "عمر بطارية يصل إلى 7 أيام من الاستخدام العادي و14 يوماً بوضع التوفير",
                     "ميكروفون ومكبر صوت مدمج للمكالمات البلوتوث والرد الفوري على الإشعارات"
+                ],
+                specsFr: [
+                    "Écran AMOLED 2000 nits avec verre saphir inrayable",
+                    "Boîtier en titane aérospatial et étanchéité 5ATM jusqu'à 50m",
+                    "Suivi continu du rythme cardiaque, SpO2, sommeil et ECG",
+                    "Autonomie jusqu'à 7 jours en usage intensif et 14 jours en veille",
+                    "Microphone et haut-parleur HD pour appels Bluetooth mains libres"
+                ],
+                specsEn: [
+                    "Ultra-bright 2000 nits AMOLED display with scratch-resistant sapphire crystal",
+                    "Aerospace titanium case with 5ATM water resistance up to 50 meters",
+                    "Continuous heart rate, SpO2, sleep tracking, and ECG diagnostics",
+                    "Battery life up to 7 days normal use and 14 days power-saving",
+                    "Built-in speaker and mic for Bluetooth calls and smart voice reply"
                 ],
                 images: [
                     "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=85",
@@ -2784,20 +4456,42 @@
             {
                 id: 3,
                 name: "منصة شحن MBD MagFlow 3-in-1",
+                nameFr: "Station MBD MagFlow 3-en-1",
+                nameEn: "MBD MagFlow 3-in-1 Station",
                 price: 4200,
                 oldPrice: 5500,
                 badge: "الأكثر طلباً ⭐",
+                badgeFr: "Bestseller ⭐",
+                badgeEn: "Bestseller ⭐",
                 category: "accessories",
                 categoryName: "ملحقات وشواحن",
+                categoryNameFr: "Accessoires & Chargeurs",
+                categoryNameEn: "Accessories & Chargers",
                 rating: 4.8,
                 reviews: 97,
                 desc: "محطة شحن لاسلكي مغناطيسية أنيقة 3 في 1 تتيح لك شحن هاتفك الذكي وساعتك الذكية وسماعات الأذن في مكان واحد بكل ترتيب وبسرعة فائقة تصل إلى 15W. مصنوعة من سبائك الزنك بتصميم قابل للطي ومثالي لسطح المكتب والسفر.",
+                descFr: "Station de recharge sans fil magnétique 3-en-1 pour alimenter smartphone, montre et écouteurs simultanément avec puissance rapide 15W. Châssis pliable en zinc idéal pour bureau et voyage.",
+                descEn: "Sleek 3-in-1 magnetic wireless charging dock allowing you to charge your phone, smartwatch, and earbuds simultaneously with fast 15W output. Foldable travel design.",
                 specs: [
                     "شحن لاسلكي سريع بقوة 15 واط متوافق كلياً مع MagSafe والهواتف الذكية",
                     "شحن متزامن لـ 3 أجهزة (هاتف + ساعة ذكية + سماعات لاسلكية)",
                     "حماية ذكية متقدمة من ارتفاع درجات الحرارة والشحن الزائد والدائرة القصيرة",
                     "قاعدة ألومنيوم غير قابلة للانزلاق مع إضاءة خافتة لطيفة لغرفة النوم",
                     "تصميم قابل للطي وسهل التوضيب في حقيبة اليد أثناء التنقل"
+                ],
+                specsFr: [
+                    "Charge sans fil rapide 15W certifiée compatible MagSafe et Qi",
+                    "Recharge simultanée de 3 appareils (smartphone + montre + écouteurs)",
+                    "Protection thermique intelligente contre la surtension et les courts-circuits",
+                    "Base antidérapante en aluminium avec veilleuse d'ambiance discrète",
+                    "Structure ultra-compacte pliable à plat pour faciliter vos déplacements"
+                ],
+                specsEn: [
+                    "15W high-speed wireless charging fully compatible with MagSafe & Qi",
+                    "Simultaneous charging for 3 devices (phone + watch + wireless earbuds)",
+                    "Multi-protection safety against over-voltage, temperature, and shorts",
+                    "Anti-slip weighted aluminum base with soft ambient nightlight",
+                    "Fold-flat travel architecture easily fits into laptop bags"
                 ],
                 images: [
                     "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85",
@@ -2809,20 +4503,42 @@
             {
                 id: 4,
                 name: "مكبر صوت MBD SoundPulse Mini",
+                nameFr: "Enceinte MBD SoundPulse Mini",
+                nameEn: "MBD SoundPulse Mini Speaker",
                 price: 5900,
                 oldPrice: 7500,
                 badge: "خصم 20%",
+                badgeFr: "-20% Réduction",
+                badgeEn: "20% Off",
                 category: "audio",
                 categoryName: "صوتيات محمولة",
+                categoryNameFr: "Audio Portable",
+                categoryNameEn: "Portable Audio",
                 rating: 4.7,
                 reviews: 83,
                 desc: "مكبر صوت بلوتوث محمول يوفر صوتاً محيطياً مبهراً 360 درجة مع مضخم باس عميق. مقاوم للماء والغبار وفق معيار IPX7، مما يجعله الرفيق المثالي للرحلات والخرجات مع بطارية تدوم حتى 16 ساعة.",
+                descFr: "Enceinte Bluetooth nomade diffusant un son surround 360° puissant avec basses profondes. Étanchéité totale IPX7 et batterie longue durée offrant 16h d'écoute en continu.",
+                descEn: "Portable Bluetooth speaker delivering stunning 360° spatial audio with punchy deep bass. IPX7 waterproof rating and robust battery delivering up to 16 hours playback.",
                 specs: [
                     "صوت محيطي نقي 360 درجة بقدرة 20 واط RMS مع مضخم Bass مزدوج",
                     "مقاومة كاملة للماء والغمر بمعيار IPX7 ومقاومة للصدمات",
                     "بطارية تدوم حتى 16 ساعة مع منفذ شحن USB-C سريع",
                     "إمكانية ربط مكبرين معاً بضغطة زر واحدة لتوزيع ستيريو حقيقي (TWS)",
                     "ميكروفون عالي الحساسية لإجراء المكالمات الهاتفية بوضوح تام"
+                ],
+                specsFr: [
+                    "Son immersif 360° d'une puissance de 20W RMS avec double radiateur passif",
+                    "Norme d'étanchéité IPX7 résistante à l'immersion complète et aux chocs",
+                    "Batterie haute capacité de 16 heures avec port de charge rapide USB-C",
+                    "Appairage TWS pour synchroniser deux enceintes en véritable mode stéréo",
+                    "Microphone mains-libres avec réduction d'écho pour des appels clairs"
+                ],
+                specsEn: [
+                    "360° room-filling sound with 20W RMS punch and dual bass radiators",
+                    "IPX7 complete immersion waterproofing and shock-absorbing bumper",
+                    "Long-lasting 16-hour playtime with convenient fast USB-C recharge",
+                    "TWS True Wireless Stereo pairing connects two speakers together",
+                    "Built-in HD noise-filtering microphone for crystal-clear handsfree calls"
                 ],
                 images: [
                     "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1200&q=85",
@@ -2834,20 +4550,42 @@
             {
                 id: 5,
                 name: "لوحة مفاتيح MBD Pro Mechanical RGB",
+                nameFr: "Clavier MBD Pro Mechanical RGB",
+                nameEn: "MBD Pro Mechanical RGB Keyboard",
                 price: 8500,
                 oldPrice: 11000,
                 badge: "جديد",
+                badgeFr: "Nouveau",
+                badgeEn: "New",
                 category: "accessories",
                 categoryName: "ملحقات الحواسيب والألعاب",
+                categoryNameFr: "Périphériques & Gaming",
+                categoryNameEn: "PC & Gaming Gear",
                 rating: 4.9,
                 reviews: 110,
                 desc: "لوحة مفاتيح ميكانيكية احترافية مزودة بمفاتيح خطية سريعة الاستجابة وإضاءة RGB خلفية قابلة للتخصيص بأكثر من 16.8 مليون لون. مصنوعة بهيكل علوي من الألمنيوم المصقول لتوفير أقصى قدر من الثبات أثناء الكتابة والألعاب المكثفة.",
+                descFr: "Clavier mécanique haut de gamme pourvu de switches linéaires ultra-rapides et d'un rétroéclairage RGB dynamique 16,8 millions de couleurs. Châssis en aluminium brossé.",
+                descEn: "Professional mechanical keyboard featuring ultra-responsive linear switches and 16.8M color RGB backlighting with aircraft-grade aluminum top frame.",
                 specs: [
                     "سويتشات ميكانيكية سريعة بعمر افتراضي يتجاوز 70 مليون ضغطة",
                     "إضاءة خلفية RGB ديناميكية مذهلة قابلة للتخصيص الكامل",
                     "لوح علوي من سبائك الألومنيوم المستخدمة في الطيران",
                     "كابل مجدول قابل للفصل Type-C مع استجابة فائقة 1000Hz",
                     "أغطية مفاتيح PBT مزدوجة الحقن ومقاومة للتآكل والبهتان"
+                ],
+                specsFr: [
+                    "Switches mécaniques certifiés pour plus de 70 millions de frappes",
+                    "Éclairage RGB personnalisable touche par touche avec profils intégrés",
+                    "Plaque supérieure en alliage d'aluminium anodisé ultra-robuste",
+                    "Câble tressé détachable Type-C avec taux de rafraîchissement 1000Hz",
+                    "Touches PBT double injection résistantes à l'usure et à la brillance"
+                ],
+                specsEn: [
+                    "High-durability mechanical switches rated for over 70 million keystrokes",
+                    "Per-key customizable RGB backlighting with on-board memory profiles",
+                    "Aircraft-grade brushed aluminum top plate for supreme rigidity",
+                    "Detachable braided Type-C cable with blazing 1000Hz polling rate",
+                    "Double-shot PBT keycaps engineered against shine and fading"
                 ],
                 images: [
                     "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=1200&q=85",
@@ -2859,20 +4597,42 @@
             {
                 id: 6,
                 name: "شاحن GaN فائق السرعة MBD 65W",
+                nameFr: "Chargeur GaN Ultra-Rapide MBD 65W",
+                nameEn: "MBD 65W Ultra-Fast GaN Charger",
                 price: 2800,
                 oldPrice: 3900,
                 badge: "خصم 30%",
+                badgeFr: "-30% Réduction",
+                badgeEn: "30% Off",
                 category: "accessories",
                 categoryName: "ملحقات وشواحن",
+                categoryNameFr: "Chargeurs & Alimentation",
+                categoryNameEn: "Power & Chargers",
                 rating: 4.8,
                 reviews: 165,
                 desc: "شاحن جداري صغير الحجم بتقنية نيتريد الغاليوم (GaN) المتقدمة بقدرة 65 واط. قادر على شحن الحواسيب المحمولة والهواتف الذكية والأجهزة اللوحية بأعلى سرعة ممكنة وبأقل قدر من توليد الحرارة.",
+                descFr: "Chargeur mural compact GaN III de 65W capable de charger simultanément ordinateurs portables, smartphones et tablettes à vitesse maximale sans surchauffe.",
+                descEn: "Compact 65W GaN III wall charger engineered to supercharge laptops, smartphones, and tablets simultaneously with minimal heat and peak energy efficiency.",
                 specs: [
                     "تقنية GaN III المتطورة لحجم أصغر بنسبة 50% وكفاءة طاقة أعلى",
                     "قدرة شحن فائقة تصل إلى 65 واط Power Delivery 3.0",
                     "منفذان USB-C ومنفذ USB-A لشحن 3 أجهزة بنفس الوقت",
                     "نظام أمان وحماية شامل ضد التردد والحرارة والشحن الزائد",
                     "دبابيس قابلة للطي ومناسب جداً للحقيبة والسفر"
+                ],
+                specsFr: [
+                    "Semi-conducteur GaN III délivrant 50% de volume en moins",
+                    "Recharge ultra-rapide jusqu'à 65W compatible Power Delivery 3.0 & PPS",
+                    "2 ports USB-C et 1 port USB-A pour alimenter 3 appareils simultanément",
+                    "Puce de protection intégrée contre surtensions et montées en température",
+                    "Format de poche léger idéal pour les nomades et les professionnels"
+                ],
+                specsEn: [
+                    "Advanced GaN III silicon technology delivering 50% smaller form factor",
+                    "High-speed 65W output with Power Delivery 3.0 and PPS protocols",
+                    "Triple ports (2x USB-C + 1x USB-A) to power 3 devices concurrently",
+                    "Comprehensive safety system against surges, thermal spikes and overcharging",
+                    "Ultra-portable pocket design perfect for everyday carry and travel"
                 ],
                 images: [
                     "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=1200&q=85",
@@ -2884,20 +4644,42 @@
             {
                 id: 7,
                 name: "نظارة صوتية ذكية MBD SoundGlass",
+                nameFr: "Lunettes Audio MBD SoundGlass",
+                nameEn: "MBD SoundGlass Smart Audio Glasses",
                 price: 13500,
                 oldPrice: 16500,
                 badge: "حصري ⭐",
+                badgeFr: "Exclusivité ⭐",
+                badgeEn: "Exclusive ⭐",
                 category: "wearables",
                 categoryName: "إلكترونيات قابلة للارتداء",
+                categoryNameFr: "Wearables Intelligents",
+                categoryNameEn: "Smart Wearables",
                 rating: 4.8,
                 reviews: 194,
                 desc: "نظارة شمسية ذكية تجمع بين الأناقة العصرية وسماعات أذن مدمجة مفتوحة للأذن بتقنية التوصيل الموجه. تتيح لك الاستماع للموسيقى وإجراء مكالمات هاتفية بصوت نقي للغاية مع إبقاء أذنيك حرتين ومدركتين لما حولك.",
+                descFr: "Lunettes solaires connectées intégrant des haut-parleurs directionnels à oreille ouverte. Écoutez votre musique et répondez à vos appels en toute clarté tout en restant attentif.",
+                descEn: "Smart audio sunglasses combining designer eyewear with open-ear directional audio. Enjoy crystal-clear music and calls while staying in touch with your surroundings.",
                 specs: [
                     "مكبرات صوت دقيقة موجهة مباشرة للأذن تمنع تسرب الصوت للخارج",
                     "عدسات مستقطبة مضادة للأشعة فوق البنفسجية UV400 تحمي العينين تماماً",
                     "ميكروفونات مدمجة بخاصية تنقية الضوضاء لإجراء مكالمات واضحة",
                     "عمر بطارية يصل إلى 6 ساعات تشغيل متواصل و12 ساعة مع الشحن المغناطيسي",
                     "مقاومة للتعرق ورذاذ الماء بتصنيف IPX4 وهيكل خفيف ومريح"
+                ],
+                specsFr: [
+                    "Haut-parleurs ultra-fins orientés évitant toute fuite acoustique",
+                    "Verres polarisés haute protection anti-UV400 certifiés catégorie 3",
+                    "Microphones doubles avec réduction active des bruits de vent",
+                    "Jusqu'à 6h d'écoute et 12h d'autonomie via recharge magnétique",
+                    "Indice d'étanchéité IPX4 résistant à la sueur et aux éclaboussures"
+                ],
+                specsEn: [
+                    "Directional acoustic micro-speakers preventing external sound leakage",
+                    "UV400 certified polarized protective lenses blocking 100% UVA/UVB",
+                    "Dual beamforming microphones for crystal-clear phone conversations",
+                    "Up to 6 hours continuous playback plus magnetic fast charging",
+                    "IPX4 sweat and splash resistant lightweight comfortable frame"
                 ],
                 images: [
                     "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=1200&q=85",
@@ -2909,20 +4691,42 @@
             {
                 id: 8,
                 name: "ماوس مريح احترافي MBD Master Mouse",
+                nameFr: "Souris Ergonomique MBD Master Mouse",
+                nameEn: "MBD Master Ergonomic Mouse",
                 price: 5200,
                 oldPrice: 6800,
                 badge: "خصم 15%",
+                badgeFr: "-15% Réduction",
+                badgeEn: "15% Off",
                 category: "accessories",
                 categoryName: "ملحقات الحواسيب",
+                categoryNameFr: "Accessoires PC",
+                categoryNameEn: "PC Accessories",
                 rating: 4.9,
                 reviews: 76,
                 desc: "فأرة تحكم لاسلكية مريحة هندسياً لراحة المعصم واليد أثناء ساعات العمل الطويلة. مزودة بعجلة تمرير فائقة السرعة MagSpeed ومستشعر دقيق 4000 DPI يعمل على كافة الأسطح بما فيها الزجاج.",
+                descFr: "Souris sans fil ergonomique profilée pour prévenir la fatigue musculaire. Dotée de la molette ultrarapide MagSpeed et d'un capteur haute précision 4000 DPI fonctionnant sur verre.",
+                descEn: "Ergonomic wireless mouse crafted for wrist comfort during long workdays. Features MagSpeed hyper-fast scrolling and high-precision 4000 DPI Darkfield sensor.",
                 specs: [
                     "تصميم هندسي طبي يدعم راحة اليد ويقلل إجهاد عضلات المعصم",
                     "عجلة تمرير كهرومغناطيسية MagSpeed تتيح التمرير حتى 1000 سطر في الثانية",
                     "مستشعر ضوئي Darkfield عالي الدقة 4000 DPI يعمل على كافة الأسطح",
                     "اتصال لاسلكي ثلاثي عبر البلوتوث أو مستقبل 2.4GHz والتبديل السريع",
                     "بطارية تدوم حتى 70 يوماً بشحنة واحدة وشحن سريع دقيقة واحدة = 3 ساعات"
+                ],
+                specsFr: [
+                    "Design ergonomique naturel réduisant les tensions musculaires de la main",
+                    "Molette électromagnétique MagSpeed défilant jusqu'à 1000 lignes/seconde",
+                    "Capteur Darkfield ultra-précis 4000 DPI fonctionnant sur tous supports",
+                    "Triple connectivité Bluetooth / 2.4GHz avec bascule facile multi-appareils",
+                    "Batterie rechargeable durant 70 jours : 1 minute de charge = 3h d'usage"
+                ],
+                specsEn: [
+                    "Medical ergonomic profile supporting palm rest and reducing strain",
+                    "MagSpeed electromagnetic scroll wheel scrolling up to 1000 lines/second",
+                    "High-precision 4000 DPI sensor tracking flawlessly even on glass",
+                    "Multi-device connection via Bluetooth and 2.4GHz wireless receiver",
+                    "Impressive 70-day battery life with quick-charge (1 min = 3 hours use)"
                 ],
                 images: [
                     "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=1200&q=85",
@@ -2960,6 +4764,63 @@
         let currentModalProductId = null;
         let currentModalQty = 1;
 
+        // دالة تحديث لغة بطاقات المنتجات في الصفحة الرئيسية
+        function updateProductCardsLanguage() {
+            const lang = currentLanguage;
+            const t = translations[lang] || translations.ar;
+            if (typeof productsData === 'undefined') return;
+
+            productsData.forEach(p => {
+                const card = document.getElementById(`product-${p.id}`);
+                if (!card) return;
+
+                const titleEl = card.querySelector('.product-title');
+                if (titleEl) {
+                    titleEl.textContent = (lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn);
+                }
+
+                const badgeEl = card.querySelector('.product-badge');
+                if (badgeEl) {
+                    badgeEl.textContent = (lang === 'ar') ? p.badge : ((lang === 'fr') ? p.badgeFr : p.badgeEn);
+                }
+
+                const addBtn = card.querySelector('.add-to-cart-btn span');
+                const detBtn = card.querySelector('.details-btn span');
+                if (addBtn) addBtn.textContent = t.btn_add_cart;
+                if (detBtn) detBtn.textContent = t.btn_details;
+
+                const wishBtn = card.querySelector('.wishlist-btn');
+                if (wishBtn) wishBtn.title = t.nav_tooltip_fav;
+            });
+        }
+
+        // دالة تحديث لغة نصوص نافذة تفاصيل المنتج الحالية
+        function updateModalLanguage(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+            const lang = currentLanguage;
+
+            modalProductTitle.textContent = (lang === 'ar') ? product.name : ((lang === 'fr') ? product.nameFr : product.nameEn);
+            modalCategoryLabel.textContent = (lang === 'ar') ? product.categoryName : ((lang === 'fr') ? product.categoryNameFr : product.categoryNameEn);
+            modalBadgeTag.textContent = (lang === 'ar') ? product.badge : ((lang === 'fr') ? product.badgeFr : product.badgeEn);
+            modalRatingScore.textContent = product.rating.toFixed(1);
+            modalReviewsCount.textContent = (lang === 'ar') ? `(${product.reviews} تقييم)` : ((lang === 'fr') ? `(${product.reviews} avis)` : `(${product.reviews} reviews)`);
+
+            const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
+            const savedAmountFormatted = formatPrice(product.oldPrice - product.price);
+            modalSavePill.textContent = (lang === 'ar') ? `وفر ${discount}% (${savedAmountFormatted})` : ((lang === 'fr') ? `Économisez ${discount}% (${savedAmountFormatted})` : `Save ${discount}% (${savedAmountFormatted})`);
+
+            modalDescription.textContent = (lang === 'ar') ? product.desc : ((lang === 'fr') ? product.descFr : product.descEn);
+
+            const specs = (lang === 'ar') ? product.specs : ((lang === 'fr') ? product.specsFr : product.specsEn);
+            modalSpecsList.innerHTML = specs.map(spec => `
+                <li class="modal-spec-item">
+                    <svg class="modal-spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>${spec}</span>
+                </li>
+            `).join('');
+        }
+
         // دالة فتح نافذة تفاصيل المنتج
         function openProductModal(productId) {
             const product = productsData.find(p => p.id === productId);
@@ -2968,38 +4829,21 @@
             currentModalProductId = productId;
             currentModalQty = 1;
 
-            // تحديث النصوص والبيانات
-            modalProductTitle.textContent = product.name;
-            modalCategoryLabel.textContent = product.categoryName;
-            modalBadgeTag.textContent = product.badge;
-            modalRatingScore.textContent = product.rating.toFixed(1);
-            modalReviewsCount.textContent = `(${product.reviews} تقييم)`;
+            // تحديث النصوص والبيانات باللغة الحالية
+            updateModalLanguage(productId);
 
             // الأسعار والخصم
-            modalCurrentPrice.innerHTML = `<span>${product.price.toLocaleString()}</span> <span style="font-size: 1.15rem; color: var(--accent-color);">د.ج</span>`;
-            modalOldPrice.textContent = `${product.oldPrice.toLocaleString()} د.ج`;
-            const discount = Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100);
-            const savedAmount = (product.oldPrice - product.price).toLocaleString();
-            modalSavePill.textContent = `وفر ${discount}% (${savedAmount} د.ج)`;
-
-            // الوصف
-            modalDescription.textContent = product.desc;
-
-            // قائمة المواصفات
-            modalSpecsList.innerHTML = product.specs.map(spec => `
-                <li class="modal-spec-item">
-                    <svg class="modal-spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>${spec}</span>
-                </li>
-            `).join('');
+            const priceParts = formatPriceParts(product.price);
+            modalCurrentPrice.innerHTML = `<span>${priceParts.value}</span> <span style="font-size: 1.15rem; color: var(--accent-color);">${priceParts.symbol}</span>`;
+            modalOldPrice.textContent = formatPrice(product.oldPrice);
 
             // الصور والمعرض
             modalMainImage.src = product.images[0];
-            modalMainImage.alt = product.name;
+            modalMainImage.alt = (currentLanguage === 'ar') ? product.name : ((currentLanguage === 'fr') ? product.nameFr : product.nameEn);
 
             modalThumbnailsRow.innerHTML = product.images.map((imgUrl, idx) => `
                 <div class="modal-thumb ${idx === 0 ? 'active' : ''}" onclick="switchModalImage('${imgUrl}', this)">
-                    <img src="${imgUrl}" alt="${product.name} - صورة ${idx + 1}">
+                    <img src="${imgUrl}" alt="${(currentLanguage === 'ar') ? product.name : product.nameFr} - ${idx + 1}">
                 </div>
             `).join('');
 
@@ -3081,29 +4925,634 @@
             }, 1200);
         });
 
-        // زر الشراء الفوري من داخل النافذة
+        // زر الشراء الفوري من داخل النافذة (يفتح نافذة الطلب المباشر الزجاجية)
         modalBuyNowBtn.addEventListener('click', () => {
             if (!currentModalProductId) return;
-            const product = productsData.find(p => p.id === currentModalProductId);
+            openQuickBuyModal(currentModalProductId, currentModalQty);
+        });
+
+        // ==================== نظام الشراء الفوري وقاعدة بيانات 58 ولاية جزائرية ====================
+        const algerianWilayas = [
+            { code: "01", name: "01 - أدرار", nameFr: "01 - Adrar", communes: ["أدرار", "تمنطيط", "فنوغيل", "زاوية كنتة", "رقان", "أولف", "تيمقطن", "تسابيت", "سالي"], communesFr: ["Adrar", "Tamantit", "Fenoughil", "Zaouiet Kounta", "Reggane", "Aoulef", "Timekten", "Tsabit", "Sali"] },
+            { code: "02", name: "02 - الشلف", nameFr: "02 - Chlef", communes: ["الشلف", "تنس", "وادي الفضة", "بوقادير", "تاوقريت", "عين مران", "بني حواء", "سيدي عكاشة", "أولاد فارس", "الزبوجة"], communesFr: ["Chlef", "Ténès", "Oued Fodda", "Boukadir", "Taougrite", "Ain Merane", "Beni Haoua", "Sidi Akkacha", "Ouled Fares", "Zeboudja"] },
+            { code: "03", name: "03 - الأغواط", nameFr: "03 - Laghouat", communes: ["الأغواط", "أفلو", "بريدة", "عين ماضي", "قصر الحيران", "حاسي الرمل", "سيدي مخلوف", "البيضاء", "الغيشة"], communesFr: ["Laghouat", "Aflou", "Brida", "Ain Madhi", "Ksar El Hirane", "Hassi R'Mel", "Sidi Makhlouf", "Beidha", "El Ghicha"] },
+            { code: "04", name: "04 - أم البواقي", nameFr: "04 - Oum El Bouaghi", communes: ["أم البواقي", "عين البيضاء", "عين مليلة", "سيقوس", "عين فكرون", "مسكيانة", "قصر الصبيحي", "سوق نعمان", "عين كرشة"], communesFr: ["Oum El Bouaghi", "Ain Beida", "Ain M'lila", "Sigus", "Ain Fakroun", "Meskiana", "Ksar Sbahi", "Souk Naamane", "Ain Kercha"] },
+            { code: "05", name: "05 - باتنة", nameFr: "05 - Batna", communes: ["باتنة", "بريكة", "عين التوتة", "مروانة", "أريس", "نقاوس", "تازولت", "سفيان", "ثنية العابد", "منعة", "المعذر"], communesFr: ["Batna", "Barika", "Ain Touta", "Merouana", "Arris", "N'Gaous", "Tazoult", "Sefiane", "Theniet El Abed", "Menaa", "El Madher"] },
+            { code: "06", name: "06 - بجاية", nameFr: "06 - Béjaïa", communes: ["بجاية", "أقبو", "أميزور", "خراطة", "صدوق", "تيشي", "أوقاس", "سيدي عيش", "برباشة", "إغيل علي", "تازمالت"], communesFr: ["Béjaïa", "Akbou", "Amizour", "Kherrata", "Seddouk", "Tichy", "Aokas", "Sidi Aïch", "Barbacha", "Ighil Ali", "Tazmalt"] },
+            { code: "07", name: "07 - بسكرة", nameFr: "07 - Biskra", communes: ["بسكرة", "طولقة", "سيدي عقبة", "زريبة الوادي", "فغالة", "مشونش", "جمورة", "الحوش", "أورلال", "لوطاية"], communesFr: ["Biskra", "Tolga", "Sidi Okba", "Zeribet El Oued", "Foughala", "M'chouneche", "Djemorah", "El Haouch", "Ourlal", "El Outaya"] },
+            { code: "08", name: "08 - بشار", nameFr: "08 - Béchar", communes: ["بشار", "القنادسة", "العبادلة", "تاغيت", "بني ونيف", "موغل", "بوكايس", "لحمر", "عرق فراج"], communesFr: ["Béchar", "Kenadsa", "Abadla", "Taghit", "Beni Ounif", "Mogheul", "Boukais", "Lahmar", "Erg Ferradj"] },
+            { code: "09", name: "09 - البليدة", nameFr: "09 - Blida", communes: ["البليدة", "بوفاريك", "موزاية", "العفرون", "بوقرة", "الصومعة", "أولاد يعيش", "وادي العلايق", "الشبلي", "مفتاح", "بوعرفة", "الأربعاء"], communesFr: ["Blida", "Boufarik", "Mouzaia", "El Affroun", "Bougara", "Soumaa", "Ouled Yaich", "Oued El Alleug", "Chebli", "Meftah", "Bouarfa", "Larbaa"] },
+            { code: "10", name: "10 - البويرة", nameFr: "10 - Bouira", communes: ["البويرة", "الأخضرية", "سور الغزلان", "عين بسام", "مشدالة", "قادرية", "الهاشمية", "بئر غبالو", "سوق الخميس", "بشلول"], communesFr: ["Bouira", "Lakhdaria", "Sour El Ghozlane", "Ain Bessam", "M'Chedallah", "Kadiria", "El Hachimia", "Bir Ghbalou", "Souk El Khemis", "Bechloul"] },
+            { code: "11", name: "11 - تمنراست", nameFr: "11 - Tamanrasset", communes: ["تمنراست", "أبالسة", "تظاهرت", "إدلس", "تاظروك"], communesFr: ["Tamanrasset", "Abalessa", "Tazrouk", "Idles", "In Amguel"] },
+            { code: "12", name: "12 - تبسة", nameFr: "12 - Tébessa", communes: ["تبسة", "بئر العاتر", "الشريعة", "الونزة", "العوينات", "الكويف", "نقرين", "العقلة", "مرسط", "بكارية"], communesFr: ["Tébessa", "Bir El Ater", "Cheria", "Ouenza", "El Aouinet", "El Kouif", "Negrine", "El Ogla", "Morsott", "Bekkaria"] },
+            { code: "13", name: "13 - تلمسان", nameFr: "13 - Tlemcen", communes: ["تلمسان", "منصورة", "مغنية", "الغزوات", "سبدو", "ندرومة", "الحناية", "شتوان", "سيدي الجيلالي", "بني صاف", "رمشي"], communesFr: ["Tlemcen", "Mansourah", "Maghnia", "Ghazaouet", "Sebdou", "Nedroma", "Hennaya", "Chetouane", "Sidi Djillali", "Beni Saf", "Remchi"] },
+            { code: "14", name: "14 - تيارت", nameFr: "14 - Tiaret", communes: ["تيارت", "فرندة", "السوقر", "مهدية", "قصر الشلالة", "الرحوية", "وادي ليلي", "حمادية", "مشرع الصفا", "عين دزاريت"], communesFr: ["Tiaret", "Frenda", "Sougueur", "Mahdia", "Ksar Chellala", "Rahouia", "Oued Lilli", "Hamadia", "Mechraa Sfa", "Ain Deheb"] },
+            { code: "15", name: "15 - تيزي وزو", nameFr: "15 - Tizi Ouzou", communes: ["تيزي وزو", "عزازقة", "ذراع بن خدة", "تيقزيرت", "عين الحمام", "بوغني", "واضية", "لاربعا ناث إيراثن", "مكيرة", "أزفون", "واسييف"], communesFr: ["Tizi Ouzou", "Azazga", "Draa Ben Khedda", "Tigzirt", "Ain El Hammam", "Boghni", "Ouadhia", "Larbaa Nath Irathen", "M'Kira", "Azeffoun", "Ouacif"] },
+            { code: "16", name: "16 - الجزائر", nameFr: "16 - Alger", communes: ["الجزائر الوسطى", "باب الوادي", "سيدي امحمد", "حيدرة", "بئر مراد رايس", "الأبيار", "القبة", "بئر خادم", "درارية", "الشراقة", "زرالدة", "الدار البيضاء", "الرويبة", "بوشاوي", "باب الزوار", "المحمدية", "برج البحري", "الكاليتوس", "براقي", "باش جراح", "عين النعجة", "دالي براهيم", "بن عكنون", "بولوغين"], communesFr: ["Alger Centre", "Bab El Oued", "Sidi M'Hamed", "Hydra", "Bir Mourad Rais", "El Biar", "Kouba", "Birkhadem", "Draria", "Cheraga", "Zeralda", "Dar El Beida", "Rouiba", "Bouchaoui", "Bab Ezzouar", "Mohammadia", "Bordj El Bahri", "Les Eucalyptus", "Baraki", "Bachdjerrah", "Ain Naadja", "Dely Ibrahim", "Ben Aknoun", "Bologhine"] },
+            { code: "17", name: "17 - الجلفة", nameFr: "17 - Djelfa", communes: ["الجلفة", "حاسي بحبح", "مسعد", "عين وسارة", "دار الشيوخ", "الشارف", "حد الصحاري", "فيض البطمة", "الإدريسية", "البيرين"], communesFr: ["Djelfa", "Hassi Bahbah", "Messaad", "Ain Oussara", "Dar Chioukh", "Charef", "Had Sahary", "Feidh El Botma", "El Idrissia", "Birine"] },
+            { code: "18", name: "18 - جيجل", nameFr: "18 - Jijel", communes: ["جيجل", "الطاهير", "الميلية", "العوانة", "زيامة منصورية", "تاكسنة", "العنصر", "الشقفة", "السطارة", "سيدي معروف"], communesFr: ["Jijel", "Taher", "El Milia", "El Aouana", "Ziama Mansouriah", "Texenna", "El Ancer", "Chekfa", "Settara", "Sidi Maarouf"] },
+            { code: "19", name: "19 - سطيف", nameFr: "19 - Sétif", communes: ["سطيف", "العلمة", "عين أرنات", "عين ولمان", "بوقاعة", "عموشة", "بني ورتيلان", "صالح باي", "عين الكبيرة", "قجال", "عين أزال"], communesFr: ["Sétif", "El Eulma", "Ain Arnat", "Ain Oulmene", "Bougaa", "Amoucha", "Beni Ouartilane", "Salah Bey", "Ain El Kebira", "Guidjel", "Ain Azel"] },
+            { code: "20", name: "20 - سعيدة", nameFr: "20 - Saïda", communes: ["سعيدة", "يوب", "سيدي بوبكر", "عين الحجر", "أولاد خالد", "الحساسنة", "دوي ثابت", "مولاي العربي"], communesFr: ["Saïda", "Youb", "Sidi Boubekeur", "Ain El Hadjar", "Ouled Khaled", "El Hassasna", "Doui Thabet", "Moulay Larbi"] },
+            { code: "21", name: "21 - سكيكدة", nameFr: "21 - Skikda", communes: ["سكيكدة", "الحروش", "القل", "عزابة", "تمالوس", "بن عزوز", "رمضان جمال", "سيدي مزغيش", "أم الطوب", "فلفلة"], communesFr: ["Skikda", "El Harrouch", "Collo", "Azzaba", "Tamalous", "Ben Azzouz", "Ramdane Djamel", "Sidi Mezghiche", "Oum Toub", "Filfila"] },
+            { code: "22", name: "22 - سيدي بلعباس", nameFr: "22 - Sidi Bel Abbès", communes: ["سيدي بلعباس", "تلاغ", "بن باديس", "سفيزف", "رأس الماء", "مصطفى بن براهيم", "تنيرة", "سيدي لحسن", "مرحوم"], communesFr: ["Sidi Bel Abbès", "Telagh", "Ben Badis", "Sfisef", "Ras El Ma", "Mostefa Ben Brahim", "Tenira", "Sidi Lahcene", "Marhoum"] },
+            { code: "23", name: "23 - عنابة", nameFr: "23 - Annaba", communes: ["عنابة", "البوني", "الحجار", "برحال", "وادي العنب", "شطايبي", "سرايدي", "عين الباردة", "التريعات", "العلمة"], communesFr: ["Annaba", "El Bouni", "El Hadjar", "Berrahal", "Oued El Aneb", "Chetaibi", "Seraidi", "Ain Berda", "Tréat", "Eulma"] },
+            { code: "24", name: "24 - قالمة", nameFr: "24 - Guelma", communes: ["قالمة", "وادي الزناتي", "بوشقوف", "هيليوبوليس", "حمام دباغ", "بلخير", "عين مخلوف", "تاملوكة", "هواري بومدين"], communesFr: ["Guelma", "Oued Zenati", "Bouchegouf", "Heliopolis", "Hammam Debagh", "Belkheir", "Ain Makhlouf", "Tamlouka", "Boumahra Ahmed"] },
+            { code: "25", name: "25 - قسنطينة", nameFr: "25 - Constantine", communes: ["قسنطينة", "الخروب", "علي منجلي", "حامة بوزيان", "زيغود يوسف", "عين سمارة", "بني حميدان", "ابن باديس", "ديدوش مراد", "عين عبيد"], communesFr: ["Constantine", "El Khroub", "Ali Mendjeli", "Hamma Bouziane", "Zighoud Youcef", "Ain Smara", "Beni Hamidene", "Ibn Badis", "Didouche Mourad", "Ain Abid"] },
+            { code: "26", name: "26 - المدية", nameFr: "26 - Médéa", communes: ["المدية", "البرواقية", "قصر البخاري", "بني سليمان", "تابلاط", "وزرة", "سغوان", "العمارية", "الشهبونية", "عزيز"], communesFr: ["Médéa", "Berrouaghia", "Ksar El Boukhari", "Beni Slimane", "Tablat", "Ouzera", "Seghouane", "El Omaria", "Chahbounia", "Aziz"] },
+            { code: "27", name: "27 - مستغانم", nameFr: "27 - Mostaganem", communes: ["مستغانم", "عين تادلس", "حاسي مماش", "سيدي علي", "ماسرى", "بوقيرات", "خير الدين", "سيدي لخضر", "فرناكة", "عشعاشة"], communesFr: ["Mostaganem", "Ain Tedles", "Hassi Mameche", "Sidi Ali", "Mesra", "Bouguirat", "Kheir Dine", "Sidi Lakhdar", "Fornaka", "Achaacha"] },
+            { code: "28", name: "28 - المسيلة", nameFr: "28 - M'Sila", communes: ["المسيلة", "بوسعادة", "سيدي عيسى", "مقرة", "برهوم", "حمام الضلعة", "أولاد دراج", "بن سرور", "عين الملح", "بلعايبة"], communesFr: ["M'Sila", "Bou Saada", "Sidi Aissa", "Magra", "Berhoum", "Hammam Dalaa", "Ouled Derradj", "Ben Srour", "Ain El Melh", "Belaiba"] },
+            { code: "29", name: "29 - معسكر", nameFr: "29 - Mascara", communes: ["معسكر", "سيق", "المحمدية", "تغنيف", "غريس", "وادي الأبطال", "زهانة", "عوف", "فروحة", "عقاز"], communesFr: ["Mascara", "Sig", "Mohammadia", "Tighenif", "Ghriss", "Oued El Abtal", "Zahana", "Aouf", "Froha", "Oggaz"] },
+            { code: "30", name: "30 - ورقلة", nameFr: "30 - Ouargla", communes: ["ورقلة", "حاسي مسعود", "الرويسات", "سيدي خويلد", "عين البيضاء", "أنقوسة", "البرمة"], communesFr: ["Ouargla", "Hassi Messaoud", "Rouissat", "Sidi Khouiled", "Ain Beida", "N'Goussa", "El Borma"] },
+            { code: "31", name: "31 - وهران", nameFr: "31 - Oran", communes: ["وهران", "السانية", "بئر الجير", "قديل", "أرزيو", "بطيوة", "عين الترك", "بوتليليس", "مسرغين", "الكرمة", "عين البية", "حاسي بونيف"], communesFr: ["Oran", "Es Senia", "Bir El Djir", "Gdyel", "Arzew", "Bethioua", "Ain El Turk", "Boutlelis", "Misserghin", "El Kerma", "Ain El Bya", "Hassi Bounif"] },
+            { code: "32", name: "32 - البيض", nameFr: "32 - El Bayadh", communes: ["البيض", "بوقطب", "الأبيض سيدي الشيخ", "بريزينة", "الرقاصة", "الغاسول", "شلالة", "بوسمغون", "الكاف الأحمر"], communesFr: ["El Bayadh", "Bougtoub", "El Abiodh Sidi Cheikh", "Brezina", "Rogassa", "Ghassoul", "Chellala", "Boussemghoun", "Kef El Ahmar"] },
+            { code: "33", name: "33 - إليزي", nameFr: "33 - Illizi", communes: ["إليزي", "عين أمناس", "دبداب", "برج عمر إدريس"], communesFr: ["Illizi", "In Amenas", "Debdeb", "Bordj Omar Driss"] },
+            { code: "34", name: "34 - برج بوعريريج", nameFr: "34 - Bordj Bou Arréridj", communes: ["برج بوعريريج", "رأس الوادي", "مجانة", "المنصورة", "برج الغدير", "الحمادية", "بليمور", "خليل", "العناصر", "جعافرة"], communesFr: ["Bordj Bou Arréridj", "Ras El Oued", "Medjana", "Mansoura", "Bordj Ghédir", "El Hamadia", "Belimour", "Khelil", "El Anseur", "Djaafra"] },
+            { code: "35", name: "35 - بومرداس", nameFr: "35 - Boumerdès", communes: ["بومرداس", "برج منايل", "بودواو", "دلس", "الثنية", "يسر", "خميس الخشنة", "سي مصطفى", "قورصو", "زموري", "تيجلابين", "الأربعطاش"], communesFr: ["Boumerdès", "Bordj Menaiel", "Boudouaou", "Dellys", "Thenia", "Isser", "Khemis El Khechna", "Si Mustapha", "Corso", "Zemmouri", "Tidjelabine", "Larbatache"] },
+            { code: "36", name: "36 - الطارف", nameFr: "36 - El Tarf", communes: ["الطارف", "القالة", "بوثلجة", "بن مهيدي", "الذرعان", "البسباس", "الشط", "بوحجار", "عين العسل", "بريحان"], communesFr: ["El Tarf", "El Kala", "Boutheldja", "Ben M'Hidi", "Drean", "Besbes", "Echatt", "Bouhadjar", "Ain El Assel", "Berrihane"] },
+            { code: "37", name: "37 - تندوف", nameFr: "37 - Tindouf", communes: ["تندوف", "أم العسل"], communesFr: ["Tindouf", "Oum El Assel"] },
+            { code: "38", name: "38 - تسمسيلت", nameFr: "38 - Tissemsilt", communes: ["تسمسيلت", "ثنية الحد", "برج بونعامة", "خميستي", "لرجام", "عماري", "العيون", "الأزهرية", "بوقايد"], communesFr: ["Tissemsilt", "Theniet El Had", "Bordj Bou Naama", "Khemisti", "Lardjem", "Ammari", "Layoune", "Lazharia", "Bou Caid"] },
+            { code: "39", name: "39 - الوادي", nameFr: "39 - El Oued", communes: ["الوادي", "قمار", "الدبيلة", "حاسي خليفة", "الرقيبة", "البياضة", "كوينين", "الرباح", "الطريفاوي", "المقرن"], communesFr: ["El Oued", "Guemar", "Debila", "Hassi Khalifa", "Reguiba", "Bayadha", "Kouinine", "Robbah", "Trifaoui", "Magrane"] },
+            { code: "40", name: "40 - خنشلة", nameFr: "40 - Khenchela", communes: ["خنشلة", "قايس", "ششار", "بابار", "بوحمامة", "الحامة", "أولاد رشاش", "طامزة", "عين الطويلة"], communesFr: ["Khenchela", "Kais", "Chechar", "Babar", "Bouhmama", "El Hamma", "Ouled Rechache", "Tamza", "Ain Touila"] },
+            { code: "41", name: "41 - سوق أهراس", nameFr: "41 - Souk Ahras", communes: ["سوق أهراس", "سدراتة", "مداوروش", "تاورة", "المشروحة", "المراهنة", "الحدادة", "بئر بوحوش", "الخضارة"], communesFr: ["Souk Ahras", "Sedrata", "M'daourouch", "Taoura", "Mechroha", "Merahna", "Heddada", "Bir Bouhouche", "Khedara"] },
+            { code: "42", name: "42 - تيبازة", nameFr: "42 - Tipaza", communes: ["تيبازة", "شرشال", "القليعة", "بواسماعيل", "حجوط", "فوكة", "الداموس", "حمر العين", "سيدي غيلاس", "قوراية", "عين تاقورايت", "الأرهاط"], communesFr: ["Tipaza", "Cherchell", "Koléa", "Bou Ismail", "Hadjout", "Fouka", "Damous", "Ahmer El Ain", "Sidi Ghiles", "Gouraya", "Ain Tagourait", "Larhat"] },
+            { code: "43", name: "43 - ميلة", nameFr: "43 - Mila", communes: ["ميلة", "شلغوم العيد", "فرجيوة", "تاجنانت", "التلاغمة", "وادي العثمانية", "سيدي مروان", "قرارم قوقة", "عين البيضاء أحريش", "ترعي باينان"], communesFr: ["Mila", "Chelghoum Laid", "Ferdjioua", "Tadjenanet", "Teleghma", "Oued Athmania", "Sidi Merouane", "Grarem Gouga", "Ain Beida Harriche", "Terrai Bainen"] },
+            { code: "44", name: "44 - عين الدفلى", nameFr: "44 - Aïn Defla", communes: ["عين الدفلى", "خميس مليانة", "العطاف", "مليانة", "جليدة", "الروينة", "بومدفع", "سيدي لخضر", "العامرة", "بوراشد"], communesFr: ["Aïn Defla", "Khemis Miliana", "El Attaf", "Miliana", "Djelida", "Rouina", "Boumedfaa", "Sidi Lakhdar", "El Amra", "Bourached"] },
+            { code: "45", name: "45 - النعامة", nameFr: "45 - Naâma", communes: ["النعامة", "المشرية", "عين الصفراء", "تيوت", "صفيصيفة", "عسلة", "مغرار", "جنين بورزق", "البيوض"], communesFr: ["Naâma", "Mecheria", "Ain Sefra", "Tiout", "Sfissifa", "Asla", "Moghrar", "Djenienne Bourezg", "El Biod"] },
+            { code: "46", name: "46 - عين تموشنت", nameFr: "46 - Aïn Témouchent", communes: ["عين تموشنت", "بني صاف", "حمام بوحجر", "العامرية", "عين الكيحل", "المالح", "شعبة اللحم", "أولاد الكيحل", "ولهاصة"], communesFr: ["Aïn Témouchent", "Beni Saf", "Hammam Bou Hadjar", "El Amria", "Ain Kihal", "El Malah", "Chaabat El Leham", "Ouled Kihal", "Oulhaca El Gheraba"] },
+            { code: "47", name: "47 - غرداية", nameFr: "47 - Ghardaïa", communes: ["غرداية", "متليلي", "القرارة", "بريان", "ضاية بن ضحوة", "زلفانة", "بنورة", "العطف", "سبسب", "المنصورة"], communesFr: ["Ghardaïa", "Metlili", "El Guerara", "Berriane", "Dhayet Bendhahoua", "Zelfana", "Bounoura", "El Atteuf", "Sebseb", "Mansourah"] },
+            { code: "48", name: "48 - غليزان", nameFr: "48 - Relizane", communes: ["غليزان", "وادي ارهيو", "مازونة", "يلل", "جديوية", "حميدشة", "زمورة", "عمي موسى", "بلعسل", "سيدي خطاب"], communesFr: ["Relizane", "Oued Rhiou", "Mazouna", "Yellel", "Djidiouia", "El Hamri", "Zemmoura", "Ammi Moussa", "Belassel Bouzegza", "Sidi Khettab"] },
+            { code: "49", name: "49 - تيميمون", nameFr: "49 - Timimoun", communes: ["تيميمون", "أوقروت", "طلمين", "شروين", "أولاد سعيد", "قصر قدور", "تينركوك", "دلداول"], communesFr: ["Timimoun", "Aougrout", "Talmine", "Charouine", "Ouled Said", "Ksar Kaddour", "Tinerkouk", "Deldoul"] },
+            { code: "50", name: "50 - برج باجي مختار", nameFr: "50 - Bordj Badji Mokhtar", communes: ["برج باجي مختار", "تيمياوين"], communesFr: ["Bordj Badji Mokhtar", "Timiaouine"] },
+            { code: "51", name: "51 - أولاد جلال", nameFr: "51 - Ouled Djellal", communes: ["أولاد جلال", "سيدي خالد", "البسباس", "الدوسن", "رأس الميعاد", "الشعيبة"], communesFr: ["Ouled Djellal", "Sidi Khaled", "Besbes", "Doucen", "Ras El Miad", "Ech Chaiba"] },
+            { code: "52", name: "52 - بني عباس", nameFr: "52 - Béni Abbès", communes: ["بني عباس", "كرزاز", "إقلي", "تبلبالة", "الواتة", "تامترت", "بني يخلف", "القصابي"], communesFr: ["Béni Abbès", "Kerzaz", "Igli", "Tabelbala", "El Ouata", "Tamtert", "Beni Ikhlef", "Ksabi"] },
+            { code: "53", name: "53 - عين صالح", nameFr: "53 - In Salah", communes: ["عين صالح", "فقارة الزوى", "إينغر"], communesFr: ["In Salah", "Foggaret Ezzaouia", "In Ghar"] },
+            { code: "54", name: "54 - عين قزام", nameFr: "54 - In Guezzam", communes: ["عين قزام", "تين زواتين"], communesFr: ["In Guezzam", "Tin Zaouatine"] },
+            { code: "55", name: "55 - تقرت", nameFr: "55 - Touggourt", communes: ["تقرت", "تماسين", "النزلة", "بلدة عمر", "المقارين", "الطيبات", "الزاوية العابدية", "سيدي سليمان"], communesFr: ["Touggourt", "Temacine", "Nezla", "Blidet Amor", "Megarine", "Taibet", "Zaouia El Abidia", "Sidi Slimane"] },
+            { code: "56", name: "56 - جانت", nameFr: "56 - Djanet", communes: ["جانت", "برج الحواس"], communesFr: ["Djanet", "Bordj El Haouasse"] },
+            { code: "57", name: "57 - المغير", nameFr: "57 - El M'Ghair", communes: ["المغير", "جامعة", "سيدي خليل", "تندلة", "أم الطيور", "المرارة", "سيدي عمران"], communesFr: ["El M'Ghair", "Djamaa", "Sidi Khellil", "Tendla", "Oum Touyour", "M'Rara", "Sidi Amrane"] },
+            { code: "58", name: "58 - المنيعة", nameFr: "58 - El Meniaa", communes: ["المنيعة", "حاسي الفحل", "حاسي القارة"], communesFr: ["El Meniaa", "Hassi Fehal", "Hassi Gara"] }
+        ];
+
+        // عناصر نافذة الشراء الفوري
+        const quickBuyModalOverlay = document.getElementById('quickBuyModalOverlay');
+        const closeQuickBuyModalBtn = document.getElementById('closeQuickBuyModalBtn');
+        const quickBuyFormContent = document.getElementById('quickBuyFormContent');
+        const quickBuySuccessContent = document.getElementById('quickBuySuccessContent');
+        const qbSummaryImg = document.getElementById('qbSummaryImg');
+        const qbSummaryTitle = document.getElementById('qbSummaryTitle');
+        const qbSummaryQty = document.getElementById('qbSummaryQty');
+        const qbSummaryPrice = document.getElementById('qbSummaryPrice');
+        const qbFullName = document.getElementById('qbFullName');
+        const qbPhone = document.getElementById('qbPhone');
+        const qbWilayaSelect = document.getElementById('qbWilayaSelect');
+        const qbWilayaTrigger = document.getElementById('qbWilayaTrigger');
+        const qbWilayaTriggerText = document.getElementById('qbWilayaTriggerText');
+        const qbWilayaSearchInput = document.getElementById('qbWilayaSearchInput');
+        const qbWilayaOptionsList = document.getElementById('qbWilayaOptionsList');
+        const qbBaladiyaSelect = document.getElementById('qbBaladiyaSelect');
+        const qbBaladiyaTrigger = document.getElementById('qbBaladiyaTrigger');
+        const qbBaladiyaTriggerText = document.getElementById('qbBaladiyaTriggerText');
+        const qbBaladiyaSearchInput = document.getElementById('qbBaladiyaSearchInput');
+        const qbBaladiyaOptionsList = document.getElementById('qbBaladiyaOptionsList');
+        const qbManualBaladiyaWrapper = document.getElementById('qbManualBaladiyaWrapper');
+        const qbManualBaladiyaInput = document.getElementById('qbManualBaladiyaInput');
+        const payMethodCod = document.getElementById('payMethodCod');
+        const payMethodCcp = document.getElementById('payMethodCcp');
+        const deliveryMethodHome = document.getElementById('deliveryMethodHome');
+        const deliveryMethodDesk = document.getElementById('deliveryMethodDesk');
+        const qbSubmitBtn = document.getElementById('qbSubmitBtn');
+        const qbSubmitBtnText = document.getElementById('qbSubmitBtnText');
+        const qbSuccessReceipt = document.getElementById('qbSuccessReceipt');
+        const qbDoneBtn = document.getElementById('qbDoneBtn');
+
+        // متغيرات حالة نموذج الشراء الفوري
+        let quickBuyMode = 'single'; // 'single' للمنتج المفرد أو 'cart' لسلة المشتريات
+        let quickBuyProduct = null;
+        let quickBuyQty = 1;
+        let quickBuyCartItems = [];
+        let quickBuySelectedWilaya = null;
+        let quickBuySelectedBaladiya = null;
+        let quickBuyIsManualBaladiya = false;
+        let quickBuyPaymentMethod = 'cod';
+        let quickBuyDeliveryMethod = 'home';
+
+        // دالة تحديث لغة نافذة الشراء الفوري عند تغيير اللغة
+        function updateQuickBuyModalLanguage() {
+            if (!quickBuyModalOverlay || !quickBuyModalOverlay.classList.contains('active')) return;
+            const lang = currentLanguage;
+            const t = translations[lang] || translations.ar;
+
+            if (quickBuyMode === 'single' && quickBuyProduct) {
+                qbSummaryTitle.textContent = (lang === 'ar') ? quickBuyProduct.name : ((lang === 'fr') ? quickBuyProduct.nameFr : quickBuyProduct.nameEn);
+                qbSummaryQty.textContent = `${t.modal_qty_label || 'الكمية:'} ${quickBuyQty}`;
+                const total = quickBuyProduct.price * quickBuyQty;
+                qbSummaryPrice.textContent = formatPrice(total);
+                if (qbSubmitBtn) {
+                    const submitSpan = qbSubmitBtn.querySelector('span');
+                    if (submitSpan) {
+                        submitSpan.textContent = `${t.btn_confirm_order || 'تأكيد وإتمام الطلب'} — ${formatPrice(total)}`;
+                    }
+                }
+            } else if (quickBuyMode === 'cart' && quickBuyCartItems && quickBuyCartItems.length > 0) {
+                const totalAmount = quickBuyCartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const totalItemsCount = quickBuyCartItems.reduce((sum, item) => sum + item.quantity, 0);
+                const suffix = totalItemsCount === 1 ? t.items_count_suffix_singular : t.items_count_suffix_plural;
+                qbSummaryTitle.textContent = `${t.cart_title} (${totalItemsCount} ${suffix})`;
+                qbSummaryPrice.textContent = formatPrice(totalAmount);
+                if (qbSubmitBtn) {
+                    const submitSpan = qbSubmitBtn.querySelector('span');
+                    if (submitSpan) {
+                        submitSpan.textContent = `${t.btn_confirm_order || 'تأكيد وإتمام الطلب'} — ${formatPrice(totalAmount)}`;
+                    }
+                }
+            }
+        }
+
+        // دالة فتح نافذة الشراء الفوري لمنتج مفرد
+        function openQuickBuyModal(productId, qty) {
+            const product = productsData.find(p => p.id === productId);
             if (!product) return;
 
-            const existing = cart.find(item => item.id === product.id);
-            if (existing) {
-                existing.quantity += currentModalQty;
-            } else {
-                cart.push({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    img: product.images[0],
-                    quantity: currentModalQty
-                });
-            }
+            const t = translations[currentLanguage] || translations.ar;
+            const lang = currentLanguage;
 
-            updateCartUI();
+            quickBuyMode = 'single';
+            quickBuyProduct = product;
+            quickBuyQty = qty || 1;
+
+            // تحديث بطاقة الملخص
+            qbSummaryImg.src = product.images[0];
+            qbSummaryImg.alt = (lang === 'ar') ? product.name : product.nameFr;
+            qbSummaryTitle.textContent = (lang === 'ar') ? product.name : ((lang === 'fr') ? product.nameFr : product.nameEn);
+            qbSummaryQty.textContent = `${t.modal_qty_label || 'الكمية:'} ${quickBuyQty}`;
+            const total = product.price * quickBuyQty;
+            qbSummaryPrice.textContent = formatPrice(total);
+
+            // تحديث نص زر إتمام الطلب بالمجموع
+            qbSubmitBtn.disabled = false;
+            qbSubmitBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <span>${t.btn_confirm_order || 'تأكيد وإتمام الطلب'} — ${formatPrice(total)}</span>
+            `;
+
+            resetAndOpenQuickBuyForm();
+        }
+
+        // دالة فتح نافذة الشراء الفوري لكامل سلة المشتريات
+        function openQuickBuyModalFromCart() {
+            if (cart.length === 0) return;
+
+            const t = translations[currentLanguage] || translations.ar;
+            const lang = currentLanguage;
+
+            quickBuyMode = 'cart';
+            quickBuyCartItems = JSON.parse(JSON.stringify(cart));
+            const totalAmount = quickBuyCartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const totalItemsCount = quickBuyCartItems.reduce((sum, item) => sum + item.quantity, 0);
+            const suffix = totalItemsCount === 1 ? t.items_count_suffix_singular : t.items_count_suffix_plural;
+
+            // تحديث بطاقة الملخص
+            qbSummaryImg.src = quickBuyCartItems[0].img;
+            qbSummaryImg.alt = t.cart_title;
+            qbSummaryTitle.textContent = `${t.cart_title} (${totalItemsCount} ${suffix})`;
+            
+            qbSummaryQty.textContent = quickBuyCartItems.map(i => {
+                const p = productsData.find(prod => prod.id === i.id);
+                const iName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : i.name;
+                return `${iName} (×${i.quantity})`;
+            }).join(' • ');
+            qbSummaryPrice.textContent = formatPrice(totalAmount);
+
+            // تحديث نص زر إتمام الطلب بالمجموع الكلي
+            qbSubmitBtn.disabled = false;
+            qbSubmitBtn.innerHTML = `
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <span>${t.btn_confirm_order || 'تأكيد وإتمام الطلب'} — ${formatPrice(totalAmount)}</span>
+            `;
+
+            resetAndOpenQuickBuyForm();
+        }
+
+        // إعادة ضبط وتجهيز استمارة الشراء الفوري
+        function resetAndOpenQuickBuyForm() {
+            const t = translations[currentLanguage] || translations.ar;
+
+            // إعادة ضبط الحقول والأخطاء
+            qbFullName.value = '';
+            qbFullName.placeholder = t.qb_name_placeholder;
+            qbFullName.classList.remove('has-error');
+            qbPhone.value = '';
+            qbPhone.placeholder = t.qb_phone_placeholder;
+            qbPhone.classList.remove('has-error');
+
+            // إعادة ضبط الولاية
+            quickBuySelectedWilaya = null;
+            qbWilayaTriggerText.textContent = t.qb_wilaya_trigger_default;
+            qbWilayaTrigger.classList.remove('has-error');
+            qbWilayaSelect.classList.remove('active');
+            qbWilayaSearchInput.value = '';
+            qbWilayaSearchInput.placeholder = t.qb_wilaya_search_placeholder;
+
+            // إعادة ضبط البلدية
+            quickBuySelectedBaladiya = null;
+            quickBuyIsManualBaladiya = false;
+            qbBaladiyaSelect.classList.add('disabled');
+            qbBaladiyaSelect.classList.remove('active');
+            qbBaladiyaTriggerText.textContent = t.qb_baladiya_trigger_disabled;
+            qbBaladiyaTrigger.classList.remove('has-error');
+            qbBaladiyaOptionsList.innerHTML = '';
+            qbBaladiyaSearchInput.value = '';
+            qbBaladiyaSearchInput.placeholder = t.qb_baladiya_search_placeholder;
+
+            // إخفاء حقل الإدخال اليدوي
+            qbManualBaladiyaWrapper.style.display = 'none';
+            qbManualBaladiyaInput.value = '';
+            qbManualBaladiyaInput.placeholder = t.qb_manual_placeholder;
+            qbManualBaladiyaInput.classList.remove('has-error');
+
+            // ضبط خيارات الدفع والتوصيل الافتراضية
+            setPaymentMethod('cod');
+            setDeliveryMethod('home');
+
+            // توليد قائمة الـ 58 ولاية
+            renderWilayasList(algerianWilayas);
+
+            // إظهار نموذج الشراء وإخفاء شاشة النجاح
+            quickBuyFormContent.style.display = 'block';
+            quickBuySuccessContent.style.display = 'none';
+
+            // إغلاق أي نوافذ أخرى وفتح نافذة الشراء الفوري
+            closeCart();
             closeProductModal();
-            openCart();
-            showToast(`⚡ جاري التوجه لإتمام طلب "${product.name}"!`);
+            quickBuyModalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // دالة إغلاق نافذة الشراء الفوري
+        function closeQuickBuyModal() {
+            if (quickBuyModalOverlay) {
+                quickBuyModalOverlay.classList.remove('active');
+            }
+            document.body.style.overflow = '';
+        }
+
+        // توليد خيارات الـ 58 ولاية في القائمة المنسدلة باللغة النشطة
+        function renderWilayasList(list) {
+            if (!qbWilayaOptionsList) return;
+            const lang = currentLanguage;
+            qbWilayaOptionsList.innerHTML = list.map(w => {
+                const displayName = (lang === 'ar') ? w.name : (w.nameFr || w.name);
+                const codeLabel = (lang === 'ar') ? `ولاية ${w.code}` : `Wilaya ${w.code}`;
+                const isSelected = quickBuySelectedWilaya && quickBuySelectedWilaya.code === w.code;
+                return `
+                    <div class="qb-option-item ${isSelected ? 'selected' : ''}" onclick="selectWilayaOption('${w.code}')">
+                        <span>${displayName}</span>
+                        <span class="qb-option-code">${codeLabel}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // البحث السريع والتصفية في قائمة الولايات
+        if (qbWilayaSearchInput) {
+            qbWilayaSearchInput.addEventListener('input', (e) => {
+                const query = e.target.value.trim().toLowerCase();
+                if (!query) {
+                    renderWilayasList(algerianWilayas);
+                    return;
+                }
+                const filtered = algerianWilayas.filter(w => 
+                    w.name.toLowerCase().includes(query) || 
+                    (w.nameFr && w.nameFr.toLowerCase().includes(query)) ||
+                    w.code.includes(query)
+                );
+                renderWilayasList(filtered);
+            });
+        }
+
+        // فتح وإغلاق قائمة اختيار الولاية
+        if (qbWilayaTrigger) {
+            qbWilayaTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpening = !qbWilayaSelect.classList.contains('active');
+                closeAllCustomSelects();
+                if (isOpening) {
+                    qbWilayaSelect.classList.add('active');
+                    setTimeout(() => qbWilayaSearchInput && qbWilayaSearchInput.focus(), 100);
+                }
+            });
+        }
+
+        // اختيار ولاية معينة
+        function selectWilayaOption(wilayaCode) {
+            const wilaya = algerianWilayas.find(w => w.code === wilayaCode);
+            if (!wilaya) return;
+
+            const t = translations[currentLanguage] || translations.ar;
+            const lang = currentLanguage;
+
+            quickBuySelectedWilaya = wilaya;
+            qbWilayaTriggerText.textContent = (lang === 'ar') ? wilaya.name : (wilaya.nameFr || wilaya.name);
+            qbWilayaTrigger.classList.remove('has-error');
+            qbWilayaSelect.classList.remove('active');
+
+            // تفعيل قائمة البلديات التابعة لهذه الولاية
+            quickBuySelectedBaladiya = null;
+            quickBuyIsManualBaladiya = false;
+            qbBaladiyaSelect.classList.remove('disabled');
+            qbBaladiyaTriggerText.textContent = t.qb_baladiya_trigger_default;
+            qbBaladiyaTrigger.classList.remove('has-error');
+            qbManualBaladiyaWrapper.style.display = 'none';
+            qbManualBaladiyaInput.value = '';
+
+            renderBaladiyatList((lang === 'ar') ? wilaya.communes : (wilaya.communesFr || wilaya.communes));
+        }
+
+        // توليد خيارات البلديات للولاية المختارة
+        function renderBaladiyatList(communesList) {
+            if (!qbBaladiyaOptionsList) return;
+            const t = translations[currentLanguage] || translations.ar;
+
+            let html = communesList.map(c => `
+                <div class="qb-option-item ${quickBuySelectedBaladiya === c ? 'selected' : ''}" onclick="selectBaladiyaOption('normal', '${c}')">
+                    <span>${c}</span>
+                </div>
+            `).join('');
+
+            // زر "لم أجد بلديتي" باللغة النشطة
+            html += `
+                <div class="qb-option-item qb-option-manual" onclick="selectBaladiyaOption('manual', '${t.qb_manual_trigger}')">
+                    <span>${t.qb_manual_option}</span>
+                </div>
+            `;
+            qbBaladiyaOptionsList.innerHTML = html;
+        }
+
+        // تصفية البلديات بالبحث
+        if (qbBaladiyaSearchInput) {
+            qbBaladiyaSearchInput.addEventListener('input', (e) => {
+                if (!quickBuySelectedWilaya) return;
+                const query = e.target.value.trim().toLowerCase();
+                const list = (currentLanguage === 'ar') ? quickBuySelectedWilaya.communes : (quickBuySelectedWilaya.communesFr || quickBuySelectedWilaya.communes);
+                const filtered = list.filter(c => c.toLowerCase().includes(query));
+                renderBaladiyatList(filtered);
+            });
+        }
+
+        // فتح وإغلاق قائمة اختيار البلدية
+        if (qbBaladiyaTrigger) {
+            qbBaladiyaTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (qbBaladiyaSelect.classList.contains('disabled')) {
+                    const t = translations[currentLanguage] || translations.ar;
+                    showToast(t.toast_select_wilaya_first);
+                    qbWilayaTrigger.classList.add('has-error');
+                    return;
+                }
+                const isOpening = !qbBaladiyaSelect.classList.contains('active');
+                closeAllCustomSelects();
+                if (isOpening) {
+                    qbBaladiyaSelect.classList.add('active');
+                    setTimeout(() => qbBaladiyaSearchInput && qbBaladiyaSearchInput.focus(), 100);
+                }
+            });
+        }
+
+        // اختيار بلدية معينة
+        function selectBaladiyaOption(type, baladiyaName) {
+            const t = translations[currentLanguage] || translations.ar;
+            if (type === 'manual') {
+                quickBuyIsManualBaladiya = true;
+                quickBuySelectedBaladiya = 'manual';
+                qbBaladiyaTriggerText.textContent = t.qb_manual_trigger;
+                qbBaladiyaTrigger.classList.remove('has-error');
+                qbBaladiyaSelect.classList.remove('active');
+
+                // إظهار خانة الكتابة اليدوية والتركيز عليها
+                qbManualBaladiyaWrapper.style.display = 'flex';
+                setTimeout(() => qbManualBaladiyaInput && qbManualBaladiyaInput.focus(), 120);
+            } else {
+                quickBuyIsManualBaladiya = false;
+                quickBuySelectedBaladiya = baladiyaName;
+                qbBaladiyaTriggerText.textContent = baladiyaName;
+                qbBaladiyaTrigger.classList.remove('has-error');
+                qbBaladiyaSelect.classList.remove('active');
+                qbManualBaladiyaWrapper.style.display = 'none';
+                qbManualBaladiyaInput.value = '';
+                qbManualBaladiyaInput.classList.remove('has-error');
+            }
+        }
+
+        // إغلاق جميع القوائم المنسدلة عند النقر بالخارج
+        function closeAllCustomSelects() {
+            if (qbWilayaSelect) qbWilayaSelect.classList.remove('active');
+            if (qbBaladiyaSelect) qbBaladiyaSelect.classList.remove('active');
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.qb-custom-select')) {
+                closeAllCustomSelects();
+            }
+        });
+
+        // اختيار طريقة الدفع
+        function setPaymentMethod(method) {
+            quickBuyPaymentMethod = method;
+            if (payMethodCod && payMethodCcp) {
+                if (method === 'cod') {
+                    payMethodCod.classList.add('active');
+                    payMethodCcp.classList.remove('active');
+                } else {
+                    payMethodCcp.classList.add('active');
+                    payMethodCod.classList.remove('active');
+                }
+            }
+        }
+
+        if (payMethodCod) payMethodCod.addEventListener('click', () => setPaymentMethod('cod'));
+        if (payMethodCcp) payMethodCcp.addEventListener('click', () => setPaymentMethod('ccp'));
+
+        // اختيار طريقة التوصيل
+        function setDeliveryMethod(method) {
+            quickBuyDeliveryMethod = method;
+            if (deliveryMethodHome && deliveryMethodDesk) {
+                if (method === 'home') {
+                    deliveryMethodHome.classList.add('active');
+                    deliveryMethodDesk.classList.remove('active');
+                } else {
+                    deliveryMethodDesk.classList.add('active');
+                    deliveryMethodHome.classList.remove('active');
+                }
+            }
+        }
+
+        if (deliveryMethodHome) deliveryMethodHome.addEventListener('click', () => setDeliveryMethod('home'));
+        if (deliveryMethodDesk) deliveryMethodDesk.addEventListener('click', () => setDeliveryMethod('desk'));
+
+        // إرسال وتأكيد الطلب الفوري مع فحص الحقول والوصل المترجم
+        if (qbSubmitBtn) {
+            qbSubmitBtn.addEventListener('click', () => {
+                const t = translations[currentLanguage] || translations.ar;
+                const lang = currentLanguage;
+                const name = qbFullName.value.trim();
+                const phone = qbPhone.value.trim();
+
+                let hasError = false;
+
+                // التحقق من الاسم
+                if (name.length < 3) {
+                    qbFullName.classList.add('has-error');
+                    hasError = true;
+                } else {
+                    qbFullName.classList.remove('has-error');
+                }
+
+                // التحقق من رقم الهاتف (أرقام جزائرية من 10 خانات)
+                const phoneRegex = /^(05|06|07|02|03|04)[0-9]{8}$/;
+                const cleanPhone = phone.replace(/[\s\-\.]/g, '');
+                if (!phoneRegex.test(cleanPhone)) {
+                    qbPhone.classList.add('has-error');
+                    hasError = true;
+                } else {
+                    qbPhone.classList.remove('has-error');
+                }
+
+                // التحقق من اختيار الولاية
+                if (!quickBuySelectedWilaya) {
+                    qbWilayaTrigger.classList.add('has-error');
+                    hasError = true;
+                } else {
+                    qbWilayaTrigger.classList.remove('has-error');
+                }
+
+                // التحقق من اختيار البلدية أو إدخالها يدوياً
+                let finalBaladiya = '';
+                if (!quickBuySelectedBaladiya) {
+                    qbBaladiyaTrigger.classList.add('has-error');
+                    hasError = true;
+                } else if (quickBuyIsManualBaladiya) {
+                    finalBaladiya = qbManualBaladiyaInput.value.trim();
+                    if (finalBaladiya.length < 2) {
+                        qbManualBaladiyaInput.classList.add('has-error');
+                        hasError = true;
+                    } else {
+                        qbManualBaladiyaInput.classList.remove('has-error');
+                    }
+                } else {
+                    finalBaladiya = quickBuySelectedBaladiya;
+                    qbBaladiyaTrigger.classList.remove('has-error');
+                }
+
+                if (hasError) {
+                    showToast(t.toast_form_error);
+                    return;
+                }
+
+                // حالة التحميل لمدة ثانية واحدة
+                qbSubmitBtn.disabled = true;
+                qbSubmitBtn.innerHTML = `
+                    <div class="qb-spinner"></div>
+                    <span>${t.qb_processing}</span>
+                `;
+
+                setTimeout(() => {
+                    const orderRef = `#MBD-${Math.floor(10000 + Math.random() * 90000)}`;
+                    let itemsReceiptHtml = '';
+                    let totalFormatted = '';
+
+                    if (quickBuyMode === 'cart') {
+                        const totalCartAmount = quickBuyCartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                        totalFormatted = formatPrice(totalCartAmount);
+                        itemsReceiptHtml = `
+                            <div class="qb-receipt-row" style="align-items: flex-start;">
+                                <span class="qb-receipt-label">${t.receipt_items}</span>
+                                <div class="qb-receipt-val" style="display: flex; flex-direction: column; gap: 0.35rem; text-align: left;">
+                                    ${quickBuyCartItems.map(i => {
+                                        const p = productsData.find(prod => prod.id === i.id);
+                                        const iName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : i.name;
+                                        return `<span>${iName} (×${i.quantity}) — <b style="color: var(--accent-color);">${formatPrice(i.price * i.quantity)}</b></span>`;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                        // تفريغ السلة وتحديثها بعد إتمام الطلب بنجاح
+                        cart = [];
+                        updateCartUI();
+                    } else {
+                        totalFormatted = formatPrice(quickBuyProduct.price * quickBuyQty);
+                        const pName = (lang === 'ar') ? quickBuyProduct.name : ((lang === 'fr') ? quickBuyProduct.nameFr : quickBuyProduct.nameEn);
+                        itemsReceiptHtml = `
+                            <div class="qb-receipt-row">
+                                <span class="qb-receipt-label">${t.receipt_single_item}</span>
+                                <span class="qb-receipt-val">${pName} × ${quickBuyQty}</span>
+                            </div>
+                        `;
+                    }
+
+                    const wilayaDisplayName = (lang === 'ar') ? quickBuySelectedWilaya.name : (quickBuySelectedWilaya.nameFr || quickBuySelectedWilaya.name);
+
+                    // تجهيز وصل الطلب التفصيلي باللغة النشطة
+                    qbSuccessReceipt.innerHTML = `
+                        <div class="qb-receipt-row">
+                            <span class="qb-receipt-label">${t.receipt_order_ref}</span>
+                            <span class="qb-receipt-val" style="color: var(--accent-color); font-family: monospace;">${orderRef}</span>
+                        </div>
+                        ${itemsReceiptHtml}
+                        <div class="qb-receipt-row">
+                            <span class="qb-receipt-label">${t.receipt_recipient}</span>
+                            <span class="qb-receipt-val">${name} (${cleanPhone})</span>
+                        </div>
+                        <div class="qb-receipt-row">
+                            <span class="qb-receipt-label">${t.receipt_address}</span>
+                            <span class="qb-receipt-val">${finalBaladiya} — ${wilayaDisplayName}</span>
+                        </div>
+                        <div class="qb-receipt-row">
+                            <span class="qb-receipt-label">${t.receipt_delivery}</span>
+                            <span class="qb-receipt-val">${quickBuyDeliveryMethod === 'home' ? t.receipt_home : t.receipt_desk}</span>
+                        </div>
+                        <div class="qb-receipt-row">
+                            <span class="qb-receipt-label">${t.receipt_payment}</span>
+                            <span class="qb-receipt-val">${quickBuyPaymentMethod === 'cod' ? t.receipt_cod : t.receipt_ccp}</span>
+                        </div>
+                        <div class="qb-receipt-row" style="border-top: 1px dashed var(--border-color); padding-top: 0.5rem; margin-top: 0.2rem;">
+                            <span class="qb-receipt-label" style="font-weight: 800; color: var(--text-primary);">${t.receipt_total}</span>
+                            <span class="qb-receipt-val" style="font-size: 1.15rem; color: #10b981;">${totalFormatted}</span>
+                        </div>
+                    `;
+
+                    // إخفاء النموذج وإظهار شاشة النجاح بأنيميشن علامة الصح
+                    quickBuyFormContent.style.display = 'none';
+                    quickBuySuccessContent.style.display = 'flex';
+
+                    // إشعار toast للمستخدم
+                    showToast(t.toast_order_success);
+                }, 1000);
+            });
+        }
+
+        // أزرار إغلاق نافذة الشراء الفوري
+        if (closeQuickBuyModalBtn) {
+            closeQuickBuyModalBtn.addEventListener('click', closeQuickBuyModal);
+        }
+
+        if (qbDoneBtn) {
+            qbDoneBtn.addEventListener('click', closeQuickBuyModal);
+        }
+
+        if (quickBuyModalOverlay) {
+            quickBuyModalOverlay.addEventListener('click', (e) => {
+                if (e.target === quickBuyModalOverlay) {
+                    closeQuickBuyModal();
+                }
+            });
+        }
+
+        // إغلاق عبر زر الهروب Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeQuickBuyModal();
+                closeProductModal();
+            }
         });
 
         // زر المفضلة من داخل النافذة
@@ -3155,29 +5604,31 @@
 
         // ==================== نظام قائمة المفضلة التفاعلي ====================
         function toggleWishlist(id, name, price, img, btn) {
+            const t = translations[currentLanguage] || translations.ar;
+            const p = productsData.find(prod => prod.id === id);
+            const localizedName = p ? ((currentLanguage === 'ar') ? p.name : ((currentLanguage === 'fr') ? p.nameFr : p.nameEn)) : name;
+
             const index = wishlist.findIndex(item => item.id === id);
             if (index > -1) {
-                // إزالة من المفضلة
                 wishlist.splice(index, 1);
                 if (btn) btn.classList.remove('active');
-                showToast(`تمت إزالة "${name}" من المفضلة`);
+                showToast(`${t.toast_removed_fav}: "${localizedName}"`);
             } else {
-                // إضافة للمفضلة
                 wishlist.push({ id, name, price, img });
                 if (btn) btn.classList.add('active');
-                showToast(`❤️ تمت إضافة "${name}" إلى المفضلة`);
+                showToast(`${t.toast_added_fav}: "${localizedName}"`);
             }
 
-            // مزامنة حالة الأزرار على البطاقات في الصفحة
             syncProductHeartButtons();
             updateWishlistUI();
         }
 
         function removeFromWishlist(id) {
+            const t = translations[currentLanguage] || translations.ar;
             wishlist = wishlist.filter(item => item.id !== id);
             syncProductHeartButtons();
             updateWishlistUI();
-            showToast('تمت إزالة المنتج من المفضلة');
+            showToast(t.toast_removed_fav);
         }
 
         function syncProductHeartButtons() {
@@ -3205,6 +5656,9 @@
         }
 
         function updateWishlistUI() {
+            const t = translations[currentLanguage] || translations.ar;
+            const lang = currentLanguage;
+
             // تحديث العداد
             const count = wishlist.length;
             wishlistBadge.textContent = count;
@@ -3220,28 +5674,30 @@
                 wishlistItemsList.innerHTML = `
                     <div class="cart-empty-state">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                        <p>قائمة المفضلة فارغة حالياً. اضغط على أيقونة القلب على أي منتج لحفظه هنا!</p>
+                        <p>${t.wishlist_empty}</p>
                     </div>
                 `;
             } else {
                 let html = '';
                 wishlist.forEach(item => {
+                    const p = productsData.find(prod => prod.id === item.id);
+                    const itemName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : item.name;
                     html += `
                         <div class="cart-item-row">
-                            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                            <img src="${item.img}" alt="${itemName}" class="cart-item-img">
                             <div class="cart-item-info">
-                                <span class="cart-item-name">${item.name}</span>
-                                <span class="cart-item-price">${item.price.toLocaleString()} د.ج</span>
+                                <span class="cart-item-name">${itemName}</span>
+                                <span class="cart-item-price">${formatPrice(item.price)}</span>
                             </div>
                             <button 
                                 class="add-to-cart-btn" 
                                 style="padding: 0.45rem 0.75rem; font-size: 0.75rem;" 
                                 onclick="addToCart(${item.id}, '${item.name}', ${item.price}, '${item.img}', this)"
-                                title="إضافة للسلة"
+                                title="${t.btn_add_cart}"
                             >
-                                + السلة
+                                ${t.wishlist_btn_add_cart || '+ السلة'}
                             </button>
-                            <button class="cart-item-remove" onclick="removeFromWishlist(${item.id})" title="حذف من المفضلة">✕</button>
+                            <button class="cart-item-remove" onclick="removeFromWishlist(${item.id})" title="${t.toast_removed_fav}">✕</button>
                         </div>
                     `;
                 });
@@ -3267,10 +5723,15 @@
 
         // ==================== سلة المشتريات التفاعلية ====================
         function addToCart(id, name, price, img, btn) {
+            const t = translations[currentLanguage] || translations.ar;
+            const lang = currentLanguage;
+            const p = productsData.find(prod => prod.id === id);
+            const localizedName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : name;
+
             // تأثير الزر
             btn.classList.add('added');
             const originalText = btn.innerHTML;
-            btn.innerHTML = `<span>تمت الإضافة ✓</span>`;
+            btn.innerHTML = `<span>✓</span>`;
 
             setTimeout(() => {
                 btn.classList.remove('added');
@@ -3286,16 +5747,35 @@
             }
 
             updateCartUI();
-            showToast(`🛍️ تمت إضافة "${name}" إلى السلة`);
+            showToast(`${t.toast_added_cart}: "${localizedName}"`);
         }
 
         function removeFromCart(id) {
+            const t = translations[currentLanguage] || translations.ar;
             cart = cart.filter(item => item.id !== id);
             updateCartUI();
-            showToast('تم حذف المنتج من السلة');
+            showToast(t.toast_removed_cart);
+        }
+
+        // تغيير كمية المنتج في السلة (زيادة أو نقصان)
+        function changeCartQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+
+            if (delta === -1 && item.quantity <= 1) {
+                removeFromCart(id);
+                return;
+            }
+
+            item.quantity += delta;
+            if (item.quantity > 50) item.quantity = 50;
+            updateCartUI();
         }
 
         function updateCartUI() {
+            const t = translations[currentLanguage] || translations.ar;
+            const lang = currentLanguage;
+
             // تحديث العداد
             const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
             cartBadge.textContent = totalCount;
@@ -3306,34 +5786,64 @@
                 cartBadge.classList.remove('has-items');
             }
 
+            // تحديث نص عدد المنتجات في الفوتر
+            const cartItemsCountText = document.getElementById('cartItemsCountText');
+            if (cartItemsCountText) {
+                const suffix = totalCount === 1 ? t.items_count_suffix_singular : t.items_count_suffix_plural;
+                cartItemsCountText.textContent = `${totalCount} ${suffix}`;
+            }
+
             // تحديث محتوى الدرج
             if (cart.length === 0) {
                 cartItemsList.innerHTML = `
                     <div class="cart-empty-state">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                        <p>سلتك فارغة حالياً. أضف بعض المنتجات للبدء!</p>
+                        <p>${t.cart_empty}</p>
                     </div>
                 `;
-                cartTotalPrice.textContent = '0 د.ج';
+                cartTotalPrice.textContent = formatPrice(0);
             } else {
                 let html = '';
                 let total = 0;
+                const unitLabel = t.unit_price_label || 'سعر القطعة:';
                 cart.forEach(item => {
-                    total += item.price * item.quantity;
+                    const itemSubtotal = item.price * item.quantity;
+                    total += itemSubtotal;
+                    const p = productsData.find(prod => prod.id === item.id);
+                    const itemName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : item.name;
                     html += `
-                        <div class="cart-item-row">
-                            <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                        <div class="cart-item-row" id="cartItem-${item.id}">
+                            <img src="${item.img}" alt="${itemName}" class="cart-item-img">
                             <div class="cart-item-info">
-                                <span class="cart-item-name">${item.name}</span>
-                                <span class="cart-item-price">${item.price.toLocaleString()} د.ج × ${item.quantity}</span>
+                                <span class="cart-item-name" title="${itemName}">${itemName}</span>
+                                <span class="cart-item-unit-price">${unitLabel} ${formatPrice(item.price)}</span>
+                                
+                                <div class="cart-item-controls">
+                                    <div class="cart-item-qty-selector">
+                                        <button type="button" class="cart-qty-btn" onclick="changeCartQty(${item.id}, -1)">-</button>
+                                        <span class="cart-qty-display">${item.quantity}</span>
+                                        <button type="button" class="cart-qty-btn" onclick="changeCartQty(${item.id}, 1)">+</button>
+                                    </div>
+                                    <div class="cart-item-subtotal">
+                                        ${formatPrice(itemSubtotal)}
+                                    </div>
+                                </div>
                             </div>
-                            <button class="cart-item-remove" onclick="removeFromCart(${item.id})" title="حذف">✕</button>
+                            <button class="cart-item-remove" onclick="removeFromCart(${item.id})" title="${t.toast_removed_cart}">✕</button>
                         </div>
                     `;
                 });
                 cartItemsList.innerHTML = html;
-                cartTotalPrice.textContent = `${total.toLocaleString()} د.ج`;
+                cartTotalPrice.textContent = formatPrice(total);
             }
+        }
+
+        function renderCart() {
+            updateCartUI();
+        }
+
+        function renderWishlist() {
+            updateWishlistUI();
         }
 
         function openCart() {
@@ -3353,12 +5863,14 @@
             closeWishlist();
         });
 
+        // تنفيذ عملية الشراء وطلب الدفع (يفتح نافذة الطلب المباشر لكامل السلة)
         function checkoutOrder() {
+            const t = translations[currentLanguage] || translations.ar;
             if (cart.length === 0) {
-                showToast('السلة فارغة حالياً! أضف منتجات قبل إتمام الطلب.');
-            } else {
-                showToast('🎉 جاري تحويلك لصفحة الدفع الآمن...');
+                showToast(t.toast_cart_empty);
+                return;
             }
+            openQuickBuyModalFromCart();
         }
 
         // ==================== الإشعارات المنبثقة Toast ====================
@@ -3372,8 +5884,11 @@
             }, 2500);
         }
 
-        // تشغيل التهيئة الأولية
+        // تشغيل التهيئة الأولية الكاملة للمتجر والإعدادات
         initTheme();
+        selectLanguage(currentLanguage, true);
+        selectCurrency(currentCurrency, true);
+        updateAllPrices();
     </script>
 </body>
 </html>

@@ -1,274 +1,2975 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" da
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر Makanch Kifek | أزياء ستريت وير وأنيمي حسب الطلب</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <!-- خطوط جوجل: Cairo و Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* نظام ألوان متجر Makanch Kifek النهاري - أبيض لؤلؤي مع لمسات تيتانيوم وفضة ميتاليك */
+            --bg-primary: #f6f5f2;
+            --bg-surface: rgba(255, 255, 255, 0.94);
+            --bg-surface-solid: #ffffff;
+            --bg-elevated: #ede8e0;
+            --border-color: rgba(200, 190, 178, 0.55);
+            --border-highlight: rgba(135, 120, 105, 0.65);
+            --text-primary: #0b0a09;
+            --text-secondary: #484138;
+            --text-muted: #7c7265;
+            --accent-gradient: linear-gradient(135deg, #ff4500 0%, #ff6b35 45%, #ffa500 85%, #ff3b00 100%);
+            --accent-color: #ff5500;
+            --accent-hover: #ff7722;
+            --accent-glow: rgba(85, 72, 57, 0.22);
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --warning-color: #f59e0b;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(85, 72, 57, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 20px 35px -10px rgba(85, 72, 57, 0.15);
+            --ambient-glow: radial-gradient(circle at 50% 0%, rgba(185, 172, 156, 0.18) 0%, transparent 65%);
+            --search-kbd-bg: #e8e2d8;
+            --search-kbd-text: #484138;
+            --badge-bg: rgba(85, 72, 57, 0.1);
+        }
 
-            <!-- بطاقة المنتج: هودي إيتاتشي أوتشيها أبيض (Naruto Itachi) -->
-            <article class="product-card" id="product-1" data-category="hoodies">
-                <div class="product-media-wrapper" onclick="openProductModal(1)">
-                    <span class="product-badge">الأكثر طلباً 🔥</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 1)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </button>
-                    <img src="prod_itachi.png" alt="هودي إيتاتشي أوتشيها أبيض (Naruto Itachi)" class="product-img" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="product-category">هوديز</div>
-                    <h2 class="product-title" onclick="openProductModal(1)">هودي إيتاتشي أوتشيها أبيض (Naruto Itachi)</h2>
-                    <div class="product-rating">
-                        <span class="rating-stars">★★★★★</span>
-                        <span class="rating-score">4.9</span>
-                        <span class="rating-reviews">(42 تقييم)</span>
-                    </div>
-                    <p class="product-description">هودي شتوي فاخر قطن 100% عالي الكثافة مع طباعة جرافيك أصلية خلفية لشخصية إيتاتشي أوتشيها (Naruto). تصميم مريح وقصة واسعة توفر أقصى درجات الدفء والأناقة.</p>
-                    <div class="product-footer">
-                        <div class="price-box">
-                            <span class="price-current" data-price="3200">3,200 د.ج</span>
-                            <span class="price-old" data-oldprice="4200">4,200 د.ج</span>
-                        </div>
-                        <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 1)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
-                            </button>
-                            <button type="button" class="details-btn" onclick="openProductModal(1)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                <span>التفاصيل</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </article>
+        [data-theme="dark"] {
+            /* نظام ألوان متجر Makanch Kifek الليلي الفاخر - أسود أوبسيديان عميق مع فضة بلاتينية وتيتانيوم لامع مستوحى من الشعار */
+            --bg-primary: #060608;
+            --bg-surface: rgba(14, 14, 18, 0.90);
+            --bg-surface-solid: #111116;
+            --bg-elevated: #181820;
+            --border-color: rgba(225, 217, 206, 0.12);
+            --border-highlight: rgba(225, 217, 206, 0.45);
+            --text-primary: #fcfbfa;
+            --text-secondary: #c8c0b5;
+            --text-muted: #817970;
+            --accent-gradient: linear-gradient(135deg, #ff4500 0%, #ff6b35 45%, #ffa500 85%, #ff3b00 100%);
+            --accent-color: #ff5500;
+            --accent-hover: #ff7722;
+            --accent-glow: rgba(255, 85, 0, 0.35);
+            --success-color: #34d399;
+            --danger-color: #f87171;
+            --warning-color: #fbbf24;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 12px 28px -5px rgba(0, 0, 0, 0.65);
+            --shadow-lg: 0 24px 45px -10px rgba(0, 0, 0, 0.9);
+            --ambient-glow: radial-gradient(circle at 50% 0%, rgba(214, 204, 191, 0.16) 0%, transparent 65%);
+            --search-kbd-bg: #181820;
+            --search-kbd-text: #b8a896;
+            --badge-bg: rgba(214, 204, 191, 0.12);
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            scrollbar-width: none !important; /* إخفاء شريط التمرير في Firefox */
+            -ms-overflow-style: none !important; /* إخفاء شريط التمرير في Edge و IE */
+        }
 
-            <!-- بطاقة المنتج: أونسومبل توجي فوشيغورو أسود (JJK Toji Set) -->
-            <article class="product-card" id="product-2" data-category="sets">
-                <div class="product-media-wrapper" onclick="openProductModal(2)">
-                    <span class="product-badge">طقم شتوي كامل 🔥</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 2)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </button>
-                    <img src="prod_toji.png" alt="أونسومبل توجي فوشيغورو أسود (JJK Toji Set)" class="product-img" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="product-category">أطقم كاملة</div>
-                    <h2 class="product-title" onclick="openProductModal(2)">أونسومبل توجي فوشيغورو أسود (JJK Toji Set)</h2>
-                    <div class="product-rating">
-                        <span class="rating-stars">★★★★★</span>
-                        <span class="rating-score">5</span>
-                        <span class="rating-reviews">(38 تقييم)</span>
-                    </div>
-                    <p class="product-description">طقم ستريت وير شتوي كامل مكوّن من هودي ثقيل وسروال باغي جوغر بتصميم شخصية توجي فوشيغورو (Jujutsu Kaisen). أناقة ودفء مع خياطة متينة وقصة أوفرسايز عصرية.</p>
-                    <div class="product-footer">
-                        <div class="price-box">
-                            <span class="price-current" data-price="4600">4,600 د.ج</span>
-                            <span class="price-old" data-oldprice="5800">5,800 د.ج</span>
-                        </div>
-                        <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 2)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
-                            </button>
-                            <button type="button" class="details-btn" onclick="openProductModal(2)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                <span>التفاصيل</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </article>
+        /* إخفاء شريط التمرير بالكامل في Chrome و Safari و Edge و Opera */
+        *::-webkit-scrollbar,
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
 
+        html, body,
+        .quick-buy-modal,
+        .product-modal-container,
+        .cart-items-list,
+        .wishlist-items-list,
+        .cart-drawer,
+        .wishlist-drawer,
+        .qb-options-list,
+        .modal-thumbnails-row {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
 
-            <!-- بطاقة المنتج: سروال باغي رمادي كاكاشي وأوبيتو (Naruto Baggy) -->
-            <article class="product-card" id="product-3" data-category="pants">
-                <div class="product-media-wrapper" onclick="openProductModal(3)">
-                    <span class="product-badge">باغي ستريت وير ⚡</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 3)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </button>
-                    <img src="prod_kakashi.png" alt="سروال باغي رمادي كاكاشي وأوبيتو (Naruto Baggy)" class="product-img" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="product-category">سراويل باغي</div>
-                    <h2 class="product-title" onclick="openProductModal(3)">سروال باغي رمادي كاكاشي وأوبيتو (Naruto Baggy)</h2>
-                    <div class="product-rating">
-                        <span class="rating-stars">★★★★★</span>
-                        <span class="rating-score">4.8</span>
-                        <span class="rating-reviews">(29 تقييم)</span>
-                    </div>
-                    <p class="product-description">سروال باغي جوغر رمادي بقصة فضفاضة مريحة ورسمة فنية ملحمية تجمع كاكاشي، أوبيتو، ورين. خصر مطاطي برباط تضييق وجيوب واسعة.</p>
-                    <div class="product-footer">
-                        <div class="price-box">
-                            <span class="price-current" data-price="2900">2,900 د.ج</span>
-                            <span class="price-old" data-oldprice="3900">3,900 د.ج</span>
-                        </div>
-                        <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 3)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
-                            </button>
-                            <button type="button" class="details-btn" onclick="openProductModal(3)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                <span>التفاصيل</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </article>
+        .quick-buy-modal::-webkit-scrollbar,
+        .product-modal-container::-webkit-scrollbar,
+        .cart-items-list::-webkit-scrollbar,
+        .wishlist-items-list::-webkit-scrollbar,
+        .cart-drawer::-webkit-scrollbar,
+        .wishlist-drawer::-webkit-scrollbar,
+        .qb-options-list::-webkit-scrollbar,
+        .modal-thumbnails-row::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+        }
 
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
 
-            <!-- بطاقة المنتج: أونسومبل ون بيس لوفي وزورو وسانجي (One Piece Set) -->
-            <article class="product-card" id="product-4" data-category="sets">
-                <div class="product-media-wrapper" onclick="openProductModal(4)">
-                    <span class="product-badge">حصرية ون بيس 🏴‍☠️</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 4)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </button>
-                    <img src="prod_luffy.png" alt="أونسومبل ون بيس لوفي وزورو وسانجي (One Piece Set)" class="product-img" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="product-category">أطقم كاملة</div>
-                    <h2 class="product-title" onclick="openProductModal(4)">أونسومبل ون بيس لوفي وزورو وسانجي (One Piece Set)</h2>
-                    <div class="product-rating">
-                        <span class="rating-stars">★★★★★</span>
-                        <span class="rating-score">4.9</span>
-                        <span class="rating-reviews">(51 تقييم)</span>
-                    </div>
-                    <p class="product-description">طقم شتوي كامل من هودي وسروال باغي يجمع ثلاثي قراصنة قبعة القش (لوفي، زورو، وسانجي) بألوان وطباعات يابانية مذهلة لمحبي ون بيس في الجزائر.</p>
-                    <div class="product-footer">
-                        <div class="price-box">
-                            <span class="price-current" data-price="4800">4,800 د.ج</span>
-                            <span class="price-old" data-oldprice="6000">6,000 د.ج</span>
-                        </div>
-                        <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 4)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
-                            </button>
-                            <button type="button" class="details-btn" onclick="openProductModal(4)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                <span>التفاصيل</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </article>
+        body {
+            font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
 
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 480px;
+            background: var(--ambient-glow);
+            pointer-events: none;
+            z-index: 0;
+            transition: background 0.4s ease;
+        }
 
-            <!-- بطاقة المنتج: سروال باغي رمادي طوكيو غول (Tokyo Ghoul 1000-7) -->
-            <article class="product-card" id="product-5" data-category="pants">
-                <div class="product-media-wrapper" onclick="openProductModal(5)">
-                    <span class="product-badge">تصميم كانيكي 🩸</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 5)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </button>
-                    <img src="prod_tokyo_ghoul.png" alt="سروال باغي رمادي طوكيو غول (Tokyo Ghoul 1000-7)" class="product-img" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="product-category">سراويل باغي</div>
-                    <h2 class="product-title" onclick="openProductModal(5)">سروال باغي رمادي طوكيو غول (Tokyo Ghoul 1000-7)</h2>
-                    <div class="product-rating">
-                        <span class="rating-stars">★★★★★</span>
-                        <span class="rating-score">4.9</span>
-                        <span class="rating-reviews">(34 تقييم)</span>
-                    </div>
-                    <p class="product-description">سروال باغي رياضي رمادي بتصميم طوكيو غول الأيقوني (أزهار العنكبوت الحمراء ورقم 1000-7 مع حريشة كانيكي). قصة مميزة تجعلك مختلفاً عن الجميع.</p>
-                    <div class="product-footer">
-                        <div class="price-box">
-                            <span class="price-current" data-price="2900">2,900 د.ج</span>
-                            <span class="price-old" data-oldprice="3800">3,800 د.ج</span>
-                        </div>
-                        <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 5)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
-                            </button>
-                            <button type="button" class="details-btn" onclick="openProductModal(5)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                <span>التفاصيل</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </article>
+        /* ==================== الشريط العلوي (Top Navbar) ==================== */
+        .header-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+            box-shadow: var(--shadow-sm);
+        }
 
+        .navbar-container {
+            max-width: 1380px;
+            margin: 0 auto;
+            padding: 0.85rem 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
 
-            <!-- بطاقة المنتج: هودي غوكو وفيجيتا Unbreakable أبيض (DBZ Hoodie) -->
-            <article class="product-card" id="product-6" data-category="hoodies">
-                <div class="product-media-wrapper" onclick="openProductModal(6)">
-                    <span class="product-badge">أنيمي أساطير ⚡</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 6)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </button>
-                    <img src="prod_goku.png" alt="هودي غوكو وفيجيتا Unbreakable أبيض (DBZ Hoodie)" class="product-img" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="product-category">هوديز</div>
-                    <h2 class="product-title" onclick="openProductModal(6)">هودي غوكو وفيجيتا Unbreakable أبيض (DBZ Hoodie)</h2>
-                    <div class="product-rating">
-                        <span class="rating-stars">★★★★★</span>
-                        <span class="rating-score">4.8</span>
-                        <span class="rating-reviews">(26 تقييم)</span>
-                    </div>
-                    <p class="product-description">هودي أبيض ثقيل ومريح بطبعة سوبر سايان تجمع غوكو وفيجيتا بعبارة Unbreakable. خامات ناعمة ومريحة ومناسبة للأيام الباردة.</p>
-                    <div class="product-footer">
-                        <div class="price-box">
-                            <span class="price-current" data-price="3200">3,200 د.ج</span>
-                            <span class="price-old" data-oldprice="4200">4,200 د.ج</span>
-                        </div>
-                        <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 6)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
-                            </button>
-                            <button type="button" class="details-btn" onclick="openProductModal(6)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                <span>التفاصيل</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </article>
+        /* الشعار واسم البراند */
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            text-decoration: none;
+            color: inherit;
+            user-select: none;
+            flex-shrink: 0;
+        }
 
+        .brand-logo-wrapper {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: #000000;
+            border: 1px solid rgba(214, 204, 191, 0.35);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
 
-            <!-- بطاقة المنتج: أونسومبل بيرسيرك غاتس أسود (Berserk Guts Set) -->
-            <article class="product-card" id="product-7" data-category="sets">
-                <div class="product-media-wrapper" onclick="openProductModal(7)">
-                    <span class="product-badge">دارك فانتاسي ⚔️</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 7)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </button>
-                    <img src="prod_guts.png" alt="أونسومبل بيرسيرك غاتس أسود (Berserk Guts Set)" class="product-img" loading="lazy">
-                </div>
-                <div class="product-body">
-                    <div class="product-category">أطقم كاملة</div>
-                    <h2 class="product-title" onclick="openProductModal(7)">أونسومبل بيرسيرك غاتس أسود (Berserk Guts Set)</h2>
-                    <div class="product-rating">
-                        <span class="rating-stars">★★★★★</span>
-                        <span class="rating-score">5</span>
-                        <span class="rating-reviews">(44 تقييم)</span>
-                    </div>
-                    <p class="product-description">طقم شتوي متكامل أسود لعشاق Berserk والسياف غاتس (Guts). تفاصيل داكنة مرعبة وفخامة مطلقة تجعل حضورك استثنائياً.</p>
-                    <div class="product-footer">
-                        <div class="price-box">
-                            <span class="price-current" data-price="4800">4,800 د.ج</span>
-                            <span class="price-old" data-oldprice="6200">6,200 د.ج</span>
-                        </div>
-                        <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 7)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
-                            </button>
-                            <button type="button" class="details-btn" onclick="openProductModal(7)">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                <span>التفاصيل</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </article>
+        .brand-section:hover .brand-logo-wrapper {
+            transform: scale(1.08);
+            box-shadow: 0 8px 24px var(--accent-glow);
+            border-color: var(--accent-color);
+        }
 
-            </div>
+        .brand-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .brand-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .brand-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.15rem 0.45rem;
+            background: var(--bg-elevated);
+            color: var(--accent-color);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            -webkit-text-fill-color: initial;
+        }
+
+        .brand-subtext {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* مجموعة الشعار وزر البحث المجاور له */
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        /* ==================== شريط البحث المتمدد في الهيدر ==================== */
+        .expandable-search-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            border-radius: 13px;
+            overflow: hidden;
+            transition: width 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        background-color 0.25s ease, 
+                        border-color 0.25s ease, 
+                        box-shadow 0.25s ease;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+
+        .expandable-search-wrapper:hover {
+            border-color: var(--accent-color);
+        }
+
+        /* حالة التمدد إلى اليسار لوسط الشريط */
+        .expandable-search-wrapper.expanded {
+            width: clamp(280px, 34vw, 450px);
+            background: var(--bg-surface-solid);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        /* زر أيقونة البحث الأساسي */
+        .search-icon-btn {
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            outline: none;
+            display: grid;
+            place-items: center;
+            color: var(--text-primary);
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: color 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 2;
+        }
+
+        .search-icon-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2.2;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .expandable-search-wrapper:hover .search-icon-btn svg {
+            transform: scale(1.1);
+        }
+
+        .expandable-search-wrapper.expanded .search-icon-btn {
+            color: var(--accent-color);
+        }
+
+        /* حقل الإدخال النصي داخل الشريط المتمدد */
+        .navbar-search-input {
+            flex: 1;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding: 0 0.5rem 0 0.25rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.22s ease 0.1s;
+            min-width: 0;
+        }
+
+        .navbar-search-input::placeholder {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .expandable-search-wrapper.expanded .navbar-search-input {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* زر الإغلاق والمسح ✕ */
+        .search-action-clear {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-elevated);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            margin-inline-end: 0.45rem;
+            margin-inline-start: 0.25rem;
+            flex-shrink: 0;
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.8);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .search-action-clear:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+            transform: scale(1.05);
+        }
+
+        .expandable-search-wrapper.expanded .search-action-clear {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+
+        /* أزرار الإجراءات في الشريط */
+        .actions-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: 13px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .icon-btn:hover {
+            background: var(--bg-surface-solid);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 16px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .icon-btn:active {
+            transform: translateY(0) scale(0.96);
+        }
+
+        .icon-btn svg {
+            width: 21px;
+            height: 21px;
+            stroke-width: 2;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), stroke 0.25s ease;
+        }
+
+        /* زر السلة والمفضلة مع شارات العداد */
+        .cart-btn-wrapper,
+        .wishlist-nav-wrapper {
+            position: relative;
+        }
+
+        .cart-badge,
+        .wishlist-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            border: 2px solid var(--bg-surface-solid);
+            transform: scale(0);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .cart-badge {
+            background: var(--accent-gradient);
+            box-shadow: 0 2px 8px var(--accent-glow);
+        }
+
+        .wishlist-badge {
+            background: linear-gradient(135deg, #ef4444 0%, #f43f5e 100%);
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
+        }
+
+        .cart-badge.has-items,
+        .wishlist-badge.has-items {
+            transform: scale(1);
+        }
+
+        .cart-badge.bump,
+        .wishlist-badge.bump {
+            animation: badgeBump 0.35s ease;
+        }
+
+        .wishlist-nav-btn:hover svg {
+            stroke: var(--danger-color);
+            fill: rgba(239, 68, 68, 0.15);
+            transform: scale(1.12);
+        }
+
+        @keyframes badgeBump {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.35); }
+            100% { transform: scale(1); }
+        }
+
+        /* زر الإعدادات */
+        .settings-btn:hover svg {
+            transform: rotate(60deg);
+            stroke: var(--accent-color);
+        }
+
+        /* زر الثيم */
+        .theme-btn {
+            overflow: hidden;
+        }
+
+        .theme-btn .icon-sun,
+        .theme-btn .icon-moon {
+            position: absolute;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        [data-theme="light"] .theme-btn .icon-moon {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+        }
+        [data-theme="light"] .theme-btn .icon-sun {
+            opacity: 0;
+            transform: rotate(90deg) scale(0.3);
+        }
+
+        [data-theme="dark"] .theme-btn .icon-moon {
+            opacity: 0;
+            transform: rotate(-90deg) scale(0.3);
+        }
+        [data-theme="dark"] .theme-btn .icon-sun {
+            opacity: 1;
+            transform: rotate(0) scale(1);
+            color: #facc15;
+            stroke: #facc15;
+        }
+
+        /* القائمة المنسدلة للإعدادات المطورة */
+        .settings-dropdown {
+            position: absolute;
+            top: calc(100% + 14px);
+            left: 0;
+            width: 310px;
+            max-width: calc(100vw - 28px);
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.35), 0 0 25px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1.15rem;
+            display: none;
+            flex-direction: column;
+            gap: 1.1rem;
+            z-index: 150;
+            animation: fadeInDown 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [dir="ltr"] .settings-dropdown {
+            left: auto;
+            right: 0;
+        }
+
+        .settings-dropdown.active {
+            display: flex;
+        }
+
+        .settings-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .settings-header-title {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .settings-header-title svg {
+            width: 17px;
+            height: 17px;
+            color: var(--accent-color);
+        }
+
+        .settings-badge {
+            font-size: 0.68rem;
+            font-weight: 800;
+            padding: 0.18rem 0.5rem;
+            background: rgba(99, 102, 241, 0.14);
+            color: var(--accent-color);
+            border-radius: 6px;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            letter-spacing: 0.5px;
+        }
+
+        .settings-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .settings-group-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .settings-group-label svg {
+            width: 15px;
+            height: 15px;
+            color: var(--accent-color);
+        }
+
+        .settings-segmented-control {
+            display: flex;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 4px;
+            gap: 4px;
+        }
+
+        .settings-seg-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.55rem 0.35rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: inherit;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
+        }
+
+        .settings-seg-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2.2;
+        }
+
+        .settings-seg-btn .curr-symbol {
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .settings-seg-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .settings-seg-btn.active {
+            background: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            font-weight: 700;
+        }
+
+        .settings-seg-btn.active svg {
+            stroke: #ffffff;
+        }
+
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+        }
+
+        [data-tooltip]::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 50%;
+            transform: translateX(50%) translateY(-4px);
+            padding: 0.35rem 0.65rem;
+            background: #0f172a;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 8px;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 200;
+        }
+
+        [data-tooltip]:hover::before {
+            opacity: 1;
+            transform: translateX(50%) translateY(0);
+        }
+
+        [data-theme="dark"] [data-tooltip]::before {
+            background: #ffffff;
+            color: #0f172a;
+        }
+
+        /* ==================== متجر المنتجات (Store Section) ==================== */
+        .store-main-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1380px;
+            margin: 2.5rem auto 5rem auto;
+            padding: 0 1.75rem;
+        }
+
+        /* الترويسة الرئيسية للمتجر */
+        .store-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .store-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 1.2rem;
+            border-radius: 30px;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 1.25rem;
+        }
+
+        .store-title {
+            font-size: 2.6rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .store-title span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .store-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* تبويبات تصنيفات المنتجات */
+        .category-tabs {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 0.6rem 1.35rem;
+            border-radius: 14px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-surface-solid);
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-tab:hover {
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .category-tab.active {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #ffffff;
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        /* ==================== شبكة بطاقات المنتجات (Products Grid) ==================== */
+        /* الوضع الأساسي (الشاشات الصغيرة / الهواتف): منتج واحد كامل في كل سطر لعرض فخم وتفاصيل واضحة */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2.2rem;
+            max-width: 480px;
+            margin-inline: auto;
+        }
+
+        /* الشاشات اللوحية والمتوسطة: منتجين في السطر */
+        @media (min-width: 620px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                max-width: 100%;
+            }
+        }
+
+        /* الشاشات الكبيرة والمكتبية: 3 منتجات في السطر */
+        @media (min-width: 980px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.85rem;
+                max-width: 100%;
+            }
+        }
+
+        /* الشاشات فائقة العرض */
+        @media (min-width: 1380px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        /* تصميم بطاقة المنتج الفاخرة */
+        .product-card {
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-highlight);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* رأس صورة المنتج */
+        .product-media-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            height: auto;
+            background: var(--bg-elevated);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+
+        /* شارة المنتج (جديد، خصم، إلخ) */
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            z-index: 5;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .badge-discount {
+            background: rgba(239, 68, 68, 0.9);
+            color: #ffffff;
+        }
+
+        .badge-new {
+            background: rgba(16, 185, 129, 0.9);
+            color: #ffffff;
+        }
+
+        .badge-bestseller {
+            background: var(--accent-gradient);
+            color: #ffffff;
+        }
+
+        /* زر المفضلة فوق الصورة */
+        .wishlist-btn {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .wishlist-btn:hover {
+            transform: scale(1.15);
+            color: var(--danger-color);
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .wishlist-btn.active {
+            color: var(--danger-color);
+            background: #ffe4e6;
+            border-color: #fda4af;
+        }
+
+        [data-theme="dark"] .wishlist-btn.active {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .wishlist-btn svg {
+            width: 19px;
+            height: 19px;
+            stroke-width: 2.2;
+            transition: fill 0.2s ease, transform 0.2s ease;
+        }
+
+        .wishlist-btn.active svg {
+            fill: var(--danger-color);
+            stroke: var(--danger-color);
+            animation: heartBeat 0.35s ease;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* تفاصيل ومحتوى البطاقة */
+        .product-body {
+            padding: 1.35rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-category-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-category {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* التقييم بالنجوم */
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--warning-color);
+        }
+
+        .rating-stars {
+            display: inline-flex;
+            gap: 2px;
+        }
+
+        .rating-reviews {
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-weight: 500;
+        }
+
+        /* عنوان المنتج ووصفه */
+        .product-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 0.45rem;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .product-title:hover {
+            color: var(--accent-color);
+        }
+
+        .product-description {
+            font-size: 0.86rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* الفوتر: السعر + زري الإجراءات (أضف للسلة والتفاصيل) */
+        .product-footer {
+            margin-top: auto;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 0.65rem;
+            line-height: 1.2;
+            flex-wrap: wrap;
+        }
+
+        .price-current {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            display: flex;
+            align-items: baseline;
+            gap: 0.25rem;
+        }
+
+        .price-currency {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .price-old {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+
+        /* صف زري أسفل البطاقة (أضف للسلة + التفاصيل) */
+        .product-card-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            width: 100%;
+        }
+
+        /* زر إضافة إلى السلة */
+        .add-to-cart-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.68rem 0.95rem;
+            border-radius: 13px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex: 1.15;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px var(--accent-glow);
+        }
+
+        .add-to-cart-btn:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        .add-to-cart-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2.2;
+        }
+
+        .add-to-cart-btn.added {
+            background: var(--success-color);
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+        }
+
+        /* زر التفاصيل الثاني أسفل البطاقة */
+        .details-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.68rem 0.85rem;
+            border-radius: 13px;
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border: 1.5px solid var(--border-color);
+            font-family: inherit;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex: 0.85;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .details-btn:hover {
+            background: var(--bg-surface-solid);
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .details-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2.2;
+        }
+
+        /* ==================== نافذة تفاصيل المنتج الفاخرة (Product Details Modal) ==================== */
+        .product-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 14, 23, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 290;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .product-modal-container {
+            position: relative;
+            width: 100%;
+            max-width: 980px;
+            max-height: 90vh;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 28px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform: translateY(28px) scale(0.96);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .product-modal-overlay.active .product-modal-container {
+            transform: translateY(0) scale(1);
+        }
+
+        .product-modal-close-btn {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.15rem;
+            transition: all 0.25s ease;
+        }
+
+        .product-modal-close-btn:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+            transform: rotate(90deg) scale(1.08);
+        }
+
+        .product-modal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            padding: 2.25rem 2.25rem;
+        }
+
+        .modal-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+            padding: 0 0.5rem;
+        }
+
+        /* عمود المعرض والصور الكبيرة للتمعن */
+        .modal-gallery-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .modal-main-image-wrapper {
+            position: relative;
+            position: relative;
+            width: 100%;
+            height: 380px;
+            background: var(--bg-elevated);
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1.5px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+        }
+
+        .modal-main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.4s ease, opacity 0.25s ease;
+        }
+
+        .modal-main-image-wrapper:hover .modal-main-image {
+            transform: scale(1.03);
+        }
+
+        .modal-main-image:hover {
+            transform: scale(1.05);
+        }
+
+        .modal-badge-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            backdrop-filter: blur(8px);
+            z-index: 2;
+            color: #ffffff;
+        }
+
+        /* شريط الصور المصغرة للتنقل والمعاينة */
+        .modal-thumbnails-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            overflow-x: auto;
+            padding-bottom: 0.35rem;
+        }
+
+        .modal-thumb {
+            width: 76px;
+            height: 76px;
+            border-radius: 14px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-elevated);
+            overflow: hidden;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            opacity: 0.65;
+        }
+
+        .modal-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-thumb:hover {
+            opacity: 0.95;
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        .modal-thumb.active {
+            opacity: 1;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transform: scale(1.04);
+        }
+
+        /* عمود تفاصيل ومعلومات المنتج */
+        .modal-info-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.65rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .modal-category-label {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-transform: uppercase;
+        }
+
+        .modal-stock-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--success-color);
+            background: rgba(16, 185, 129, 0.12);
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+        }
+
+        .modal-product-title {
+            font-size: 1.65rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.35;
+            margin-bottom: 0.65rem;
+        }
+
+        .modal-rating-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--warning-color);
+            margin-bottom: 1.15rem;
+        }
+
+        .modal-reviews-count {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* صندوق السعر والتوفير */
+        .modal-price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 0.85rem;
+            padding: 0.85rem 1.15rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .modal-current-price {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+
+        .modal-old-price {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+
+        .modal-save-pill {
+            margin-right: auto;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--danger-color);
+            background: rgba(239, 68, 68, 0.12);
+            padding: 0.25rem 0.65rem;
+            border-radius: 8px;
+        }
+
+        /* الوصف الكامل وقائمة المواصفات */
+        .modal-desc-heading {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.45rem;
+        }
+
+        .modal-description {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-specs-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .modal-spec-item svg {
+            color: var(--accent-color);
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+        }
+
+        /* أزرار العمليات والشراء */
+        .modal-actions-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-top: auto;
+        }
+
+        /* محدد المقاسات الأنيق في نافذة المنتج */
+        .modal-sizes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .modal-sizes-label {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-sizes-pills {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .size-pill {
+            min-width: 44px;
+            height: 38px;
+            padding: 0 0.75rem;
+            border-radius: 10px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-surface-solid);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-pill:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .size-pill.active {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transform: scale(1.05);
+        }
+
+        [data-theme="dark"] .size-pill.active {
+            color: #060608;
+            background: #ffffff;
+            border-color: #ffffff;
+            box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+        }
+
+        .modal-quantity-row {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .modal-qty-selector {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        .modal-qty-btn {
+            width: 38px;
+            height: 38px;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: background 0.2s ease;
+        }
+
+        .modal-qty-btn:hover {
+            background: var(--border-color);
+        }
+
+        .modal-qty-display {
+            width: 45px;
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .modal-main-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        .modal-add-cart-btn {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            padding: 0.88rem 1.35rem;
+            border-radius: 14px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 16px var(--accent-glow);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-add-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        .modal-add-cart-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .modal-buy-fav-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+        }
+
+        .modal-buy-now-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            padding: 0.88rem 1.35rem;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-buy-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.45);
+        }
+
+        .modal-buy-now-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .modal-fav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-muted);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex-shrink: 0;
+        }
+
+        .modal-fav-btn:hover {
+            border-color: var(--danger-color);
+            color: var(--danger-color);
+            transform: translateY(-2px);
+        }
+
+        .modal-fav-btn.active {
+            background: #ffe4e6;
+            border-color: #fda4af;
+            color: var(--danger-color);
+        }
+
+        [data-theme="dark"] .modal-fav-btn.active {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .modal-share-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-muted);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            flex-shrink: 0;
+        }
+
+        .modal-share-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .modal-share-btn.copied {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: #10b981;
+            color: #10b981;
+            transform: scale(1.05);
+        }
+
+        [data-theme="dark"] .modal-share-btn.copied {
+            background: rgba(52, 211, 153, 0.2);
+            border-color: rgba(52, 211, 153, 0.5);
+            color: #34d399;
+        }
+
+        /* ==================== نافذة الشراء الفوري الزجاجية (Quick Buy Glassmorphism Modal) ==================== */
+        .quick-buy-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 14, 23, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 350;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .quick-buy-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .quick-buy-modal {
+            position: relative;
+            width: 100%;
+            max-width: 560px;
+            max-height: 92vh;
+            background: var(--bg-surface);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1.5px solid var(--border-color);
+            border-radius: 26px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            overflow-y: auto;
+            overflow-x: hidden;
+            transform: translateY(24px) scale(0.96);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 1.85rem;
+        }
+
+        .quick-buy-overlay.active .quick-buy-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .quick-buy-close-btn {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.25rem;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-secondary);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.1rem;
+            transition: all 0.25s ease;
+        }
+
+        .quick-buy-close-btn:hover {
+            background: var(--border-color);
+            color: var(--text-primary);
+            transform: rotate(90deg) scale(1.08);
+        }
+
+        /* ترويسة نافذة الشراء الفوري */
+        .quick-buy-header {
+            margin-bottom: 1.25rem;
+            padding-left: 2.5rem;
+        }
+
+        .quick-buy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-buy-title {
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .quick-buy-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* بطاقة ملخص المنتج في الشراء الفوري */
+        .quick-buy-product-summary {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem 1rem;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 1.35rem;
+        }
+
+        .qb-summary-img {
+            width: 58px;
+            height: 58px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .qb-summary-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .qb-summary-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .qb-summary-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.2rem;
+            font-size: 0.84rem;
+        }
+
+        .qb-summary-qty {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .qb-summary-price {
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+
+        /* الحقول ونموذج الطلب */
+        .qb-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+        }
+
+        .qb-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            position: relative;
+        }
+
+        .qb-label {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .qb-label .qb-req {
+            color: var(--danger-color);
+            font-weight: 800;
+        }
+
+        .qb-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .qb-input-icon {
+            position: absolute;
+            right: 0.95rem;
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: color 0.2s ease;
+        }
+
+        .qb-input {
+            width: 100%;
+            padding: 0.82rem 2.65rem 0.82rem 1rem;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 13px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.92rem;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .qb-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .qb-input.has-error {
+            border-color: var(--danger-color) !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25) !important;
+        }
+
+        /* القوائم المنسدلة المخصصة (Custom Dropdowns) */
+        .qb-custom-select {
+            position: relative;
+            user-select: none;
+        }
+
+        .qb-select-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.82rem 1.15rem;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .qb-select-trigger:hover {
+            border-color: var(--accent-color);
+        }
+
+        .qb-custom-select.active .qb-select-trigger {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .qb-custom-select.disabled .qb-select-trigger {
+            opacity: 0.55;
+            cursor: not-allowed;
+            background: var(--bg-elevated);
+        }
+
+        .qb-select-arrow {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2.2;
+            color: var(--text-muted);
+            transition: transform 0.25s ease;
+            flex-shrink: 0;
+        }
+
+        .qb-custom-select.active .qb-select-arrow {
+            transform: rotate(180deg);
+            color: var(--accent-color);
+        }
+
+        .qb-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            right: 0;
+            left: 0;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            box-shadow: var(--shadow-lg);
+            z-index: 50;
+            max-height: 250px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .qb-custom-select.active .qb-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .qb-dropdown-search-wrap {
+            padding: 0.6rem 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-elevated);
+        }
+
+        .qb-dropdown-search-input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .qb-dropdown-search-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .qb-options-list {
+            overflow-y: auto;
+            max-height: 190px;
+            padding: 0.35rem;
+        }
+
+        .qb-option-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.65rem 0.85rem;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .qb-option-item:hover,
+        .qb-option-item.highlighted {
+            background: var(--bg-elevated);
+            color: var(--accent-color);
+        }
+
+        .qb-option-item.selected {
+            background: rgba(99, 102, 241, 0.12);
+            color: var(--accent-color);
+            font-weight: 800;
+        }
+
+        .qb-option-code {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: var(--bg-elevated);
+            padding: 0.15rem 0.45rem;
+            border-radius: 6px;
+        }
+
+        .qb-option-manual {
+            border-top: 1px dashed var(--border-color);
+            margin-top: 0.35rem;
+            padding-top: 0.65rem;
+            color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        /* بطاقات خيارات الدفع والتوصيل التفاعلية */
+        .qb-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .qb-radio-card {
+            position: relative;
+            border: 1.5px solid var(--border-color);
+            border-radius: 14px;
+            padding: 0.85rem 1rem;
+            background: var(--bg-surface-solid);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .qb-radio-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-1px);
+        }
+
+        .qb-radio-card.active {
+            border-color: var(--accent-color);
+            background: rgba(99, 102, 241, 0.08);
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .qb-radio-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qb-radio-title {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .qb-radio-indicator {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            display: grid;
+            place-items: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .qb-radio-card.active .qb-radio-indicator {
+            border-color: var(--accent-color);
+            background: var(--accent-color);
+        }
+
+        .qb-radio-card.active .qb-radio-indicator::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ffffff;
+        }
+
+        .qb-radio-desc {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        /* زر إتمام الطلب */
+        .qb-submit-btn {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.38);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-top: 0.5rem;
+        }
+
+        .qb-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(16, 185, 129, 0.5);
+        }
+
+        .qb-submit-btn:disabled {
+            opacity: 0.75;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* مؤشر التحميل البسيط (Loading Spinner) */
+        .qb-spinner {
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ffffff;
+            animation: qbSpin 0.75s linear infinite;
+        }
+
+        @keyframes qbSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* شاشة النجاح مع أنيميشن علامة الصح (Success State) */
+        .quick-buy-success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem 0.5rem 0.5rem;
+            animation: qbFadeIn 0.4s ease forwards;
+        }
+
+        @keyframes qbFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .qb-success-icon-wrap {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.12);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            display: grid;
+            place-items: center;
+            margin-bottom: 1.35rem;
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.25);
+            animation: qbPulse 1.8s infinite;
+        }
+
+        @keyframes qbPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 25px rgba(16, 185, 129, 0.2);
+            }
+            50% {
+                transform: scale(1.06);
+                box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+            }
+        }
+
+        .qb-checkmark-svg {
+            width: 50px;
+            height: 50px;
+        }
+
+        .qb-checkmark-circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2.5;
+            stroke-miterlimit: 10;
+            stroke: #10b981;
+            fill: none;
+            animation: qbStroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .qb-checkmark-check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke: #10b981;
+            animation: qbStroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+        }
+
+        @keyframes qbStroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .qb-success-title {
+            font-size: 1.65rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 0.65rem;
+        }
+
+        .qb-success-msg {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            max-width: 440px;
+            margin-bottom: 1.5rem;
+        }
+
+        .qb-success-receipt {
+            width: 100%;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.15rem 1.35rem;
+            margin-bottom: 1.5rem;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            font-size: 0.88rem;
+        }
+
+        .qb-receipt-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qb-receipt-label {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .qb-receipt-val {
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+
+        .qb-done-btn {
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            border-radius: 14px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 0.98rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 16px var(--accent-glow);
+            transition: all 0.25s ease;
+        }
+
+        .qb-done-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
+        }
+
+        /* شارات الثقة والضمان */
+        .modal-trust-perks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.65rem;
+            padding-top: 1.15rem;
+            margin-top: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .modal-perk-item {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        /* ==================== درج السلة الجانبي (Cart Drawer) ==================== */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 250;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer,
+        .wishlist-drawer {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: 420px;
+            background: var(--bg-surface-solid);
+            border-right: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            z-index: 260;
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.active,
+        .wishlist-drawer.active {
+            transform: translateX(0);
+        }
+
+        .cart-drawer-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cart-drawer-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .cart-close-btn:hover {
+            background: var(--border-color);
+        }
+
+        .cart-items-list {
+            padding: 1.25rem 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cart-empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: var(--text-muted);
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .cart-item-row {
+            display: flex;
+            align-items: center;
+            gap: 0.95rem;
+            padding: 0.95rem;
+            border-radius: 18px;
+            background: var(--bg-elevated);
+            border: 1.5px solid var(--border-color);
+            position: relative;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .cart-item-row:hover {
+            border-color: var(--border-highlight);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .cart-item-img {
+            width: 72px;
+            height: 72px;
+            border-radius: 14px;
+            object-fit: cover;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            min-width: 0;
+            padding-left: 1.5rem;
+        }
+
+        .cart-item-name {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .cart-item-unit-price {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* سطر التحكم بالكمية والسعر الجزئي */
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            margin-top: 0.35rem;
+        }
+
+        .cart-item-qty-selector {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-surface-solid);
+            border: 1.5px solid var(--border-color);
+            border-radius: 11px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .cart-qty-btn {
+            width: 28px;
+            height: 28px;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .cart-qty-btn:hover {
+            background: var(--bg-elevated);
+            color: var(--accent-color);
+        }
+
+        .cart-qty-btn:active {
+            transform: scale(0.9);
+        }
+
+        .cart-qty-display {
+            min-width: 26px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            user-select: none;
+        }
+
+        .cart-item-subtotal {
+            font-size: 0.98rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            white-space: nowrap;
+        }
+
+        .cart-item-remove {
+            position: absolute;
+            top: 0.65rem;
+            left: 0.65rem;
+            color: var(--text-muted);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .cart-item-remove:hover {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger-color);
+            transform: scale(1.1);
+        }
+
+        .cart-drawer-footer {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-surface);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .cart-summary-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .cart-total-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+        }
+
+        .cart-total-row.main-total {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            padding-top: 0.45rem;
+            border-top: 1px dashed var(--border-color);
+            margin-top: 0.2rem;
+        }
+
+        .cart-checkout-btn {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 1.02rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.38);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .cart-checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(16, 185, 129, 0.5);
+        }
+
+        .cart-checkout-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* رسالة التنبيه Toast */
+        .toast-notification {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-surface-solid);
+            color: var(--text-primary);
+            padding: 0.85rem 1.6rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.92rem;
+            font-weight: 700;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 300;
+        }
+
+        .toast-notification.active {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تجاوب الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .header-navbar {
+                overflow-x: clip;
+            }
+
+            .navbar-container {
+                padding: 0.55rem 0.65rem;
+                gap: 0.35rem;
+                position: relative;
+            }
+
+            /* ملاءمة الشعار واسم البراند للشاشات الصغيرة حتى لو كان الاسم طويلاً */
+            .brand-group {
+                gap: 0.35rem;
+                min-width: 0;
+                flex-shrink: 1;
+            }
+
+            .brand-section {
+                gap: 0.42rem;
+                min-width: 0;
+            }
+
+            .brand-logo-wrapper {
+                width: 36px;
+                height: 36px;
+                border-radius: 10px;
+                flex-shrink: 0;
+            }
+
+            .brand-name {
+                font-size: clamp(1.05rem, 3.8vw, 1.25rem);
+                letter-spacing: 0.8px;
+                max-width: clamp(75px, 26vw, 135px);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* أزرار الإجراءات المتناسقة على الهواتف */
+            .actions-group {
+                gap: 0.32rem;
+                flex-shrink: 0;
+            }
+
+            .icon-btn,
+            .search-icon-btn,
+            .expandable-search-wrapper {
+                width: 38px;
+                height: 38px;
+                border-radius: 11px;
+            }
+
+            .icon-btn svg,
+            .search-icon-btn svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .wishlist-badge,
+            .cart-badge {
+                min-width: 16px;
+                height: 16px;
+                font-size: 0.65rem;
+                top: -3px;
+                right: -3px;
+                padding: 0 3px;
+            }
+
+            /* شريط البحث عند فتحه على شاشات الموبايل يغطي الهيدر كطبقة عائمة متناسقة دون كسر العرض أو إزاحة الصفحة */
+            .expandable-search-wrapper.expanded {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0.5rem;
+                left: 0.5rem;
+                width: auto !important;
+                max-width: calc(100% - 1rem);
+                height: 42px;
+                z-index: 50;
+                background: var(--bg-surface-solid);
+                box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+            }
+
+            .navbar-search-input {
+                font-size: 0.85rem;
+            }
+
+            .store-title {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                /* منتج واحد في كل سطر على الهواتف مع بطاقة فخمة ورحبة */
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+                max-width: 460px;
+                margin-inline: auto;
+            }
+
+            .store-main-container {
+                padding: 0 1rem;
+            }
+
+            /* ملاءمة أبعاد وتفاصيل البطاقة لتتسع منتج واحد فخم بالسطر */
+            .product-card {
+                border-radius: 20px;
+            }
+
+            .product-media-wrapper {
+                aspect-ratio: 1 / 1;
+                height: auto;
+            }
+
+            .product-badge {
+                font-size: 0.72rem;
+                padding: 0.28rem 0.65rem;
+                top: 0.75rem;
+                right: 0.75rem;
+            }
+
+            .wishlist-btn {
+                width: 36px;
+                height: 36px;
+                top: 0.75rem;
+                left: 0.75rem;
+            }
+
+            .wishlist-btn svg {
+                width: 17px;
+                height: 17px;
+            }
+
+            .product-body {
+                padding: 1.15rem 1rem;
+            }
+
+            .product-title {
+                font-size: 1.12rem;
+                margin-bottom: 0.45rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                line-height: 1.4;
+            }
+
+            .product-category {
+                font-size: 0.78rem;
+            }
+
+            .product-rating {
+                font-size: 0.78rem;
+                gap: 3px;
+            }
+
+            .rating-reviews {
+                display: inline;
+                font-size: 0.75rem;
+            }
+
+            .product-description {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                font-size: 0.82rem;
+                color: var(--text-muted);
+                line-height: 1.45;
+                margin-bottom: 0.6rem;
+            }
+
+            .product-footer {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.75rem;
+                padding-top: 0.65rem;
+            }
+
+            .price-box {
+                flex-direction: row;
+                align-items: baseline;
+                justify-content: space-between;
+            }
+
+            .price-current {
+                font-size: 1.25rem;
+                font-weight: 800;
+            }
+
+            .price-old {
+                font-size: 0.85rem;
+            }
+
+            .product-card-actions {
+                display: flex;
+                flex-direction: row;
+                gap: 0.5rem;
+                width: 100%;
+            }
+
+            .product-card-actions .add-to-cart-btn {
+                flex: 1.25;
+                padding: 0.68rem 0.85rem;
+                font-size: 0.84rem;
+                font-weight: 700;
+                border-radius: 12px;
+                gap: 0.4rem;
+                justify-content: center;
+                box-sizing: border-box;
+                white-space: nowrap;
+            }
+
+            .product-card-actions .details-btn {
+                flex: 0.75;
+                padding: 0.68rem 0.75rem;
+                font-size: 0.84rem;
+                font-weight: 700;
+                border-radius: 12px;
+                gap: 0.4rem;
+                justify-content: center;
+                box-sizing: border-box;
+                white-space: nowrap;
+            }
+
+            .product-card-actions .add-to-cart-btn svg,
+            .product-card-actions .details-btn svg {
+                width: 15px;
+                height: 15px;
+                flex-shrink: 0;
+            }
+
+            /* تجاوب نافذة تفاصيل المنتج على الموبايل */
+            .product-modal-overlay {
+                padding: 1.25rem 1rem;
+            }
+
+            .product-modal-container {
+                max-width: 100%;
+                max-height: 92vh;
+                border-radius: 24px;
+            }
+
+            .product-modal-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.85rem 1.75rem 2.25rem 1.75rem; /* مسافة أمان مريحة جداً عن حواف النافذة */
+            }
+
+            .modal-info-col {
+                padding: 0;
+            }
+
+            .modal-main-image-wrapper {
+                height: 280px;
+            }
+
+            .modal-thumb {
+                width: 64px;
+                height: 64px;
+            }
+
+            .modal-specs-list {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-buy-fav-row {
+                display: flex;
+                align-items: center;
+                gap: 0.55rem;
+                width: 100%;
+            }
+
+            .modal-buy-now-btn {
+                flex: 1;
+                width: auto;
+            }
+
+            .modal-fav-btn,
+            .modal-share-btn {
+                width: 46px;
+                height: 46px;
+            }
+
+            .quick-buy-modal {
+                padding: 1.35rem 1rem;
+                border-radius: 20px;
+                max-height: 94vh;
+            }
+
+            .qb-options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-trust-perks {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-drawer,
+            .wishlist-drawer {
+                max-width: 100%;
+            }
+        }
+    
+        </style>
+</head>
+<body>
+
+    <!-- الشريط العلوي الفاخر -->
+    <header class="header-navbar" id="mainHeader">
+        <div class="navbar-container">
+            
+            <!-- شعار براند Makanch Kifek واسم المتجر + زر البحث بجانبه -->
+            <div class="brand-group">
+                <a href="#" class="brand-section" id="brandLink">
+                    <div class="brand-logo-wrapper">
+                        <img src="logo.png" alt="Makanch Kifek" class="brand-logo-img">
+                    </div>
                     <div class="brand-info">
-                        <div class="brand-name">Makanch Kifek</div>
+                        <div class="brand-name">
+                            Makanch Kifek
+                        </div>
                     </div>
                 </a>
 
@@ -361,7 +3062,7 @@
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                                 <span data-i18n="settings_title">إعدادات المتجر</span>
                             </div>
-                            <span class="settings-badge">KYVRO</span>
+                            <span class="settings-badge">Makanch Kifek</span>
                         </div>
 
                         <!-- قسم المظهر (الوضع المظلم / المضيء) داخل الإعدادات -->
@@ -426,52 +3127,42 @@
         <!-- الترويسة الرئيسية للمتجر -->
         <section class="store-header">
             <h1 class="store-title">
-                تشكيلة <span>Makanch Kifek</span> أنيمي & ستريت وير
+                استكشف تشكيلة <span>Makanch Kifek</span> الفاخرة
             </h1>
         </section>
 
         <!-- ==================== شبكة بطاقات المنتجات ==================== -->
         <section class="products-grid" id="productsGrid">
-            
-            <!-- بطاقة المنتج 1 (هودي سينديكال سحاب) -->
-            <article class="product-card" data-category="hoodies" id="product-1" onclick="openProductModal(1)">
-                <div class="product-media-wrapper">
-                    <span class="product-badge badge-discount">100% Coton ✅</span>
-                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(1, 'هودي سحاب سينديكال ستريت وير - KYVRO', 3200, 'A1-1.jpg', this)" title="إضافة للمفضلة">
+
+            <!-- بطاقة المنتج: هودي إيتاتشي أوتشيها أبيض (Naruto Itachi) -->
+            <article class="product-card" id="product-1" data-category="hoodies">
+                <div class="product-media-wrapper" onclick="openProductModal(1)">
+                    <span class="product-badge">الأكثر طلباً 🔥</span>
+                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 1)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
-                    <img 
-                        src="A1-1.jpg" 
-                        alt="هودي سحاب سينديكال ستريت وير - KYVRO" 
-                        class="product-image"
-                        loading="lazy"
-                    >
+                    <img src="prod_itachi.png" alt="هودي إيتاتشي أوتشيها أبيض (Naruto Itachi)" class="product-img" loading="lazy">
                 </div>
-
                 <div class="product-body">
-                    <h3 class="product-title">هودي سحاب سينديكال ستريت وير - KYVRO</h3>
-
+                    <div class="product-category">هوديز</div>
+                    <h2 class="product-title" onclick="openProductModal(1)">هودي إيتاتشي أوتشيها أبيض (Naruto Itachi)</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">4.9</span>
+                        <span class="rating-reviews">(42 تقييم)</span>
+                    </div>
+                    <p class="product-description">هودي شتوي فاخر قطن 100% عالي الكثافة مع طباعة جرافيك أصلية خلفية لشخصية إيتاتشي أوتشيها (Naruto). تصميم مريح وقصة واسعة توفر أقصى درجات الدفء والأناقة.</p>
                     <div class="product-footer">
                         <div class="price-box">
-                            <div class="price-current">
-                                <span>3,200</span>
-                                <span class="price-currency">د.ج</span>
-                            </div>
-                            <span class="price-old">4,200 د.ج</span>
+                            <span class="price-current" data-price="3200">3,200 د.ج</span>
+                            <span class="price-old" data-oldprice="4200">4,200 د.ج</span>
                         </div>
-
                         <div class="product-card-actions">
-                            <button 
-                                class="add-to-cart-btn" 
-                                onclick="event.stopPropagation(); addToCart(1, 'هودي سحاب سينديكال ستريت وير - KYVRO', 3200, 'A1-1.jpg', this)"
-                            >
+                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 1)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
-                            <button 
-                                class="details-btn" 
-                                onclick="event.stopPropagation(); openProductModal(1)"
-                            >
+                            <button type="button" class="details-btn" onclick="openProductModal(1)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                 <span>التفاصيل</span>
                             </button>
@@ -480,45 +3171,36 @@
                 </div>
             </article>
 
-            <!-- بطاقة المنتج 2 (سروال باغي جوغر ستريت وير) -->
-            <article class="product-card" data-category="pants" id="product-2" onclick="openProductModal(2)">
-                <div class="product-media-wrapper">
-                    <span class="product-badge badge-new">Sans Doubleur 🔥</span>
-                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(2, 'سروال باغي جوغر ستريت وير - KYVRO', 2900, 'A2-1.jpg', this)" title="إضافة للمفضلة">
+
+            <!-- بطاقة المنتج: أونسومبل توجي فوشيغورو أسود (JJK Toji Set) -->
+            <article class="product-card" id="product-2" data-category="sets">
+                <div class="product-media-wrapper" onclick="openProductModal(2)">
+                    <span class="product-badge">طقم شتوي كامل 🔥</span>
+                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 2)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
-                    <img 
-                        src="A2-1.jpg" 
-                        alt="سروال باغي جوغر ستريت وير - KYVRO" 
-                        class="product-image"
-                        loading="lazy"
-                    >
+                    <img src="prod_toji.png" alt="أونسومبل توجي فوشيغورو أسود (JJK Toji Set)" class="product-img" loading="lazy">
                 </div>
-
                 <div class="product-body">
-                    <h3 class="product-title">سروال باغي جوغر ستريت وير - KYVRO</h3>
-
+                    <div class="product-category">أطقم كاملة</div>
+                    <h2 class="product-title" onclick="openProductModal(2)">أونسومبل توجي فوشيغورو أسود (JJK Toji Set)</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">5</span>
+                        <span class="rating-reviews">(38 تقييم)</span>
+                    </div>
+                    <p class="product-description">طقم ستريت وير شتوي كامل مكوّن من هودي ثقيل وسروال باغي جوغر بتصميم شخصية توجي فوشيغورو (Jujutsu Kaisen). أناقة ودفء مع خياطة متينة وقصة أوفرسايز عصرية.</p>
                     <div class="product-footer">
                         <div class="price-box">
-                            <div class="price-current">
-                                <span>2,900</span>
-                                <span class="price-currency">د.ج</span>
-                            </div>
-                            <span class="price-old">3,900 د.ج</span>
+                            <span class="price-current" data-price="4800">4,800 د.ج</span>
+                            <span class="price-old" data-oldprice="5900">5,900 د.ج</span>
                         </div>
-
                         <div class="product-card-actions">
-                            <button 
-                                class="add-to-cart-btn" 
-                                onclick="event.stopPropagation(); addToCart(2, 'سروال باغي جوغر ستريت وير - KYVRO', 2900, 'A2-1.jpg', this)"
-                            >
+                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 2)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
-                            <button 
-                                class="details-btn" 
-                                onclick="event.stopPropagation(); openProductModal(2)"
-                            >
+                            <button type="button" class="details-btn" onclick="openProductModal(2)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                 <span>التفاصيل</span>
                             </button>
@@ -527,45 +3209,36 @@
                 </div>
             </article>
 
-            <!-- بطاقة المنتج 3 (تيشيرت أوفرسايز غرافيك) -->
-            <article class="product-card" data-category="tshirts" id="product-3" onclick="openProductModal(3)">
-                <div class="product-media-wrapper">
-                    <span class="product-badge badge-bestseller">Oversize متوفر ✅</span>
-                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(3, 'تيشيرت أوفرسايز ستريت وير - KYVRO', 2500, 'A3-1.jpg', this)" title="إضافة للمفضلة">
+
+            <!-- بطاقة المنتج: سروال باغي كاكاشي وأوبيتو رمادي (Kakashi & Obito) -->
+            <article class="product-card" id="product-3" data-category="baggy">
+                <div class="product-media-wrapper" onclick="openProductModal(3)">
+                    <span class="product-badge">قصة واسعة مريحة ✨</span>
+                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 3)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
-                    <img 
-                        src="A3-1.jpg" 
-                        alt="تيشيرت أوفرسايز ستريت وير - KYVRO" 
-                        class="product-image"
-                        loading="lazy"
-                    >
+                    <img src="prod_kakashi.png" alt="سروال باغي كاكاشي وأوبيتو رمادي (Kakashi & Obito)" class="product-img" loading="lazy">
                 </div>
-
                 <div class="product-body">
-                    <h3 class="product-title">تيشيرت أوفرسايز ستريت وير - KYVRO</h3>
-
+                    <div class="product-category">سراويل باغي</div>
+                    <h2 class="product-title" onclick="openProductModal(3)">سروال باغي كاكاشي وأوبيتو رمادي (Kakashi & Obito)</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">4.8</span>
+                        <span class="rating-reviews">(29 تقييم)</span>
+                    </div>
+                    <p class="product-description">سروال باغي رمادي عصري بقصة واسعة مريحة جداً مع طبعة جرافيك أسطورية تجمع كاكاشي وأوبيتو (Naruto). خامة قطنية مرنة تدوم طويلاً مع جيوب جانبية عملية.</p>
                     <div class="product-footer">
                         <div class="price-box">
-                            <div class="price-current">
-                                <span>2,500</span>
-                                <span class="price-currency">د.ج</span>
-                            </div>
-                            <span class="price-old">2,800 د.ج</span>
+                            <span class="price-current" data-price="2900">2,900 د.ج</span>
+                            <span class="price-old" data-oldprice="3800">3,800 د.ج</span>
                         </div>
-
                         <div class="product-card-actions">
-                            <button 
-                                class="add-to-cart-btn" 
-                                onclick="event.stopPropagation(); addToCart(3, 'تيشيرت أوفرسايز ستريت وير - KYVRO', 2500, 'A3-1.jpg', this)"
-                            >
+                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 3)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
-                            <button 
-                                class="details-btn" 
-                                onclick="event.stopPropagation(); openProductModal(3)"
-                            >
+                            <button type="button" class="details-btn" onclick="openProductModal(3)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                 <span>التفاصيل</span>
                             </button>
@@ -574,7 +3247,159 @@
                 </div>
             </article>
 
-            </section>
+
+            <!-- بطاقة المنتج: طقم ثلاثي قبعة القش لوفي (One Piece Trio Set) -->
+            <article class="product-card" id="product-4" data-category="sets">
+                <div class="product-media-wrapper" onclick="openProductModal(4)">
+                    <span class="product-badge">إصدار ون بيس الفاخر 👑</span>
+                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 4)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img src="prod_luffy.png" alt="طقم ثلاثي قبعة القش لوفي (One Piece Trio Set)" class="product-img" loading="lazy">
+                </div>
+                <div class="product-body">
+                    <div class="product-category">أطقم كاملة</div>
+                    <h2 class="product-title" onclick="openProductModal(4)">طقم ثلاثي قبعة القش لوفي (One Piece Trio Set)</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">5</span>
+                        <span class="rating-reviews">(51 تقييم)</span>
+                    </div>
+                    <p class="product-description">أونسومبل شتوي ملكي مخصص لعشاق ون بيس! هودي مع بنطلون باغي يجمع الثلاثي الأسطوري: لوفي، زورو، وسانجي. خامة ممتازة وتفاصيل فنية غاية في الإتقان.</p>
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <span class="price-current" data-price="4900">4,900 د.ج</span>
+                            <span class="price-old" data-oldprice="6200">6,200 د.ج</span>
+                        </div>
+                        <div class="product-card-actions">
+                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 4)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button type="button" class="details-btn" onclick="openProductModal(4)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- بطاقة المنتج: سروال باغي طوكيو غول كانيكي (Tokyo Ghoul Kaneki) -->
+            <article class="product-card" id="product-5" data-category="baggy">
+                <div class="product-media-wrapper" onclick="openProductModal(5)">
+                    <span class="product-badge">تصميم الغول 1000-7 🩸</span>
+                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 5)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img src="prod_tokyo_ghoul.png" alt="سروال باغي طوكيو غول كانيكي (Tokyo Ghoul Kaneki)" class="product-img" loading="lazy">
+                </div>
+                <div class="product-body">
+                    <div class="product-category">سراويل باغي</div>
+                    <h2 class="product-title" onclick="openProductModal(5)">سروال باغي طوكيو غول كانيكي (Tokyo Ghoul Kaneki)</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">4.9</span>
+                        <span class="rating-reviews">(33 تقييم)</span>
+                    </div>
+                    <p class="product-description">سروال باغي رمادي مميز مستوحى من شخصية كانيكي كين وقناع الغول في طوكيو غول. قصة فضفاضة ومريحة تجمع بين جرأة الستريت وير وعالم الأنيمي المظلم.</p>
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <span class="price-current" data-price="2900">2,900 د.ج</span>
+                            <span class="price-old" data-oldprice="3800">3,800 د.ج</span>
+                        </div>
+                        <div class="product-card-actions">
+                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 5)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button type="button" class="details-btn" onclick="openProductModal(5)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- بطاقة المنتج: هودي غوكو وفيجيتا سوبر سايان (Dragon Ball Z) -->
+            <article class="product-card" id="product-6" data-category="hoodies">
+                <div class="product-media-wrapper" onclick="openProductModal(6)">
+                    <span class="product-badge">كلاسيكيات السايان ⚡</span>
+                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 6)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img src="prod_goku.png" alt="هودي غوكو وفيجيتا سوبر سايان (Dragon Ball Z)" class="product-img" loading="lazy">
+                </div>
+                <div class="product-body">
+                    <div class="product-category">هوديز</div>
+                    <h2 class="product-title" onclick="openProductModal(6)">هودي غوكو وفيجيتا سوبر سايان (Dragon Ball Z)</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">5</span>
+                        <span class="rating-reviews">(64 تقييم)</span>
+                    </div>
+                    <p class="product-description">هودي أبيض ناصع بتصميم كبرياء السايان غوكو وفيجيتا سوبر سايان (DBZ). خامة قطنية ثقيلة ذات ملمس ناعم وجودة طباعة بألوان حيوية لا تبهت أبداً.</p>
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <span class="price-current" data-price="3300">3,300 د.ج</span>
+                            <span class="price-old" data-oldprice="4400">4,400 د.ج</span>
+                        </div>
+                        <div class="product-card-actions">
+                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 6)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button type="button" class="details-btn" onclick="openProductModal(6)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- بطاقة المنتج: طقم غاتس الهائج بيرسيرك (Berserk Guts Black Set) -->
+            <article class="product-card" id="product-7" data-category="sets">
+                <div class="product-media-wrapper" onclick="openProductModal(7)">
+                    <span class="product-badge">طقم أسطوري مظلم ⚔️</span>
+                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 7)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+                    <img src="prod_guts.png" alt="طقم غاتس الهائج بيرسيرك (Berserk Guts Black Set)" class="product-img" loading="lazy">
+                </div>
+                <div class="product-body">
+                    <div class="product-category">أطقم كاملة</div>
+                    <h2 class="product-title" onclick="openProductModal(7)">طقم غاتس الهائج بيرسيرك (Berserk Guts Black Set)</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">5</span>
+                        <span class="rating-reviews">(47 تقييم)</span>
+                    </div>
+                    <p class="product-description">طقم أسود كامل فائق الفخامة مستوحى من ملحمة بيرسيرك وشخصية غاتس (Guts). مظهر دارك ستريت وير مهيب مع جرافيك عالي الدقة يبرز سيف Dragon Slayer وعلامة التضحية.</p>
+                    <div class="product-footer">
+                        <div class="price-box">
+                            <span class="price-current" data-price="4900">4,900 د.ج</span>
+                            <span class="price-old" data-oldprice="6500">6,500 د.ج</span>
+                        </div>
+                        <div class="product-card-actions">
+                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 7)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                                <span>أضف للسلة</span>
+                            </button>
+                            <button type="button" class="details-btn" onclick="openProductModal(7)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                <span>التفاصيل</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
 
     </main>
 
@@ -877,7 +3702,7 @@
                 </div>
                 <h3 class="qb-success-title" data-i18n="qb_success_title">تم إرسال طلبك بنجاح!</h3>
                 <p class="qb-success-msg" data-i18n="qb_success_msg">
-                    سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك بمتجر KYVRO!
+                    سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك بمتجر Makanch Kifek!
                 </p>
 
                 <div class="qb-success-receipt" id="qbSuccessReceipt">
@@ -974,7 +3799,7 @@
         let cart = [];
 
         // ==================== نظام اللغات المتعددة (عربية / فرنسية / إنجليزية) ====================
-        let currentLanguage = localStorage.getItem('kyvro-lang') || 'ar';
+        let currentLanguage = localStorage.getItem('makanch-kifek-lang') || 'ar';
 
         const translations = {
             ar: {
@@ -1039,7 +3864,7 @@
                 qb_submit_btn: "تأكيد وإتمام الطلب",
                 qb_processing: "جاري تأكيد وتسجيل طلبك...",
                 qb_success_title: "تم إرسال طلبك بنجاح!",
-                qb_success_msg: "سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك بمتجر KYVRO!",
+                qb_success_msg: "سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك بمتجر Makanch Kifek!",
                 qb_done_btn: "العودة للتسوق",
                 receipt_order_ref: "رقم الطلب:",
                 receipt_items: "المنتجات المطلوبة:",
@@ -1069,7 +3894,7 @@
                 toast_search_cleared: "تم مسح البحث",
                 toast_no_match: "لا توجد منتجات مطابقة لـ",
                 receipt_not_specified: "غير محدد",
-                doc_title: "متجر KYVRO الفاخر | متجرك الرقمي للأجهزة والتقنية",
+                doc_title: "متجر Makanch Kifek الفاخر | متجرك الرقمي للأجهزة والتقنية",
                 nav_tooltip_fav: "المفضلة",
                 nav_tooltip_cart: "سلة التسوق",
                 nav_tooltip_settings: "الإعدادات",
@@ -1139,7 +3964,7 @@
                 qb_submit_btn: "Confirmer la commande",
                 qb_processing: "Confirmation de votre commande en cours...",
                 qb_success_title: "Commande envoyée avec succès !",
-                qb_success_msg: "Nous vous contacterons rapidement par téléphone pour confirmer l'expédition. Merci de votre confiance en KYVRO Store !",
+                qb_success_msg: "Nous vous contacterons rapidement par téléphone pour confirmer l'expédition. Merci de votre confiance en Makanch Kifek Store !",
                 qb_done_btn: "Continuer mes achats",
                 receipt_order_ref: "N° de Commande :",
                 receipt_items: "Articles commandés :",
@@ -1169,7 +3994,7 @@
                 toast_search_cleared: "Recherche effacée",
                 toast_no_match: "Aucun produit correspondant à",
                 receipt_not_specified: "Non spécifié",
-                doc_title: "KYVRO Store | Votre boutique numérique de luxe",
+                doc_title: "Makanch Kifek Store | Votre boutique numérique de luxe",
                 nav_tooltip_fav: "Favoris",
                 nav_tooltip_cart: "Panier",
                 nav_tooltip_settings: "Paramètres",
@@ -1239,7 +4064,7 @@
                 qb_submit_btn: "Confirm Order",
                 qb_processing: "Confirming and registering your order...",
                 qb_success_title: "Order Submitted Successfully!",
-                qb_success_msg: "We will contact you shortly by phone to confirm shipping. Thank you for choosing KYVRO Store!",
+                qb_success_msg: "We will contact you shortly by phone to confirm shipping. Thank you for choosing Makanch Kifek Store!",
                 qb_done_btn: "Back to Shopping",
                 receipt_order_ref: "Order ID:",
                 receipt_items: "Ordered Items:",
@@ -1269,7 +4094,7 @@
                 toast_search_cleared: "Search cleared",
                 toast_no_match: "No products matching",
                 receipt_not_specified: "Not specified",
-                doc_title: "KYVRO Store | Your Luxury Digital Store",
+                doc_title: "Makanch Kifek Store | Your Luxury Digital Store",
                 nav_tooltip_fav: "Wishlist",
                 nav_tooltip_cart: "Shopping Cart",
                 nav_tooltip_settings: "Settings",
@@ -1281,7 +4106,7 @@
 
         function selectLanguage(lang, silent = false) {
             currentLanguage = lang;
-            localStorage.setItem('kyvro-lang', lang);
+            localStorage.setItem('makanch-kifek-lang', lang);
 
             const arBtn = document.getElementById('langArBtn');
             const frBtn = document.getElementById('langFrBtn');
@@ -1354,11 +4179,11 @@
             const storeTitleEl = document.querySelector('.store-title');
             if (storeTitleEl) {
                 if (lang === 'ar') {
-                    storeTitleEl.innerHTML = 'تشكيلة <span>Makanch Kifek</span> أنيمي & ستريت وير';
+                    storeTitleEl.innerHTML = 'استكشف تشكيلة <span>Makanch Kifek</span> الفاخرة';
                 } else if (lang === 'fr') {
-                    storeTitleEl.innerHTML = 'Découvrez la Collection de Luxe <span>KYVRO</span>';
+                    storeTitleEl.innerHTML = 'Découvrez la Collection de Luxe <span>Makanch Kifek</span>';
                 } else {
-                    storeTitleEl.innerHTML = 'Explore <span>KYVRO</span> Luxury Collection';
+                    storeTitleEl.innerHTML = 'Explore <span>Makanch Kifek</span> Luxury Collection';
                 }
             }
 
@@ -1435,7 +4260,7 @@
 
         // ==================== نظام الوضع المظلم والمضيء المدمج داخل الإعدادات ====================
         function initTheme() {
-            const savedTheme = localStorage.getItem('kyvro-theme');
+            const savedTheme = localStorage.getItem('makanch-kifek-theme');
             if (savedTheme) {
                 setTheme(savedTheme);
             } else {
@@ -1445,7 +4270,7 @@
 
         function setTheme(theme) {
             htmlElement.setAttribute('data-theme', theme);
-            localStorage.setItem('kyvro-theme', theme);
+            localStorage.setItem('makanch-kifek-theme', theme);
             updateThemeSegmentedUI(theme);
         }
 
@@ -1465,7 +4290,7 @@
         }
 
         // ==================== نظام العملة المتعددة (دينار DZD / أورو EUR) ====================
-        let currentCurrency = localStorage.getItem('kyvro-currency') || 'DZD';
+        let currentCurrency = localStorage.getItem('makanch-kifek-currency') || 'DZD';
         const EUR_EXCHANGE_RATE = 240;
 
         function formatPrice(amountInDzd) {
@@ -1493,7 +4318,7 @@
 
         function selectCurrency(curr, silent = false) {
             currentCurrency = curr;
-            localStorage.setItem('kyvro-currency', curr);
+            localStorage.setItem('makanch-kifek-currency', curr);
 
             const dzdBtn = document.getElementById('currDzdBtn');
             const eurBtn = document.getElementById('currEurBtn');
@@ -1751,243 +4576,255 @@
         "id": 2,
         "name": "أونسومبل توجي فوشيغورو أسود (JJK Toji Set)",
         "nameFr": "Ensemble Noir Toji Fushiguro (JJK)",
-        "nameEn": "Toji Fushiguro Black Ensemble (JJK)",
+        "nameEn": "Toji Fushiguro Black Streetwear Set",
         "category": "sets",
         "categoryName": "أطقم كاملة",
         "categoryNameFr": "Ensembles",
-        "categoryNameEn": "Sets",
-        "price": 4600,
-        "oldPrice": 5800,
+        "categoryNameEn": "Full Sets",
+        "price": 4800,
+        "oldPrice": 5900,
         "rating": 5,
         "reviews": 38,
         "badge": "طقم شتوي كامل 🔥",
         "badgeFr": "Ensemble Complet 🔥",
-        "badgeEn": "Full Outfit 🔥",
+        "badgeEn": "Full Winter Set 🔥",
         "image": "prod_toji.png",
         "images": [
             "prod_toji.png"
         ],
         "description": "طقم ستريت وير شتوي كامل مكوّن من هودي ثقيل وسروال باغي جوغر بتصميم شخصية توجي فوشيغورو (Jujutsu Kaisen). أناقة ودفء مع خياطة متينة وقصة أوفرسايز عصرية.",
-        "descriptionFr": "Ensemble streetwear d'hiver complet (Hoodie lourd + Pantalon baggy) avec design Toji Fushiguro (Jujutsu Kaisen). Style sombre et coupe moderne.",
-        "descriptionEn": "Complete streetwear winter set (heavy hoodie + baggy jogger pants) featuring Toji Fushiguro from Jujutsu Kaisen. Maximum comfort and sleek anime aesthetics.",
+        "descriptionFr": "Ensemble complet hoodie + pantalon baggy aux motifs Toji Fushiguro (Jujutsu Kaisen). Style streetwear affirmé et confort absolu.",
+        "descriptionEn": "Heavyweight winter ensemble featuring Toji Fushiguro graphics. Includes oversized hoodie and baggy sweatpants.",
         "specs": [
-            "طقم كامل 2 في 1: هودي شتوي دافئ + سروال باغي جوغر",
-            "شخصية توجي فوشيغورو Jujutsu Kaisen",
-            "المقاسات المتوفرة: S - M - L - XL - XXL",
-            "توصيل متوفر لباب المنزل لـ 58 ولاية 🚚",
-            "خامة قطنية مريحة بدون دبلور خانق"
+            "طقم متكامل: هودي أوفرسايز + سروال باغي مطاطي",
+            "قماش صوف ميلتون قطني مبطن دافئ وفائق النعومة",
+            "تصميم مستوحى من أنيمي Jujutsu Kaisen",
+            "متوفر بجميع المقاسات: S - M - L - XL - XXL",
+            "توصيل 58 ولاية والدفع بعد الاستلام"
         ],
         "specsFr": [
-            "Ensemble 2 en 1: Hoodie chaud + Pantalon Baggy",
-            "Design Toji Fushiguro Jujutsu Kaisen",
-            "Tailles disponibles: S - M - L - XL - XXL",
-            "Livraison à domicile vers 58 wilayas 🚚",
-            "Tissu coton confortable sans doublure étouffante"
+            "Ensemble complet: Hoodie oversize + pantalon baggy",
+            "Molleton gratté chaud et ultra confortable",
+            "Graphisme Jujutsu Kaisen haute définition",
+            "Tailles: S - M - L - XL - XXL",
+            "Livraison 58 wilayas, paiement main à main"
         ],
         "specsEn": [
-            "2-in-1 Set: Warm hoodie + Baggy jogger pants",
-            "Iconic Toji Fushiguro Jujutsu Kaisen artwork",
-            "Available sizes: S - M - L - XL - XXL",
-            "Doorstep delivery to all 58 wilayas 🚚",
-            "Breathable heavyweight cotton blend"
+            "Complete set: oversized hoodie + baggy pants",
+            "Warm brushed fleece interior for maximum comfort",
+            "Jujutsu Kaisen Toji official aesthetic",
+            "Sizes: S - M - L - XL - XXL",
+            "Algeria-wide delivery, cash on delivery"
         ]
     },
     {
         "id": 3,
-        "name": "سروال باغي رمادي كاكاشي وأوبيتو (Naruto Baggy)",
+        "name": "سروال باغي كاكاشي وأوبيتو رمادي (Kakashi & Obito)",
         "nameFr": "Pantalon Baggy Gris Kakashi & Obito",
         "nameEn": "Kakashi & Obito Grey Baggy Pants",
-        "category": "pants",
+        "category": "baggy",
         "categoryName": "سراويل باغي",
         "categoryNameFr": "Pantalons Baggy",
         "categoryNameEn": "Baggy Pants",
         "price": 2900,
-        "oldPrice": 3900,
+        "oldPrice": 3800,
         "rating": 4.8,
         "reviews": 29,
-        "badge": "باغي ستريت وير ⚡",
-        "badgeFr": "Baggy Streetwear ⚡",
-        "badgeEn": "Baggy Streetwear ⚡",
+        "badge": "قصة واسعة مريحة ✨",
+        "badgeFr": "Coupe Baggy ✨",
+        "badgeEn": "Relaxed Fit ✨",
         "image": "prod_kakashi.png",
         "images": [
             "prod_kakashi.png"
         ],
-        "description": "سروال باغي جوغر رمادي بقصة فضفاضة مريحة ورسمة فنية ملحمية تجمع كاكاشي، أوبيتو، ورين. خصر مطاطي برباط تضييق وجيوب واسعة.",
-        "descriptionFr": "Pantalon baggy jogger gris coupe décontractée avec illustration Kakashi, Obito et Rin. Ceinture élastique et poches spacieuses.",
-        "descriptionEn": "Grey relaxed baggy jogger pants with detailed Kakashi & Obito illustration. Features elastic drawstring waist and spacious pockets.",
+        "description": "سروال باغي رمادي عصري بقصة واسعة مريحة جداً مع طبعة جرافيك أسطورية تجمع كاكاشي وأوبيتو (Naruto). خامة قطنية مرنة تدوم طويلاً مع جيوب جانبية عملية.",
+        "descriptionFr": "Pantalon baggy streetwear gris chiné avec motif stylé Kakashi et Obito. Confort exceptionnel et coupe ample tendance.",
+        "descriptionEn": "Trendy heather grey baggy sweatpants with iconic Kakashi & Obito graphic artwork. Ultra-comfortable relaxed streetwear fit.",
         "specs": [
-            "قصة باغي عصرية مريحة (Relaxed Baggy Fit)",
-            "رسمة كاكاشي وأوبيتو عالية الثبات",
-            "المقاسات المتوفرة: S - M - L - XL - XXL",
-            "التوصيل لكافة الـ 58 ولاية حتى باب المنزل أو المكتب 🚚"
+            "قصة باغي واسعة عصرية (Streetwear Baggy Fit)",
+            "خصر مطاطي مع حبل شد متين قابل للتعديل",
+            "جيوب عميقة لحفظ الهاتف والمحفظة بأمان",
+            "طباعة أنيمي ثابتة لا تتأثر بالغسيل",
+            "توصيل إلى باب المنزل في 58 ولاية"
         ],
         "specsFr": [
-            "Coupe baggy tendance et confortable",
-            "Impression haute tenue Kakashi & Obito",
-            "Tailles: S - M - L - XL - XXL",
-            "Livraison 58 wilayas à domicile 🚚"
+            "Coupe baggy tendance streetwear",
+            "Taille élastiquée avec cordon de serrage",
+            "Poches latérales profondes et pratiques",
+            "Sérigraphie haute tenue lavable en machine",
+            "Livraison à domicile sur 58 wilayas"
         ],
         "specsEn": [
-            "Trendy relaxed baggy fit",
-            "Long-lasting Kakashi & Obito graphics",
-            "Sizes: S - M - L - XL - XXL",
-            "58 Wilayas delivery straight to your door 🚚"
+            "Modern loose baggy fit",
+            "Elastic waistband with durable drawstring",
+            "Deep practical side pockets",
+            "Fade-proof screen printing",
+            "Doorstep delivery to all 58 wilayas"
         ]
     },
     {
         "id": 4,
-        "name": "أونسومبل ون بيس لوفي وزورو وسانجي (One Piece Set)",
-        "nameFr": "Ensemble One Piece Luffy, Zoro & Sanji",
-        "nameEn": "One Piece Trio Black Ensemble Set",
+        "name": "طقم ثلاثي قبعة القش لوفي (One Piece Trio Set)",
+        "nameFr": "Ensemble Trio Chapeau de Paille (One Piece)",
+        "nameEn": "One Piece Straw Hat Trio Anime Set",
         "category": "sets",
         "categoryName": "أطقم كاملة",
         "categoryNameFr": "Ensembles",
-        "categoryNameEn": "Sets",
-        "price": 4800,
-        "oldPrice": 6000,
-        "rating": 4.9,
+        "categoryNameEn": "Full Sets",
+        "price": 4900,
+        "oldPrice": 6200,
+        "rating": 5,
         "reviews": 51,
-        "badge": "حصرية ون بيس 🏴‍☠️",
-        "badgeFr": "Exclusivité One Piece 🏴‍☠️",
-        "badgeEn": "One Piece Exclusive 🏴‍☠️",
+        "badge": "إصدار ون بيس الفاخر 👑",
+        "badgeFr": "Édition One Piece 👑",
+        "badgeEn": "One Piece Special 👑",
         "image": "prod_luffy.png",
         "images": [
             "prod_luffy.png"
         ],
-        "description": "طقم شتوي كامل من هودي وسروال باغي يجمع ثلاثي قراصنة قبعة القش (لوفي، زورو، وسانجي) بألوان وطباعات يابانية مذهلة لمحبي ون بيس في الجزائر.",
-        "descriptionFr": "Ensemble complet hiver (Hoodie + Baggy) réunissant le trio légendaire Luffy, Zoro et Sanji de One Piece avec lettrage japonais.",
-        "descriptionEn": "Complete anime outfit combining Straw Hat Monster Trio (Luffy, Zoro, Sanji) with vibrant Japanese Kanji typography.",
+        "description": "أونسومبل شتوي ملكي مخصص لعشاق ون بيس! هودي مع بنطلون باغي يجمع الثلاثي الأسطوري: لوفي، زورو، وسانجي. خامة ممتازة وتفاصيل فنية غاية في الإتقان.",
+        "descriptionFr": "Ensemble hivernal One Piece d'exception réunissant Luffy, Zoro et Sanji. Confection premium pour les vrais passionnés d'anime.",
+        "descriptionEn": "Masterpiece One Piece winter ensemble showcasing Luffy, Zoro, and Sanji. Heavyweight cotton fabric and impeccable print quality.",
         "specs": [
-            "طقم شتوي 2 في 1: هودي + سروال باغي",
-            "طباعة ثلاثية (Luffy, Zoro, Sanji) ملونة فائقة الجودة",
-            "المقاسات المتوفرة: S - M - L - XL - XXL",
-            "شحن متوفر لـ 58 ولاية جزائرية 🚚"
+            "طقم شتوي 2 في 1: هودي بجيوب كنغر + سروال باغي",
+            "تصميم ون بيس ثلاثي الأبعاد عالي الجودة",
+            "ملمس داخلي مبطن فائق الدفء للشتاء",
+            "المقاسات: S - M - L - XL - XXL",
+            "توصيل سريع وخدمة عملاء مستمرة"
         ],
         "specsFr": [
-            "Ensemble 2 en 1: Hoodie + Pantalon Baggy",
-            "Impression couleur premium du trio One Piece",
+            "Ensemble 2-en-1: Hoodie poche kangourou + bas baggy",
+            "Design One Piece haute fidélité",
+            "Intérieur doux et chaud pour l'hiver",
             "Tailles: S - M - L - XL - XXL",
-            "Expédition vers 58 wilayas 🚚"
+            "Service client réactif et livraison rapide"
         ],
         "specsEn": [
-            "2-in-1 Winter Set: Hoodie + Baggy Pants",
-            "Vivid full-color Straw Hat Trio print",
+            "2-in-1 winter set: kangaroo hoodie + baggy joggers",
+            "High-fidelity One Piece artistic printing",
+            "Fleece-lined interior for cold weather warmth",
             "Sizes: S - M - L - XL - XXL",
-            "Fast shipping across 58 Algerian wilayas 🚚"
+            "Fast delivery & reliable customer support"
         ]
     },
     {
         "id": 5,
-        "name": "سروال باغي رمادي طوكيو غول (Tokyo Ghoul 1000-7)",
-        "nameFr": "Pantalon Baggy Gris Tokyo Ghoul 1000-7",
-        "nameEn": "Tokyo Ghoul Kaneki 1000-7 Grey Baggy",
-        "category": "pants",
+        "name": "سروال باغي طوكيو غول كانيكي (Tokyo Ghoul Kaneki)",
+        "nameFr": "Pantalon Baggy Tokyo Ghoul Kaneki",
+        "nameEn": "Tokyo Ghoul Kaneki Baggy Sweatpants",
+        "category": "baggy",
         "categoryName": "سراويل باغي",
         "categoryNameFr": "Pantalons Baggy",
         "categoryNameEn": "Baggy Pants",
         "price": 2900,
         "oldPrice": 3800,
         "rating": 4.9,
-        "reviews": 34,
-        "badge": "تصميم كانيكي 🩸",
-        "badgeFr": "Édition Kaneki 🩸",
-        "badgeEn": "Kaneki Edition 🩸",
+        "reviews": 33,
+        "badge": "تصميم الغول 1000-7 🩸",
+        "badgeFr": "Style Ghoul 🩸",
+        "badgeEn": "Tokyo Ghoul Style 🩸",
         "image": "prod_tokyo_ghoul.png",
         "images": [
             "prod_tokyo_ghoul.png"
         ],
-        "description": "سروال باغي رياضي رمادي بتصميم طوكيو غول الأيقوني (أزهار العنكبوت الحمراء ورقم 1000-7 مع حريشة كانيكي). قصة مميزة تجعلك مختلفاً عن الجميع.",
-        "descriptionFr": "Pantalon baggy Tokyo Ghoul avec lys araignée rouge et la célèbre formule 1000-7 de Ken Kaneki.",
-        "descriptionEn": "Grey anime baggy sweatpants featuring Tokyo Ghoul Kaneki red spider lily and iconic 1000-7 centipede art.",
+        "description": "سروال باغي رمادي مميز مستوحى من شخصية كانيكي كين وقناع الغول في طوكيو غول. قصة فضفاضة ومريحة تجمع بين جرأة الستريت وير وعالم الأنيمي المظلم.",
+        "descriptionFr": "Pantalon de survêtement baggy gris avec impression kanji et masque de Kaneki (Tokyo Ghoul). Style streetwear sombre et percutant.",
+        "descriptionEn": "Streetwear baggy joggers featuring Ken Kaneki ghoul mask and Japanese typography from Tokyo Ghoul. Ultra comfortable relaxed silhouette.",
         "specs": [
-            "قصة باغي ستريت وير يابانية واسعة",
-            "طباعة دقيقة لشخصية كانيكي وزهرة العنكبوت",
-            "المقاسات المتوفرة: S - M - L - XL - XXL",
-            "ضمان جودة الألوان والقماش عند الغسيل"
+            "قطن ناعم ومقاوم للتجعد",
+            "قصة فضفاضة تناسب ستايل الهيب هوب والستريت وير",
+            "أسفل الساق مرن أو مفتوح حسب رغبتك",
+            "المقاسات: S - M - L - XL - XXL",
+            "الدفع عند الاستلام مع إمكانية المعاينة قبل الدفع"
         ],
         "specsFr": [
-            "Coupe streetwear japonaise ample",
-            "Sérigraphie de précision Kaneki & Spider Lily",
-            "Tailles: S - M - L - XL - XXL",
-            "Résistance garantie au lavage"
+            "Coton résistant et anti-boulochage",
+            "Coupe ample style streetwear et hip-hop",
+            "Cheville élastiquée confortable",
+            "Tailles: S à XXL",
+            "Paiement à la livraison après vérification"
         ],
         "specsEn": [
-            "Japanese streetwear loose silhouette",
-            "High-precision Red Spider Lily & Kaneki print",
-            "Sizes: S - M - L - XL - XXL",
-            "Colorfast and wash-durable"
+            "Soft, anti-pilling durable cotton",
+            "Baggy streetwear silhouette",
+            "Comfortable elasticated ankle cuffs",
+            "Sizes: S to XXL",
+            "Cash on Delivery after package inspection"
         ]
     },
     {
         "id": 6,
-        "name": "هودي غوكو وفيجيتا Unbreakable أبيض (DBZ Hoodie)",
-        "nameFr": "Hoodie Blanc Goku & Vegeta Unbreakable",
-        "nameEn": "Goku & Vegeta Unbreakable White Anime Hoodie",
+        "name": "هودي غوكو وفيجيتا سوبر سايان (Dragon Ball Z)",
+        "nameFr": "Hoodie Super Saiyan Goku & Vegeta (DBZ)",
+        "nameEn": "DBZ Super Saiyan Goku & Vegeta Hoodie",
         "category": "hoodies",
         "categoryName": "هوديز",
         "categoryNameFr": "Hoodies",
         "categoryNameEn": "Hoodies",
-        "price": 3200,
-        "oldPrice": 4200,
-        "rating": 4.8,
-        "reviews": 26,
-        "badge": "أنيمي أساطير ⚡",
-        "badgeFr": "Légendes DBZ ⚡",
-        "badgeEn": "DBZ Legends ⚡",
+        "price": 3300,
+        "oldPrice": 4400,
+        "rating": 5,
+        "reviews": 64,
+        "badge": "كلاسيكيات السايان ⚡",
+        "badgeFr": "Saiyan Legend ⚡",
+        "badgeEn": "Saiyan Legends ⚡",
         "image": "prod_goku.png",
         "images": [
             "prod_goku.png"
         ],
-        "description": "هودي أبيض ثقيل ومريح بطبعة سوبر سايان تجمع غوكو وفيجيتا بعبارة Unbreakable. خامات ناعمة ومريحة ومناسبة للأيام الباردة.",
-        "descriptionFr": "Hoodie blanc Dragon Ball Z mettant en scène Goku et Vegeta Super Saiyan 'Unbreakable'. Coton épais et ultra doux.",
-        "descriptionEn": "Heavyweight white DBZ hoodie depicting Super Saiyan Goku and Vegeta with fiery 'Unbreakable' typography.",
+        "description": "هودي أبيض ناصع بتصميم كبرياء السايان غوكو وفيجيتا سوبر سايان (DBZ). خامة قطنية ثقيلة ذات ملمس ناعم وجودة طباعة بألوان حيوية لا تبهت أبداً.",
+        "descriptionFr": "Hoodie blanc premium aux couleurs éclatantes de Son Goku et Vegeta Super Saiyan. Tissu épais, coupe oversize et style intemporel.",
+        "descriptionEn": "Bright white premium hoodie featuring vibrant Super Saiyan Goku & Vegeta artwork. Heavyweight fabric with timeless anime energy.",
         "specs": [
-            "قطن ناعم ومريح بدون وبر داخلي مزعج",
-            "ألوان نارية ساطعة مقاومة للغسيل المتكرر",
+            "قطن فاخر 100% ثقيل ومناسب لفصل الشتاء",
+            "ألوان طباعة نارية ساطعة مقاومة لعدة دورات غسيل",
+            "قبّعة رأس دافئة مبطنة مع أربطة متينة",
             "المقاسات المتوفرة: S - M - L - XL - XXL",
-            "توصيل سريع لكافة ولايات الجزائر الـ 58"
+            "التوصيل متاح لكافة ولايات الجزائر"
         ],
         "specsFr": [
-            "Coton doux sans peluchage intérieur",
-            "Couleurs intenses résistantes aux lavages",
-            "Tailles: S - M - L - XL - XXL",
-            "Livraison rapide sur toutes les wilayas d'Algérie"
+            "100% Coton premium chaud pour l'hiver",
+            "Couleurs vives résistantes au lavage",
+            "Capuche doublée avec cordons épais",
+            "Tailles disponibles: S - M - L - XL - XXL",
+            "Livraison partout en Algérie"
         ],
         "specsEn": [
-            "Soft fleece-lined comfortable cotton",
-            "Vibrant fade-resistant graphic inks",
-            "Sizes: S - M - L - XL - XXL",
-            "Fast delivery across 58 wilayas"
+            "100% Heavyweight winter cotton",
+            "Vivid high-durability color print",
+            "Double-layered warm hood with thick drawstrings",
+            "Available sizes: S - M - L - XL - XXL",
+            "Nationwide delivery across Algeria"
         ]
     },
     {
         "id": 7,
-        "name": "أونسومبل بيرسيرك غاتس أسود (Berserk Guts Set)",
+        "name": "طقم غاتس الهائج بيرسيرك (Berserk Guts Black Set)",
         "nameFr": "Ensemble Noir Berserk Guts",
-        "nameEn": "Berserk Guts Heavy Black Ensemble",
+        "nameEn": "Berserk Guts Heavy Black Streetwear Set",
         "category": "sets",
         "categoryName": "أطقم كاملة",
         "categoryNameFr": "Ensembles",
-        "categoryNameEn": "Sets",
-        "price": 4800,
-        "oldPrice": 6200,
+        "categoryNameEn": "Full Sets",
+        "price": 4900,
+        "oldPrice": 6500,
         "rating": 5,
-        "reviews": 44,
-        "badge": "دارك فانتاسي ⚔️",
-        "badgeFr": "Dark Fantasy ⚔️",
-        "badgeEn": "Dark Fantasy ⚔️",
+        "reviews": 47,
+        "badge": "طقم أسطوري مظلم ⚔️",
+        "badgeFr": "Édition Berserk ⚔️",
+        "badgeEn": "Berserk Special ⚔️",
         "image": "prod_guts.png",
         "images": [
             "prod_guts.png"
         ],
-        "description": "طقم شتوي متكامل أسود لعشاق Berserk والسياف غاتس (Guts). تفاصيل داكنة مرعبة وفخامة مطلقة تجعل حضورك استثنائياً.",
-        "descriptionFr": "Ensemble complet noir lourd Berserk hommage au guerrier noir Guts avec marque du sacrifice.",
-        "descriptionEn": "Dark fantasy heavy black outfit set honoring the Black Swordsman Guts with Brand of Sacrifice iconography.",
+        "description": "طقم أسود كامل فائق الفخامة مستوحى من ملحمة بيرسيرك وشخصية غاتس (Guts). مظهر دارك ستريت وير مهيب مع جرافيك عالي الدقة يبرز سيف Dragon Slayer وعلامة التضحية.",
+        "descriptionFr": "Ensemble noir complet Berserk avec visuels épiques de Guts. Matière lourde haut de gamme pour les amateurs de style dark streetwear.",
+        "descriptionEn": "Complete dark streetwear black ensemble celebrating the legend of Guts from Berserk. Imposing aesthetic, premium heavyweight comfort.",
         "specs": [
-            "طقم شتوي ثقيل مكوّن من هودي وسروال باغي",
-            "رمز التضحية ورسمة غاتس الملحمية",
-            "المقاسات المتوفرة: S - M - L - XL - XXL",
-            "توصيل لكافة الـ 58 ولاية والدفع عند الاستلام"
+            "طقم شتوي ثقيل: هودي + سروال باغي أسود فاحم",
+            "رسومات جرافيك فخمة لشخصية غاتس وعلامة القربان",
+            "المقاسات: S - M - L - XL - XXL",
+            "التوصيل متوفر والدفع عند الاستلام في 58 ولاية"
         ],
         "specsFr": [
             "Ensemble lourd Hoodie + Pantalon Baggy",
@@ -2728,7 +5565,7 @@
                 `;
 
                 setTimeout(() => {
-                    const orderRef = `#KYVRO-${Math.floor(10000 + Math.random() * 90000)}`;
+                    const orderRef = `#Makanch Kifek-${Math.floor(10000 + Math.random() * 90000)}`;
                     let itemsReceiptHtml = '';
                     let totalFormatted = '';
 

@@ -3131,6 +3131,15 @@
             </h1>
         </section>
 
+        <!-- تصنيفات المنتجات التفاعلية -->
+        <div class="category-tabs" role="tablist">
+            <button type="button" class="category-tab active" onclick="filterCategory('all', this)" role="tab">الكل</button>
+            <button type="button" class="category-tab" onclick="filterCategory('hoodies', this)" role="tab">هوديز (Hoodies)</button>
+            <button type="button" class="category-tab" onclick="filterCategory('sets', this)" role="tab">أطقم كاملة (Sets)</button>
+            <button type="button" class="category-tab" onclick="filterCategory('baggy', this)" role="tab">سراويل باغي (Baggy)</button>
+        </div>
+
+
         <!-- ==================== شبكة بطاقات المنتجات ==================== -->
         <section class="products-grid" id="productsGrid">
 
@@ -3138,7 +3147,7 @@
             <article class="product-card" id="product-1" data-category="hoodies">
                 <div class="product-media-wrapper" onclick="openProductModal(1)">
                     <span class="product-badge">الأكثر طلباً 🔥</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 1)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(1, 'هودي إيتاتشي أوتشيها أبيض (Naruto Itachi)', 3200, 'prod_itachi.png', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
                     <img src="prod_itachi.png" alt="هودي إيتاتشي أوتشيها أبيض (Naruto Itachi)" class="product-img" loading="lazy">
@@ -3158,7 +3167,7 @@
                             <span class="price-old" data-oldprice="4200">4,200 د.ج</span>
                         </div>
                         <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 1)">
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(1, 'هودي إيتاتشي أوتشيها أبيض (Naruto Itachi)', 3200, 'prod_itachi.png', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
@@ -3176,7 +3185,7 @@
             <article class="product-card" id="product-2" data-category="sets">
                 <div class="product-media-wrapper" onclick="openProductModal(2)">
                     <span class="product-badge">طقم شتوي كامل 🔥</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 2)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(2, 'أونسومبل توجي فوشيغورو أسود (JJK Toji Set)', 4800, 'prod_toji.png', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
                     <img src="prod_toji.png" alt="أونسومبل توجي فوشيغورو أسود (JJK Toji Set)" class="product-img" loading="lazy">
@@ -3196,7 +3205,7 @@
                             <span class="price-old" data-oldprice="5900">5,900 د.ج</span>
                         </div>
                         <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 2)">
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(2, 'أونسومبل توجي فوشيغورو أسود (JJK Toji Set)', 4800, 'prod_toji.png', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
@@ -3214,7 +3223,7 @@
             <article class="product-card" id="product-3" data-category="baggy">
                 <div class="product-media-wrapper" onclick="openProductModal(3)">
                     <span class="product-badge">قصة واسعة مريحة ✨</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 3)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(3, 'سروال باغي كاكاشي وأوبيتو رمادي (Kakashi & Obito)', 2900, 'prod_kakashi.png', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
                     <img src="prod_kakashi.png" alt="سروال باغي كاكاشي وأوبيتو رمادي (Kakashi & Obito)" class="product-img" loading="lazy">
@@ -3234,7 +3243,7 @@
                             <span class="price-old" data-oldprice="3800">3,800 د.ج</span>
                         </div>
                         <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 3)">
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(3, 'سروال باغي كاكاشي وأوبيتو رمادي (Kakashi & Obito)', 2900, 'prod_kakashi.png', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
@@ -3252,7 +3261,7 @@
             <article class="product-card" id="product-4" data-category="sets">
                 <div class="product-media-wrapper" onclick="openProductModal(4)">
                     <span class="product-badge">إصدار ون بيس الفاخر 👑</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 4)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(4, 'طقم ثلاثي قبعة القش لوفي (One Piece Trio Set)', 4900, 'prod_luffy.png', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
                     <img src="prod_luffy.png" alt="طقم ثلاثي قبعة القش لوفي (One Piece Trio Set)" class="product-img" loading="lazy">
@@ -3272,7 +3281,7 @@
                             <span class="price-old" data-oldprice="6200">6,200 د.ج</span>
                         </div>
                         <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 4)">
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(4, 'طقم ثلاثي قبعة القش لوفي (One Piece Trio Set)', 4900, 'prod_luffy.png', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
@@ -3290,7 +3299,7 @@
             <article class="product-card" id="product-5" data-category="baggy">
                 <div class="product-media-wrapper" onclick="openProductModal(5)">
                     <span class="product-badge">تصميم الغول 1000-7 🩸</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 5)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(5, 'سروال باغي طوكيو غول كانيكي (Tokyo Ghoul Kaneki)', 2900, 'prod_tokyo_ghoul.png', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
                     <img src="prod_tokyo_ghoul.png" alt="سروال باغي طوكيو غول كانيكي (Tokyo Ghoul Kaneki)" class="product-img" loading="lazy">
@@ -3310,7 +3319,7 @@
                             <span class="price-old" data-oldprice="3800">3,800 د.ج</span>
                         </div>
                         <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 5)">
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(5, 'سروال باغي طوكيو غول كانيكي (Tokyo Ghoul Kaneki)', 2900, 'prod_tokyo_ghoul.png', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
@@ -3328,7 +3337,7 @@
             <article class="product-card" id="product-6" data-category="hoodies">
                 <div class="product-media-wrapper" onclick="openProductModal(6)">
                     <span class="product-badge">كلاسيكيات السايان ⚡</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 6)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(6, 'هودي غوكو وفيجيتا سوبر سايان (Dragon Ball Z)', 3300, 'prod_goku.png', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
                     <img src="prod_goku.png" alt="هودي غوكو وفيجيتا سوبر سايان (Dragon Ball Z)" class="product-img" loading="lazy">
@@ -3348,7 +3357,7 @@
                             <span class="price-old" data-oldprice="4400">4,400 د.ج</span>
                         </div>
                         <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 6)">
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(6, 'هودي غوكو وفيجيتا سوبر سايان (Dragon Ball Z)', 3300, 'prod_goku.png', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
@@ -3366,7 +3375,7 @@
             <article class="product-card" id="product-7" data-category="sets">
                 <div class="product-media-wrapper" onclick="openProductModal(7)">
                     <span class="product-badge">طقم أسطوري مظلم ⚔️</span>
-                    <button type="button" class="wishlist-btn" onclick="toggleWishlist(event, 7)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(7, 'طقم غاتس الهائج بيرسيرك (Berserk Guts Black Set)', 4900, 'prod_guts.png', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
                     <img src="prod_guts.png" alt="طقم غاتس الهائج بيرسيرك (Berserk Guts Black Set)" class="product-img" loading="lazy">
@@ -3386,7 +3395,7 @@
                             <span class="price-old" data-oldprice="6500">6,500 د.ج</span>
                         </div>
                         <div class="product-card-actions">
-                            <button type="button" class="add-to-cart-btn" onclick="addToCart(event, 7)">
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(7, 'طقم غاتس الهائج بيرسيرك (Berserk Guts Black Set)', 4900, 'prod_guts.png', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
@@ -5720,19 +5729,35 @@
 
         // ==================== نظام قائمة المفضلة التفاعلي ====================
         function toggleWishlist(id, name, price, img, btn) {
-            const t = translations[currentLanguage] || translations.ar;
+            if (typeof id === 'object' && id !== null) {
+                if (id.stopPropagation) id.stopPropagation();
+                if (typeof name === 'number') {
+                    const tempId = name;
+                    btn = id.currentTarget || id.target;
+                    id = tempId;
+                }
+            }
+            id = Number(id);
             const p = productsData.find(prod => prod.id === id);
+            if (p) {
+                name = name || p.name;
+                price = price || p.price;
+                img = (img && img !== 'undefined') ? img : (p.image || p.images[0]);
+            }
+            if (!id) return;
+
+            const t = translations[currentLanguage] || translations.ar;
             const localizedName = p ? ((currentLanguage === 'ar') ? p.name : ((currentLanguage === 'fr') ? p.nameFr : p.nameEn)) : name;
 
-            const index = wishlist.findIndex(item => item.id === id);
+            const index = wishlist.findIndex(item => Number(item.id) === id);
             if (index > -1) {
                 wishlist.splice(index, 1);
-                if (btn) btn.classList.remove('active');
-                showToast(`${t.toast_removed_fav}: "${localizedName}"`);
+                if (btn && btn.classList) btn.classList.remove('active');
+                showToast(`${t.toast_removed_fav || 'تمت الإزالة من المفضلة'}: "${localizedName}"`);
             } else {
                 wishlist.push({ id, name, price, img });
-                if (btn) btn.classList.add('active');
-                showToast(`${t.toast_added_fav}: "${localizedName}"`);
+                if (btn && btn.classList) btn.classList.add('active');
+                showToast(`❤️ ${t.toast_added_fav || 'تمت الإضافة للمفضلة'}: "${localizedName}"`);
             }
 
             syncProductHeartButtons();
@@ -5796,19 +5821,22 @@
             } else {
                 let html = '';
                 wishlist.forEach(item => {
-                    const p = productsData.find(prod => prod.id === item.id);
+                    const p = productsData.find(prod => prod.id === Number(item.id));
                     const itemName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : item.name;
+                    const itemPrice = p ? p.price : item.price;
+                    const itemImg = (item.img && item.img !== 'undefined') ? item.img : (p ? (p.image || p.images[0]) : 'prod_itachi.png');
+                    const safeName = (itemName || '').replace(/'/g, "\\'");
                     html += `
                         <div class="cart-item-row">
-                            <img src="${item.img}" alt="${itemName}" class="cart-item-img">
+                            <img src="${itemImg}" alt="${itemName}" class="cart-item-img">
                             <div class="cart-item-info">
                                 <span class="cart-item-name">${itemName}</span>
-                                <span class="cart-item-price">${formatPrice(item.price)}</span>
+                                <span class="cart-item-price">${formatPrice(itemPrice)}</span>
                             </div>
                             <button 
                                 class="add-to-cart-btn" 
                                 style="padding: 0.45rem 0.75rem; font-size: 0.75rem;" 
-                                onclick="addToCart(${item.id}, '${item.name}', ${item.price}, '${item.img}', this)"
+                                onclick="event.stopPropagation(); addToCart(${item.id}, '${safeName}', ${itemPrice}, '${itemImg}', this)"
                                 title="${t.btn_add_cart}"
                             >
                                 ${t.wishlist_btn_add_cart || '+ السلة'}
@@ -5839,31 +5867,51 @@
 
         // ==================== سلة المشتريات التفاعلية ====================
         function addToCart(id, name, price, img, btn) {
+            // معالجة مرنة للمعاملات إذا تم استدعاؤها بطرق مختلفة
+            if (typeof id === 'object' && id !== null) {
+                if (id.stopPropagation) id.stopPropagation();
+                if (typeof name === 'number') {
+                    const tempId = name;
+                    btn = id.currentTarget || id.target;
+                    id = tempId;
+                }
+            }
+            id = Number(id);
+            const p = productsData.find(prod => prod.id === id);
+            if (p) {
+                name = name || p.name;
+                price = price || p.price;
+                img = (img && img !== 'undefined') ? img : (p.image || p.images[0]);
+            }
+            if (!id || !price) return;
+
             const t = translations[currentLanguage] || translations.ar;
             const lang = currentLanguage;
-            const p = productsData.find(prod => prod.id === id);
             const localizedName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : name;
 
-            // تأثير الزر
-            btn.classList.add('added');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = `<span>✓</span>`;
+            // تأثير الزر إذا وُجد
+            if (btn && btn.classList) {
+                btn.classList.add('added');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `<span>✓</span>`;
+                setTimeout(() => {
+                    btn.classList.remove('added');
+                    btn.innerHTML = originalText;
+                }, 1200);
+            }
 
-            setTimeout(() => {
-                btn.classList.remove('added');
-                btn.innerHTML = originalText;
-            }, 1200);
-
-            // إضافة العنصر
-            const existing = cart.find(item => item.id === id);
+            // إضافة العنصر للسلة
+            const existing = cart.find(item => Number(item.id) === id);
             if (existing) {
-                existing.quantity += 1;
+                existing.quantity = (Number(existing.quantity) || 1) + 1;
+                if (!existing.img || existing.img === 'undefined') existing.img = img;
+                if (!existing.price) existing.price = price;
             } else {
                 cart.push({ id, name, price, img, quantity: 1 });
             }
 
             updateCartUI();
-            showToast(`${t.toast_added_cart}: "${localizedName}"`);
+            showToast(`🛍️ ${t.toast_added_cart || 'تمت الإضافة للسلة'}: "${localizedName}"`);
         }
 
         function removeFromCart(id) {
@@ -5893,7 +5941,7 @@
             const lang = currentLanguage;
 
             // تحديث العداد
-            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalCount = cart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
             cartBadge.textContent = totalCount;
             if (totalCount > 0) {
                 cartBadge.classList.add('has-items', 'bump');
@@ -5923,21 +5971,24 @@
                 let total = 0;
                 const unitLabel = t.unit_price_label || 'سعر القطعة:';
                 cart.forEach(item => {
-                    const itemSubtotal = item.price * item.quantity;
+                    const p = productsData.find(prod => prod.id === Number(item.id));
+                    const itemPrice = p ? p.price : (Number(item.price) || 0);
+                    const qty = Number(item.quantity) || 1;
+                    const itemSubtotal = itemPrice * qty;
                     total += itemSubtotal;
-                    const p = productsData.find(prod => prod.id === item.id);
                     const itemName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : item.name;
+                    const itemImg = (item.img && item.img !== 'undefined') ? item.img : (p ? (p.image || p.images[0]) : 'prod_itachi.png');
                     html += `
                         <div class="cart-item-row" id="cartItem-${item.id}">
-                            <img src="${item.img}" alt="${itemName}" class="cart-item-img">
+                            <img src="${itemImg}" alt="${itemName}" class="cart-item-img">
                             <div class="cart-item-info">
                                 <span class="cart-item-name" title="${itemName}">${itemName}</span>
-                                <span class="cart-item-unit-price">${unitLabel} ${formatPrice(item.price)}</span>
+                                <span class="cart-item-unit-price">${unitLabel} ${formatPrice(itemPrice)}</span>
                                 
                                 <div class="cart-item-controls">
                                     <div class="cart-item-qty-selector">
                                         <button type="button" class="cart-qty-btn" onclick="changeCartQty(${item.id}, -1)">-</button>
-                                        <span class="cart-qty-display">${item.quantity}</span>
+                                        <span class="cart-qty-display">${qty}</span>
                                         <button type="button" class="cart-qty-btn" onclick="changeCartQty(${item.id}, 1)">+</button>
                                     </div>
                                     <div class="cart-item-subtotal">
@@ -6087,7 +6138,22 @@
             btn.classList.add('active');
             currentSelectedSize = btn.textContent.trim();
         }
-    </script>
+    
+        // تنظيف ومزامنة بيانات السلة والمفضلة عند تشغيل الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // تنظيف أي عناصر غير صالحة سابقة
+                cart = (cart || []).filter(i => i && typeof i === 'object' && typeof i.id === 'number' && i.price);
+                wishlist = (wishlist || []).filter(i => i && typeof i === 'object' && typeof i.id === 'number');
+                syncProductHeartButtons();
+                updateCartUI();
+                updateWishlistUI();
+            } catch (e) {
+                console.warn('Init error:', e);
+            }
+        });
+
+</script>
 
     
 

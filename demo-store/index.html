@@ -1,66 +1,67 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="light">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوتيك لورانس للأزياء الفاخرة | Laurance Boutique DZ</title>
+    <title>Hafssa Clothes ✨ | بوتيك الأزياء العصرية والمحتشمة DZ</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
     <!-- خطوط جوجل: Cairo و Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* نظام ألوان متجر لورانس - أزياء راقية (Rose Gold & Royal Berry) */
-            --bg-primary: #fdfbfb;
-            --bg-surface: rgba(255, 255, 255, 0.90);
-            --bg-surface-solid: #ffffff;
-            --bg-elevated: #fbf5f6;
-            --border-color: rgba(243, 226, 230, 0.9);
-            --border-highlight: rgba(225, 29, 72, 0.4);
-            --text-primary: #1c1014;
-            --text-secondary: #70555e;
-            --text-muted: #a38c94;
-            --accent-gradient: linear-gradient(135deg, #e11d48 0%, #be123c 50%, #f43f5e 100%);
-            --accent-color: #e11d48;
-            --accent-hover: #be123c;
-            --accent-glow: rgba(225, 29, 72, 0.25);
+            /* نظام ألوان Hafssa Clothes - أنثوي، نود روز بيج دافئ، مع لمسات أزرق دنيم وإسبريسو راقية */
+            --bg-primary: #FAF7F5;
+            --bg-surface: rgba(255, 255, 255, 0.94);
+            --bg-surface-solid: #FFFFFF;
+            --bg-elevated: #F4ECE8;
+            --border-color: rgba(216, 183, 171, 0.35);
+            --border-highlight: rgba(199, 137, 122, 0.70);
+            --text-primary: #1F1715;
+            --text-secondary: #634F48;
+            --text-muted: #947E76;
+            --accent-gradient: linear-gradient(135deg, #C7897A 0%, #D8B7AB 50%, #2B4C7E 100%);
+            --accent-color: #C7897A;
+            --accent-hover: #B57464;
+            --accent-glow: rgba(199, 137, 122, 0.28);
             --success-color: #10b981;
             --danger-color: #ef4444;
             --warning-color: #f59e0b;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 10px 25px -5px rgba(225, 29, 72, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-            --shadow-lg: 0 20px 35px -10px rgba(225, 29, 72, 0.14);
-            --ambient-glow: radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.12) 0%, transparent 60%);
-            --search-kbd-bg: #f3e2e6;
-            --search-kbd-text: #70555e;
-            --badge-bg: rgba(225, 29, 72, 0.1);
+            --shadow-sm: 0 1px 3px rgba(31, 23, 21, 0.05);
+            --shadow-md: 0 10px 25px -5px rgba(199, 137, 122, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 20px 35px -10px rgba(199, 137, 122, 0.22);
+            --ambient-glow: radial-gradient(circle at 50% 0%, rgba(216, 183, 171, 0.28) 0%, transparent 65%);
+            --search-kbd-bg: #EFE4E0;
+            --search-kbd-text: #634F48;
+            --badge-bg: rgba(199, 137, 122, 0.15);
         }
 
         [data-theme="dark"] {
-            /* نظام ألوان الوضع المظلم لمتجر لورانس */
-            --bg-primary: #12090d;
-            --bg-surface: rgba(28, 16, 22, 0.88);
-            --bg-surface-solid: #1e1117;
-            --bg-elevated: #291820;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-highlight: rgba(251, 113, 133, 0.45);
-            --text-primary: #fdf2f4;
-            --text-secondary: #d1b5be;
-            --text-muted: #8a6e77;
-            --accent-gradient: linear-gradient(135deg, #fb7185 0%, #f43f5e 50%, #fda4af 100%);
-            --accent-color: #fb7185;
-            --accent-hover: #f43f5e;
-            --accent-glow: rgba(251, 113, 133, 0.35);
+            /* نظام ألوان الوضع المظلم لـ Hafssa Clothes - موكا نوير عميق مع بريق النود روز والذهب الوردي */
+            --bg-primary: #120D0C;
+            --bg-surface: rgba(25, 18, 16, 0.92);
+            --bg-surface-solid: #1D1412;
+            --bg-elevated: #281C1A;
+            --border-color: rgba(216, 183, 171, 0.18);
+            --border-highlight: rgba(216, 183, 171, 0.55);
+            --text-primary: #FDF9F8;
+            --text-secondary: #D9C7C1;
+            --text-muted: #9E8881;
+            --accent-gradient: linear-gradient(135deg, #D8B7AB 0%, #E8D2C9 50%, #4A70A9 100%);
+            --accent-color: #D8B7AB;
+            --accent-hover: #E8D2C9;
+            --accent-glow: rgba(216, 183, 171, 0.38);
             --success-color: #34d399;
             --danger-color: #f87171;
             --warning-color: #fbbf24;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 12px 28px -5px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 24px 45px -10px rgba(0, 0, 0, 0.7);
-            --ambient-glow: radial-gradient(circle at 50% 0%, rgba(251, 113, 133, 0.18) 0%, transparent 65%);
-            --search-kbd-bg: #291820;
-            --search-kbd-text: #d1b5be;
-            --badge-bg: rgba(251, 113, 133, 0.15);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 12px 28px -5px rgba(0, 0, 0, 0.75);
+            --shadow-lg: 0 24px 45px -10px rgba(0, 0, 0, 0.95);
+            --ambient-glow: radial-gradient(circle at 50% 0%, rgba(199, 137, 122, 0.32) 0%, transparent 65%);
+            --search-kbd-bg: #281C1A;
+            --search-kbd-text: #D9C7C1;
+            --badge-bg: rgba(216, 183, 171, 0.18);
         }
 
         * {
@@ -177,22 +178,25 @@
             height: 44px;
             display: grid;
             place-items: center;
-            border-radius: 14px;
-            background: var(--accent-gradient);
-            box-shadow: 0 4px 18px var(--accent-glow);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            border-radius: 12px;
+            background: #000000;
+            border: 1px solid rgba(214, 204, 191, 0.35);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
         .brand-section:hover .brand-logo-wrapper {
-            transform: scale(1.06) rotate(-3deg);
+            transform: scale(1.08);
             box-shadow: 0 8px 24px var(--accent-glow);
+            border-color: var(--accent-color);
         }
 
-        .brand-logo-svg {
-            width: 25px;
-            height: 25px;
-            fill: #ffffff;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        .brand-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .brand-info {
@@ -205,7 +209,8 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 800;
             font-size: 1.55rem;
-            letter-spacing: 0.5px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -772,37 +777,28 @@
             margin-inline: auto;
         }
 
-        /* الشاشات اللوحية والمتوسطة (620px وأكثر): منتجين في الصف */
+        /* الشاشات اللوحية والمتوسطة: منتجين في السطر */
         @media (min-width: 620px) {
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1.4rem;
+                gap: 1.5rem;
                 max-width: 100%;
             }
         }
 
-        /* الشاشات المتوسطة والكبيرة (960px وأكثر): 3 منتجات في الصف */
-        @media (min-width: 960px) {
+        /* الشاشات الكبيرة والمكتبية: 3 منتجات في السطر */
+        @media (min-width: 980px) {
             .products-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 1.65rem;
-                max-width: 100%;
-            }
-        }
-
-        /* الشاشات الكبيرة وأجهزة الحاسوب (1200px وأكثر): 4 منتجات في الصف */
-        @media (min-width: 1200px) {
-            .products-grid {
-                grid-template-columns: repeat(4, 1fr);
                 gap: 1.85rem;
                 max-width: 100%;
             }
         }
 
-        /* الشاشات العريضة جداً (1440px وأكثر): 5 منتجات في الصف الواحد */
-        @media (min-width: 1440px) {
+        /* الشاشات فائقة العرض */
+        @media (min-width: 1380px) {
             .products-grid {
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
                 gap: 2rem;
             }
         }
@@ -831,22 +827,28 @@
         .product-media-wrapper {
             position: relative;
             width: 100%;
-            height: 260px;
+            aspect-ratio: 1 / 1;
+            height: auto;
             background: var(--bg-elevated);
             overflow: hidden;
-            display: grid;
-            place-items: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        .product-img,
         .product-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            object-position: center;
+            display: block;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        .product-card:hover .product-img,
         .product-card:hover .product-image {
-            transform: scale(1.08);
+            transform: scale(1.04);
         }
 
         /* شارة المنتج (جديد، خصم، إلخ) */
@@ -1196,9 +1198,16 @@
 
         .product-modal-content {
             display: grid;
-            grid-template-columns: 1.05fr 1fr;
-            gap: 2.25rem;
-            padding: 2.25rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            padding: 2.25rem 2.25rem;
+        }
+
+        .modal-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.15rem;
+            padding: 0 0.5rem;
         }
 
         /* عمود المعرض والصور الكبيرة للتمعن */
@@ -1210,6 +1219,7 @@
 
         .modal-main-image-wrapper {
             position: relative;
+            position: relative;
             width: 100%;
             height: 380px;
             background: var(--bg-elevated);
@@ -1217,13 +1227,20 @@
             overflow: hidden;
             border: 1.5px solid var(--border-color);
             box-shadow: var(--shadow-md);
+            cursor: pointer;
         }
 
         .modal-main-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
+            display: block;
             transition: transform 0.4s ease, opacity 0.25s ease;
+        }
+
+        .modal-main-image-wrapper:hover .modal-main-image {
+            transform: scale(1.03);
         }
 
         .modal-main-image:hover {
@@ -1423,6 +1440,67 @@
             flex-direction: column;
             gap: 0.85rem;
             margin-top: auto;
+        }
+
+        /* محدد المقاسات الأنيق في نافذة المنتج */
+        .modal-sizes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .modal-sizes-label {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-sizes-pills {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .size-pill {
+            min-width: 44px;
+            height: 38px;
+            padding: 0 0.75rem;
+            border-radius: 10px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-surface-solid);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-pill:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .size-pill.active {
+            background: var(--accent-color);
+            color: #ffffff;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transform: scale(1.05);
+        }
+
+        [data-theme="dark"] .size-pill.active {
+            color: #060608;
+            background: #ffffff;
+            border-color: #ffffff;
+            box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
         }
 
         .modal-quantity-row {
@@ -2806,20 +2884,28 @@
             }
 
             /* تجاوب نافذة تفاصيل المنتج على الموبايل */
+            .product-modal-overlay {
+                padding: 1.25rem 1rem;
+            }
+
             .product-modal-container {
                 max-width: 100%;
-                max-height: 94vh;
-                border-radius: 22px;
+                max-height: 92vh;
+                border-radius: 24px;
             }
 
             .product-modal-content {
                 grid-template-columns: 1fr;
-                gap: 1.25rem;
-                padding: 1.25rem 1rem;
+                gap: 1.5rem;
+                padding: 1.85rem 1.75rem 2.25rem 1.75rem; /* مسافة أمان مريحة جداً عن حواف النافذة */
+            }
+
+            .modal-info-col {
+                padding: 0;
             }
 
             .modal-main-image-wrapper {
-                height: 240px;
+                height: 280px;
             }
 
             .modal-thumb {
@@ -2868,7 +2954,8 @@
                 max-width: 100%;
             }
         }
-    </style>
+    
+        </style>
 </head>
 <body>
 
@@ -2876,20 +2963,15 @@
     <header class="header-navbar" id="mainHeader">
         <div class="navbar-container">
             
-            <!-- الشعار الوهمي واسم البراند MBD + زر البحث بجانبه -->
+            <!-- شعار براند Hafssa Clothes واسم المتجر + زر البحث بجانبه -->
             <div class="brand-group">
                 <a href="#" class="brand-section" id="brandLink">
                     <div class="brand-logo-wrapper">
-                        <!-- شعار وهمي هندسي حديث SVG -->
-                        <svg class="brand-logo-svg" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor"/>
-                            <path d="M2 17L12 22L22 17" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M2 12L12 17L22 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <img src="logo.jpg" alt="Hafssa Clothes" class="brand-logo-img" style="border-radius: 12px;">
                     </div>
                     <div class="brand-info">
                         <div class="brand-name">
-                            MBD
+                            Hafssa Clothes
                         </div>
                     </div>
                 </a>
@@ -2912,7 +2994,7 @@
                         type="text" 
                         id="navbarSearchInput" 
                         class="navbar-search-input" 
-                        placeholder="ابحثي عن فساتين، عبايات، حقائب، عطور..." 
+                        placeholder="ابحثي عن أطقم، فساتين، تنانير، جاكيتات..." 
                         autocomplete="off"
                     >
                     <button 
@@ -2983,7 +3065,7 @@
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                                 <span data-i18n="settings_title">إعدادات المتجر</span>
                             </div>
-                            <span class="settings-badge">Laurance</span>
+                            <span class="settings-badge">Hafssa Clothes</span>
                         </div>
 
                         <!-- قسم المظهر (الوضع المظلم / المضيء) داخل الإعدادات -->
@@ -3047,53 +3129,67 @@
         
         <!-- الترويسة الرئيسية للمتجر -->
         <section class="store-header">
+            <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: var(--badge-bg); border: 1px solid var(--border-color); padding: 0.35rem 0.9rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 700; color: var(--accent-color); margin-bottom: 0.85rem;">
+                <span>🇩🇿 BOUTIQUE EN LIGNE</span>
+                <span>•</span>
+                <span>توصيل متوفر لـ 58 ولاية 📦</span>
+            </div>
             <h1 class="store-title">
-                تشكيلة أزياء <span>Laurance</span> الراقية 2026
+                تشكيلة <span>Hafssa Clothes</span> العصرية 2026
             </h1>
+            <p style="max-width: 650px; margin: 0.75rem auto 1.25rem; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
+                𝐻𝑎𝑓𝑠𝑠𝑎_ 𝑐𝑙𝑜𝑡ℎ𝑒𝑠. • أزياء نسائية ومحتشمة راقية مصممة بعناية فائقة لتجمع بين الحشمة والعصرية وأحدث صيحات الموضة.
+            </p>
+            <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 0.5rem;">
+                <a href="https://instagram.com/hafssa._clothes" target="_blank" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1.25rem; border-radius: 9999px; background: var(--bg-elevated); border: 1px solid var(--border-color); color: var(--text-primary); text-decoration: none; font-size: 0.88rem; font-weight: 700; transition: all 0.25s ease;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    <span>DM for orders: @hafssa._clothes</span>
+                </a>
+            </div>
         </section>
+
+        <!-- تصنيفات المنتجات التفاعلية -->
+        <div class="category-tabs" role="tablist">
+            <button type="button" class="category-tab active" onclick="filterCategory('all', this)" role="tab">الكل (Tous)</button>
+            <button type="button" class="category-tab" onclick="filterCategory('sets', this)" role="tab">أطقم ومجموعات (Ensembles)</button>
+            <button type="button" class="category-tab" onclick="filterCategory('dresses', this)" role="tab">فساتين وسالوبيت (Robes)</button>
+            <button type="button" class="category-tab" onclick="filterCategory('vestes', this)" role="tab">جاكيتات ومعاطف (Vestes)</button>
+            <button type="button" class="category-tab" onclick="filterCategory('jupes', this)" role="tab">تنانير كلوش (Jupes)</button>
+        </div>
+
 
         <!-- ==================== شبكة بطاقات المنتجات ==================== -->
         <section class="products-grid" id="productsGrid">
 
-            <!-- بطاقة المنتج 1 -->
-            <article class="product-card" data-category="dresses" id="product-1" onclick="openProductModal(1)">
-                <div class="product-media-wrapper">
-                    <span class="product-badge">خصم 20%</span>
-                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(1, 'فستان سهرة مخملي رويال', 12800, 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1200&q=85', this)" title="إضافة للمفضلة">
+            <!-- بطاقة المنتج 1: طقم جينز ستايلش مع تنورة كلوش كريمية وطرحة -->
+            <article class="product-card" id="product-1" data-category="sets">
+                <div class="product-media-wrapper" onclick="openProductModal(1)">
+                    <span class="product-badge">الأكثر طلباً 🔥</span>
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(1, 'طقم جينز ستايلش مع تنورة كلوش كريمية وطرحة', 5800, 'p1.jpg', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
-                    <img 
-                        src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1200&q=85" 
-                        alt="فستان سهرة مخملي رويال" 
-                        class="product-image"
-                        loading="lazy"
-                    >
+                    <img src="p1.jpg" alt="طقم جينز ستايلش مع تنورة كلوش كريمية وطرحة" class="product-img" loading="lazy">
                 </div>
-
                 <div class="product-body">
-                    <h3 class="product-title">فستان سهرة مخملي رويال</h3>
-
+                    <div class="product-category">أطقم ومجموعات راقية</div>
+                    <h2 class="product-title" onclick="openProductModal(1)">طقم جينز ستايلش مع تنورة كلوش كريمية وطرحة</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">5</span>
+                        <span class="rating-reviews">(48 تقييم)</span>
+                    </div>
+                    <p class="product-description">طقم أنيق وعصري للمحجبات يجمع بين سترة جينز ناعمة بأزرار فاخرة مع تنورة كلوش انسيابية بلون كريمي هادئ وطرحة شيفون متناسقة.</p>
                     <div class="product-footer">
                         <div class="price-box">
-                            <div class="price-current">
-                                <span>12,800</span>
-                                <span class="price-currency">د.ج</span>
-                            </div>
-                            <span class="price-old">16,000 د.ج</span>
+                            <span class="price-current" data-price="5800">5,800 د.ج</span>
+                            <span class="price-old" data-oldprice="6900">6,900 د.ج</span>
                         </div>
-
                         <div class="product-card-actions">
-                            <button 
-                                class="add-to-cart-btn" 
-                                onclick="event.stopPropagation(); addToCart(1, 'فستان سهرة مخملي رويال', 12800, 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1200&q=85', this)"
-                            >
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(1, 'طقم جينز ستايلش مع تنورة كلوش كريمية وطرحة', 5800, 'p1.jpg', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
-                            <button 
-                                class="details-btn" 
-                                onclick="event.stopPropagation(); openProductModal(1)"
-                            >
+                            <button type="button" class="details-btn" onclick="openProductModal(1)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                 <span>التفاصيل</span>
                             </button>
@@ -3102,45 +3198,35 @@
                 </div>
             </article>
 
-            <!-- بطاقة المنتج 2 -->
-            <article class="product-card" data-category="abayas" id="product-2" onclick="openProductModal(2)">
-                <div class="product-media-wrapper">
-                    <span class="product-badge">جديد 2026</span>
-                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(2, 'عباية كريب حريري مطرزة يدوياً', 9500, 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=1200&q=85', this)" title="إضافة للمفضلة">
+            <!-- بطاقة المنتج 2: فستان سالوبيت جينز أنيق مع قميص أبيض كلاسيكي -->
+            <article class="product-card" id="product-2" data-category="dresses">
+                <div class="product-media-wrapper" onclick="openProductModal(2)">
+                    <span class="product-badge">تشكيلة جديدة ✨</span>
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(2, 'فستان سالوبيت جينز أنيق مع قميص أبيض كلاسيكي', 4900, 'p2.jpg', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
-                    <img 
-                        src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=1200&q=85" 
-                        alt="عباية كريب حريري مطرزة يدوياً" 
-                        class="product-image"
-                        loading="lazy"
-                    >
+                    <img src="p2.jpg" alt="فستان سالوبيت جينز أنيق مع قميص أبيض كلاسيكي" class="product-img" loading="lazy">
                 </div>
-
                 <div class="product-body">
-                    <h3 class="product-title">عباية كريب حريري مطرزة يدوياً</h3>
-
+                    <div class="product-category">فساتين وسالوبيت</div>
+                    <h2 class="product-title" onclick="openProductModal(2)">فستان سالوبيت جينز أنيق مع قميص أبيض كلاسيكي</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">4.9</span>
+                        <span class="rating-reviews">(36 تقييم)</span>
+                    </div>
+                    <p class="product-description">فستان سالوبيت جينز ناعم بقصة ميدي مستقيمة مع قميص بوبلين أبيض فضفاض بأكمام كلوش وياقة كلاسيكية مدببة.</p>
                     <div class="product-footer">
                         <div class="price-box">
-                            <div class="price-current">
-                                <span>9,500</span>
-                                <span class="price-currency">د.ج</span>
-                            </div>
-                            <span class="price-old">12,000 د.ج</span>
+                            <span class="price-current" data-price="4900">4,900 د.ج</span>
+                            <span class="price-old" data-oldprice="5800">5,800 د.ج</span>
                         </div>
-
                         <div class="product-card-actions">
-                            <button 
-                                class="add-to-cart-btn" 
-                                onclick="event.stopPropagation(); addToCart(2, 'عباية كريب حريري مطرزة يدوياً', 9500, 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=1200&q=85', this)"
-                            >
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(2, 'فستان سالوبيت جينز أنيق مع قميص أبيض كلاسيكي', 4900, 'p2.jpg', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
-                            <button 
-                                class="details-btn" 
-                                onclick="event.stopPropagation(); openProductModal(2)"
-                            >
+                            <button type="button" class="details-btn" onclick="openProductModal(2)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                 <span>التفاصيل</span>
                             </button>
@@ -3149,45 +3235,35 @@
                 </div>
             </article>
 
-            <!-- بطاقة المنتج 3 -->
-            <article class="product-card" data-category="bags" id="product-3" onclick="openProductModal(3)">
-                <div class="product-media-wrapper">
-                    <span class="product-badge">الأكثر طلباً ⭐</span>
-                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(3, 'حقيبة يد جلدية فاخرة Parisienne', 6400, 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=85', this)" title="إضافة للمفضلة">
+            <!-- بطاقة المنتج 3: جاكيت جينز أزرق كروب بقصة مربعة وأزرار بارزة -->
+            <article class="product-card" id="product-3" data-category="vestes">
+                <div class="product-media-wrapper" onclick="openProductModal(3)">
+                    <span class="product-badge">قطعة أساسية 💫</span>
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(3, 'جاكيت جينز أزرق كروب بقصة مربعة وأزرار بارزة', 3400, 'p3.webp', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
-                    <img 
-                        src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=85" 
-                        alt="حقيبة يد جلدية فاخرة Parisienne" 
-                        class="product-image"
-                        loading="lazy"
-                    >
+                    <img src="p3.webp" alt="جاكيت جينز أزرق كروب بقصة مربعة وأزرار بارزة" class="product-img" loading="lazy">
                 </div>
-
                 <div class="product-body">
-                    <h3 class="product-title">حقيبة يد جلدية فاخرة Parisienne</h3>
-
+                    <div class="product-category">جاكيتات ومعاطف</div>
+                    <h2 class="product-title" onclick="openProductModal(3)">جاكيت جينز أزرق كروب بقصة مربعة وأزرار بارزة</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">5</span>
+                        <span class="rating-reviews">(29 تقييم)</span>
+                    </div>
+                    <p class="product-description">جاكيت جينز أزرق ملكي بقصة بوكسي عصرية وأكمام واسعة، مزين بأزرار خشبية بارزة أنيقة وجيب أمامي عملي.</p>
                     <div class="product-footer">
                         <div class="price-box">
-                            <div class="price-current">
-                                <span>6,400</span>
-                                <span class="price-currency">د.ج</span>
-                            </div>
-                            <span class="price-old">8,200 د.ج</span>
+                            <span class="price-current" data-price="3400">3,400 د.ج</span>
+                            <span class="price-old" data-oldprice="4000">4,000 د.ج</span>
                         </div>
-
                         <div class="product-card-actions">
-                            <button 
-                                class="add-to-cart-btn" 
-                                onclick="event.stopPropagation(); addToCart(3, 'حقيبة يد جلدية فاخرة Parisienne', 6400, 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=85', this)"
-                            >
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(3, 'جاكيت جينز أزرق كروب بقصة مربعة وأزرار بارزة', 3400, 'p3.webp', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
-                            <button 
-                                class="details-btn" 
-                                onclick="event.stopPropagation(); openProductModal(3)"
-                            >
+                            <button type="button" class="details-btn" onclick="openProductModal(3)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                 <span>التفاصيل</span>
                             </button>
@@ -3196,139 +3272,35 @@
                 </div>
             </article>
 
-            <!-- بطاقة المنتج 4 -->
-            <article class="product-card" data-category="shoes" id="product-4" onclick="openProductModal(4)">
-                <div class="product-media-wrapper">
-                    <span class="product-badge">حصري ⭐</span>
-                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(4, 'حذاء كعب عالي كلاسيك مرصع', 7200, 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1200&q=85', this)" title="إضافة للمفضلة">
+            <!-- بطاقة المنتج 4: تنورة كلوش كريمية انسيابية ماكسي مبطنة -->
+            <article class="product-card" id="product-4" data-category="jupes">
+                <div class="product-media-wrapper" onclick="openProductModal(4)">
+                    <span class="product-badge">قماش مريح 🕊️</span>
+                    <button type="button" class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(4, 'تنورة كلوش كريمية انسيابية ماكسي مبطنة', 2900, 'p4.jpg', this)" title="إضافة للمفضلة" aria-label="إضافة للمفضلة">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                     </button>
-                    <img 
-                        src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1200&q=85" 
-                        alt="حذاء كعب عالي كلاسيك مرصع" 
-                        class="product-image"
-                        loading="lazy"
-                    >
+                    <img src="p4.jpg" alt="تنورة كلوش كريمية انسيابية ماكسي مبطنة" class="product-img" loading="lazy">
                 </div>
-
                 <div class="product-body">
-                    <h3 class="product-title">حذاء كعب عالي كلاسيك مرصع</h3>
-
-                    <div class="product-footer">
-                        <div class="price-box">
-                            <div class="price-current">
-                                <span>7,200</span>
-                                <span class="price-currency">د.ج</span>
-                            </div>
-                            <span class="price-old">9,000 د.ج</span>
-                        </div>
-
-                        <div class="product-card-actions">
-                            <button 
-                                class="add-to-cart-btn" 
-                                onclick="event.stopPropagation(); addToCart(4, 'حذاء كعب عالي كلاسيك مرصع', 7200, 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1200&q=85', this)"
-                            >
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
-                            </button>
-                            <button 
-                                class="details-btn" 
-                                onclick="event.stopPropagation(); openProductModal(4)"
-                            >
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                <span>التفاصيل</span>
-                            </button>
-                        </div>
+                    <div class="product-category">تنانير كلوش</div>
+                    <h2 class="product-title" onclick="openProductModal(4)">تنورة كلوش كريمية انسيابية ماكسي مبطنة</h2>
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="rating-score">4.9</span>
+                        <span class="rating-reviews">(41 تقييم)</span>
                     </div>
-                </div>
-            </article>
-
-            <!-- بطاقة المنتج 5 -->
-            <article class="product-card" data-category="accessories" id="product-5" onclick="openProductModal(5)">
-                <div class="product-media-wrapper">
-                    <span class="product-badge">عرض خاص</span>
-                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(5, 'طقم مجوهرات وسلسال ذهبي مطلي', 4800, 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=85', this)" title="إضافة للمفضلة">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </button>
-                    <img 
-                        src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=85" 
-                        alt="طقم مجوهرات وسلسال ذهبي مطلي" 
-                        class="product-image"
-                        loading="lazy"
-                    >
-                </div>
-
-                <div class="product-body">
-                    <h3 class="product-title">طقم مجوهرات وسلسال ذهبي مطلي</h3>
-
+                    <p class="product-description">تنورة طويلة بقصة كلوش واسعة بلون كريمي سكري دافئ، قماش صيفي خفيف غير شفاف مع بطانة ناعمة وحزام خصر مطاطي مرن.</p>
                     <div class="product-footer">
                         <div class="price-box">
-                            <div class="price-current">
-                                <span>4,800</span>
-                                <span class="price-currency">د.ج</span>
-                            </div>
-                            <span class="price-old">6,000 د.ج</span>
+                            <span class="price-current" data-price="2900">2,900 د.ج</span>
+                            <span class="price-old" data-oldprice="3500">3,500 د.ج</span>
                         </div>
-
                         <div class="product-card-actions">
-                            <button 
-                                class="add-to-cart-btn" 
-                                onclick="event.stopPropagation(); addToCart(5, 'طقم مجوهرات وسلسال ذهبي مطلي', 4800, 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=85', this)"
-                            >
+                            <button type="button" class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(4, 'تنورة كلوش كريمية انسيابية ماكسي مبطنة', 2900, 'p4.jpg', this)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                                 <span>أضف للسلة</span>
                             </button>
-                            <button 
-                                class="details-btn" 
-                                onclick="event.stopPropagation(); openProductModal(5)"
-                            >
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                <span>التفاصيل</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <!-- بطاقة المنتج 6 -->
-            <article class="product-card" data-category="perfumes" id="product-6" onclick="openProductModal(6)">
-                <div class="product-media-wrapper">
-                    <span class="product-badge">الأعلى تقييماً ⭐</span>
-                    <button class="wishlist-btn" onclick="event.stopPropagation(); toggleWishlist(6, 'عطر ليلي فواح Laurance Nuit 100ml', 5600, 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=85', this)" title="إضافة للمفضلة">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                    </button>
-                    <img 
-                        src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=85" 
-                        alt="عطر ليلي فواح Laurance Nuit 100ml" 
-                        class="product-image"
-                        loading="lazy"
-                    >
-                </div>
-
-                <div class="product-body">
-                    <h3 class="product-title">عطر ليلي فواح Laurance Nuit 100ml</h3>
-
-                    <div class="product-footer">
-                        <div class="price-box">
-                            <div class="price-current">
-                                <span>5,600</span>
-                                <span class="price-currency">د.ج</span>
-                            </div>
-                            <span class="price-old">7,500 د.ج</span>
-                        </div>
-
-                        <div class="product-card-actions">
-                            <button 
-                                class="add-to-cart-btn" 
-                                onclick="event.stopPropagation(); addToCart(6, 'عطر ليلي فواح Laurance Nuit 100ml', 5600, 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=85', this)"
-                            >
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                                <span>أضف للسلة</span>
-                            </button>
-                            <button 
-                                class="details-btn" 
-                                onclick="event.stopPropagation(); openProductModal(6)"
-                            >
+                            <button type="button" class="details-btn" onclick="openProductModal(4)">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                 <span>التفاصيل</span>
                             </button>
@@ -3391,6 +3363,19 @@
                     </ul>
 
                     <div class="modal-actions-container">
+                        <div class="modal-sizes-container" id="modalSizesContainer">
+                            <div class="modal-sizes-label">
+                                <span data-i18n="modal_size_label">المقاس المتوفر:</span>
+                                <span style="font-size: 0.78rem; color: var(--success-color); font-weight: 800;">متوفر بالمخزون ✅</span>
+                            </div>
+                            <div class="modal-sizes-pills" id="modalSizesPills">
+                                <button type="button" class="size-pill" onclick="selectSize(this)">S</button>
+                                <button type="button" class="size-pill" onclick="selectSize(this)">M</button>
+                                <button type="button" class="size-pill active" onclick="selectSize(this)">L</button>
+                                <button type="button" class="size-pill" onclick="selectSize(this)">XL</button>
+                                <button type="button" class="size-pill" onclick="selectSize(this)">XXL</button>
+                            </div>
+                        </div>
                         <div class="modal-quantity-row">
                             <span data-i18n="modal_qty_label" style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted);">الكمية:</span>
                             <div class="modal-qty-selector">
@@ -3627,7 +3612,7 @@
                 </div>
                 <h3 class="qb-success-title" data-i18n="qb_success_title">تم إرسال طلبك بنجاح!</h3>
                 <p class="qb-success-msg" data-i18n="qb_success_msg">
-                    سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك ببوتيك لورانس!
+                    سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك بمتجر Hafssa Clothes!
                 </p>
 
                 <div class="qb-success-receipt" id="qbSuccessReceipt">
@@ -3724,7 +3709,7 @@
         let cart = [];
 
         // ==================== نظام اللغات المتعددة (عربية / فرنسية / إنجليزية) ====================
-        let currentLanguage = localStorage.getItem('laurance-lang') || 'ar';
+        let currentLanguage = localStorage.getItem('archiveroom23-lang') || 'ar';
 
         const translations = {
             ar: {
@@ -3734,7 +3719,7 @@
                 settings_currency: "عملة الدفع",
                 theme_light: "مضيء",
                 theme_dark: "داكن",
-                search_placeholder: "ابحثي عن فساتين، عبايات، حقائب، عطور...",
+                search_placeholder: "ابحث عن منتج، سماعات، ساعات...",
                 btn_add_cart: "أضف للسلة",
                 btn_details: "التفاصيل",
                 btn_quick_buy: "الشراء الفوري ⚡",
@@ -3789,7 +3774,7 @@
                 qb_submit_btn: "تأكيد وإتمام الطلب",
                 qb_processing: "جاري تأكيد وتسجيل طلبك...",
                 qb_success_title: "تم إرسال طلبك بنجاح!",
-                qb_success_msg: "سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك بمتجر MBD!",
+                qb_success_msg: "سنتواصل معك قريباً على رقم هاتفك لتأكيد الشحن والتوصيل. شكراً لطلبك وثقتك بمتجر Hafssa Clothes!",
                 qb_done_btn: "العودة للتسوق",
                 receipt_order_ref: "رقم الطلب:",
                 receipt_items: "المنتجات المطلوبة:",
@@ -3819,7 +3804,7 @@
                 toast_search_cleared: "تم مسح البحث",
                 toast_no_match: "لا توجد منتجات مطابقة لـ",
                 receipt_not_specified: "غير محدد",
-                doc_title: "بوتيك لورانس للأزياء الفاخرة | Laurance Boutique DZ",
+                doc_title: "متجر Hafssa Clothes الفاخر | متجرك الرقمي للأجهزة والتقنية",
                 nav_tooltip_fav: "المفضلة",
                 nav_tooltip_cart: "سلة التسوق",
                 nav_tooltip_settings: "الإعدادات",
@@ -3834,7 +3819,7 @@
                 settings_currency: "Devise de paiement",
                 theme_light: "Clair",
                 theme_dark: "Sombre",
-                search_placeholder: "Rechercher robes, abayas, sacs, parfums...",
+                search_placeholder: "Rechercher écouteurs, montres, chargeurs...",
                 btn_add_cart: "Ajouter au panier",
                 btn_details: "Détails",
                 btn_quick_buy: "Achat Rapide ⚡",
@@ -3889,7 +3874,7 @@
                 qb_submit_btn: "Confirmer la commande",
                 qb_processing: "Confirmation de votre commande en cours...",
                 qb_success_title: "Commande envoyée avec succès !",
-                qb_success_msg: "Nous vous contacterons rapidement par téléphone pour confirmer l'expédition. Merci de votre confiance en Laurance Boutique !",
+                qb_success_msg: "Nous vous contacterons rapidement par téléphone pour confirmer l'expédition. Merci de votre confiance en Hafssa Clothes Store !",
                 qb_done_btn: "Continuer mes achats",
                 receipt_order_ref: "N° de Commande :",
                 receipt_items: "Articles commandés :",
@@ -3919,7 +3904,7 @@
                 toast_search_cleared: "Recherche effacée",
                 toast_no_match: "Aucun produit correspondant à",
                 receipt_not_specified: "Non spécifié",
-                doc_title: "Laurance Boutique DZ | Mode & Haute Couture",
+                doc_title: "Hafssa Clothes Store | Votre boutique numérique de luxe",
                 nav_tooltip_fav: "Favoris",
                 nav_tooltip_cart: "Panier",
                 nav_tooltip_settings: "Paramètres",
@@ -3934,7 +3919,7 @@
                 settings_currency: "Payment Currency",
                 theme_light: "Light",
                 theme_dark: "Dark",
-                search_placeholder: "Search dresses, abayas, bags, perfumes...",
+                search_placeholder: "Search headphones, smartwatches, chargers...",
                 btn_add_cart: "Add to Cart",
                 btn_details: "Details",
                 btn_quick_buy: "Quick Buy ⚡",
@@ -3989,7 +3974,7 @@
                 qb_submit_btn: "Confirm Order",
                 qb_processing: "Confirming and registering your order...",
                 qb_success_title: "Order Submitted Successfully!",
-                qb_success_msg: "We will contact you shortly by phone to confirm shipping. Thank you for choosing Laurance Boutique!",
+                qb_success_msg: "We will contact you shortly by phone to confirm shipping. Thank you for choosing Hafssa Clothes Store!",
                 qb_done_btn: "Back to Shopping",
                 receipt_order_ref: "Order ID:",
                 receipt_items: "Ordered Items:",
@@ -4019,7 +4004,7 @@
                 toast_search_cleared: "Search cleared",
                 toast_no_match: "No products matching",
                 receipt_not_specified: "Not specified",
-                doc_title: "Laurance Boutique DZ | Luxury Fashion & Couture",
+                doc_title: "Hafssa Clothes Store | Your Luxury Digital Store",
                 nav_tooltip_fav: "Wishlist",
                 nav_tooltip_cart: "Shopping Cart",
                 nav_tooltip_settings: "Settings",
@@ -4031,7 +4016,7 @@
 
         function selectLanguage(lang, silent = false) {
             currentLanguage = lang;
-            localStorage.setItem('laurance-lang', lang);
+            localStorage.setItem('archiveroom23-lang', lang);
 
             const arBtn = document.getElementById('langArBtn');
             const frBtn = document.getElementById('langFrBtn');
@@ -4104,11 +4089,11 @@
             const storeTitleEl = document.querySelector('.store-title');
             if (storeTitleEl) {
                 if (lang === 'ar') {
-                    storeTitleEl.innerHTML = 'تشكيلة أزياء <span>Laurance</span> الراقية 2026';
+                    storeTitleEl.innerHTML = 'استكشف تشكيلة <span>Hafssa Clothes</span> الفاخرة';
                 } else if (lang === 'fr') {
-                    storeTitleEl.innerHTML = 'Collection Haute Couture <span>Laurance</span> 2026';
+                    storeTitleEl.innerHTML = 'Découvrez la Collection de Luxe <span>Hafssa Clothes</span>';
                 } else {
-                    storeTitleEl.innerHTML = '<span>Laurance</span> Luxury Fashion Collection 2026';
+                    storeTitleEl.innerHTML = 'Explore <span>Hafssa Clothes</span> Luxury Collection';
                 }
             }
 
@@ -4185,18 +4170,17 @@
 
         // ==================== نظام الوضع المظلم والمضيء المدمج داخل الإعدادات ====================
         function initTheme() {
-            const savedTheme = localStorage.getItem('laurance-theme');
+            const savedTheme = localStorage.getItem('archiveroom23-theme');
             if (savedTheme) {
                 setTheme(savedTheme);
             } else {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                setTheme(prefersDark ? 'dark' : 'light');
+                setTheme('dark');
             }
         }
 
         function setTheme(theme) {
             htmlElement.setAttribute('data-theme', theme);
-            localStorage.setItem('laurance-theme', theme);
+            localStorage.setItem('archiveroom23-theme', theme);
             updateThemeSegmentedUI(theme);
         }
 
@@ -4216,7 +4200,7 @@
         }
 
         // ==================== نظام العملة المتعددة (دينار DZD / أورو EUR) ====================
-        let currentCurrency = localStorage.getItem('laurance-currency') || 'DZD';
+        let currentCurrency = localStorage.getItem('archiveroom23-currency') || 'DZD';
         const EUR_EXCHANGE_RATE = 240;
 
         function formatPrice(amountInDzd) {
@@ -4244,7 +4228,7 @@
 
         function selectCurrency(curr, silent = false) {
             currentCurrency = curr;
-            localStorage.setItem('laurance-currency', curr);
+            localStorage.setItem('archiveroom23-currency', curr);
 
             const dzdBtn = document.getElementById('currDzdBtn');
             const eurBtn = document.getElementById('currEurBtn');
@@ -4455,284 +4439,201 @@
         const productsData = [
     {
         "id": 1,
-        "name": "فستان سهرة مخملي رويال",
-        "nameFr": "Robe de Soirée Velours Royal",
-        "nameEn": "Royal Velvet Evening Gown",
-        "price": 12800,
-        "oldPrice": 16000,
-        "badge": "خصم 20%",
-        "badgeFr": "Remise 20%",
-        "badgeEn": "20% Off",
-        "category": "dresses",
-        "categoryName": "فساتين سهرة",
-        "categoryNameFr": "Robes de Soirée",
-        "categoryNameEn": "Evening Gowns",
-        "rating": 4.9,
-        "reviews": 86,
-        "desc": "فستان سهرة فاخر مصنوع من قماش المخمل التركي الملوكي ذو الملمس الحريري والقصة الملكية المحتشمة. يتميز بتفاصيل حياكة راقية تبرز الأناقة في المناسبات والأعراس الخاصة.",
-        "descFr": "Robe de soirée d'exception confectionnée en velours royal soyeux avec une coupe majestueuse. Finitions de haute couture pour briller lors de vos réceptions et mariages.",
-        "descEn": "Exquisite evening gown crafted from royal Turkish velvet with a regal silhouette. Haute-couture detailing designed to make a stunning statement at weddings and galas.",
+        "name": "طقم جينز ستايلش مع تنورة كلوش كريمية وطرحة",
+        "nameFr": "Ensemble Veste Denim & Jupe Évasée Crème",
+        "nameEn": "Denim Jacket & Flowing Cream Maxi Skirt Modest Set",
+        "category": "sets",
+        "categoryName": "أطقم ومجموعات",
+        "categoryNameFr": "Ensembles",
+        "categoryNameEn": "Matching Sets",
+        "price": 5800,
+        "oldPrice": 6900,
+        "rating": 5,
+        "reviews": 48,
+        "badge": "الأكثر طلباً 🔥",
+        "badgeFr": "Top Vente 🔥",
+        "badgeEn": "Best Seller 🔥",
+        "image": "p1.jpg",
+        "images": [
+            "p1.jpg",
+            "p1-2.webp",
+            "p1-3.webp",
+            "p1-4.jpg"
+        ],
+        "description": "طقم أنيق وعصري للمحجبات يجمع بين سترة جينز ناعمة بأزرار فاخرة مع تنورة كلوش انسيابية بلون كريمي هادئ وطرحة شيفون متناسقة. تصميم محتشم وفائق الجاذبية مناسب للجامعة، العمل، والخرجات الراقية.",
+        "descriptionFr": "Ensemble modeste et élégant composé d'une veste courte en jean premium avec boutons travaillés, d'une jupe évasée crème doublée et d'un voile assorti. Coupe parfaite pour un style chic et pudique au quotidien.",
+        "descriptionEn": "Sophisticated modest ensemble featuring a premium cropped denim jacket with accent buttons, a flowing cream A-line maxi skirt, and a matching chiffon scarf. Ideal for university, office, or casual outings.",
         "specs": [
-            "قماش مخمل أصلي مستورد ذو لمعة فاخرة وانسيابية تامة",
-            "قصة كلاسيكية أنيقة تناسب جميع المناسبات الرسمية والأفراح",
-            "متوفر بمقاسات متعددة من 38 إلى 46 مع إمكانية التعديل",
-            "خياطة دقيقة ومبطن بالكامل لراحة قصوى طوال السهرة",
-            "توصيل سريع لـ 58 ولاية مع المعاينة قبل الدفع عند الاستلام"
+            "خامة دنيم ناعمة مع كريب شيفون تركي فاخر",
+            "طقم كامل: جاكيت جينز + تنورة كلوش + طرحة",
+            "تنورة مبطنة بالكامل وغير شفافة بانسيابية واسعة",
+            "مقاس موحد مريح (Standard يلائم 38 إلى 44)",
+            "توصيل متوفر وسريع لكافة الـ 58 ولاية 🚚",
+            "الدفع بعد المعاينة عند الاستلام 📦"
         ],
         "specsFr": [
-            "Velours noble importé au tombé fluide et reflets soyeux",
-            "Coupe classique flatteuse adaptée à toutes vos grandes occasions",
-            "Disponible de la taille 38 à 46 avec ajustement personnalisé",
-            "Entièrement doublée pour un confort absolu tout au long de la soirée",
-            "Livraison express 58 wilayas avec inspection avant paiement"
+            "Tissu denim doux et crêpe mousseline haute qualité",
+            "Ensemble 3 pièces : Veste jean + Jupe + Voile",
+            "Jupe entièrement doublée, opaque et très fluide",
+            "Taille standard confortable (Convient du 38 au 44)",
+            "Livraison rapide disponible 58 wilayas 🚚",
+            "Paiement à la livraison après essayage 📦"
         ],
         "specsEn": [
-            "Imported premium velvet with silky fluid drape and subtle sheen",
-            "Elegant timeless silhouette suitable for galas, weddings and events",
-            "Available in sizes 38 through 46 with tailored fit",
-            "Fully lined interior ensuring supreme comfort all evening long",
-            "Fast 58 wilayas delivery with cash-on-delivery inspection"
-        ],
-        "images": [
-            "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=1200&q=85"
+            "Soft premium denim paired with Turkish crepe chiffon",
+            "Complete 3-piece set: Denim jacket + Skirt + Scarf",
+            "Fully lined opaque maxi skirt with graceful drape",
+            "Comfortable standard free size (Fits EU 38-44)",
+            "Fast door-to-door delivery to all 58 wilayas 🚚",
+            "Cash on delivery upon inspection 📦"
         ]
     },
     {
         "id": 2,
-        "name": "عباية كريب حريري مطرزة يدوياً",
-        "nameFr": "Abaya en Crêpe de Soie Brodée",
-        "nameEn": "Hand-Embroidered Silk Crepe Abaya",
-        "price": 9500,
-        "oldPrice": 12000,
-        "badge": "جديد 2026",
-        "badgeFr": "Nouveau 2026",
-        "badgeEn": "New 2026",
-        "category": "abayas",
-        "categoryName": "عبايات راقية",
-        "categoryNameFr": "Abayas Haut de Gamme",
-        "categoryNameEn": "Luxury Abayas",
-        "rating": 5,
-        "reviews": 124,
-        "desc": "عباية خليجية عصرية منتقاة من أجود أقمشة الكريب الحريري البارد بتطريز يدوي متقن على الأكمام وحواف الصدر. تأتي مع طرحة متناسقة مجاناً بتصميم يجمع بين الأصالة والحداثة.",
-        "descFr": "Abaya contemporaine d'inspiration orientale en crêpe de soie fluide, ornée de délicates broderies artisanales faites main. Livrée avec son voile assorti offert.",
-        "descEn": "Contemporary oriental abaya made from breezy silk crepe, embellished with delicate artisan hand-embroidery on sleeves and bodice. Includes a complimentary matching scarf.",
+        "name": "فستان سالوبيت جينز أنيق مع قميص أبيض كلاسيكي",
+        "nameFr": "Robe Salopette Denim Bleu & Chemise Blanche",
+        "nameEn": "Denim Pinafore Dress & Classic White Blouse Set",
+        "category": "dresses",
+        "categoryName": "فساتين وسالوبيت",
+        "categoryNameFr": "Robes & Salopettes",
+        "categoryNameEn": "Dresses & Pinafores",
+        "price": 4900,
+        "oldPrice": 5800,
+        "rating": 4.9,
+        "reviews": 36,
+        "badge": "تشكيلة جديدة ✨",
+        "badgeFr": "Nouvelle Collection ✨",
+        "badgeEn": "New Collection ✨",
+        "image": "p2.jpg",
+        "images": [
+            "p2.jpg"
+        ],
+        "description": "فستان سالوبيت جينز ناعم بقصة ميدي مستقيمة مع قميص بوبلين أبيض فضفاض بأكمام كلوش وياقة كلاسيكية مدببة. إطلالة جامعية مفعمة بالأنوثة والحشمة.",
+        "descriptionFr": "Robe salopette chasuble en jean bleu souple accompagnée d'une chemise blanche fluide aux manches évasées et col pointu. Allure rétro-chic et moderne.",
+        "descriptionEn": "Chic blue denim pinafore dress paired with a billowy white poplin shirt featuring wide sleeves and a crisp pointed collar. Modest, youthful and timeless.",
         "specs": [
-            "قماش كريب صالونا حريري فائق النعومة ومضاد للتجعد",
-            "تطريز يدوي بخيوط بريسم الحريرية الفاخرة المقاومة للبهتان",
-            "قصة واسعة انسيابية وأكمام مريحة تناسب الإطلالات اليومية والزيارات",
-            "مرفقة بطرحة كريب سادة مجاناً متناسقة تماماً مع العباية",
-            "متوفرة بأطوال مختلفة (52، 54، 56، 58)"
+            "خامة قطن جينز ناعم مع قطن بوبلين تركي خفيف",
+            "طقم قطعتين: سالوبيت جينز + قميص أبيض واسع",
+            "قصة مستقيمة مريحة جداً للحركة اليومية",
+            "المقاسات المتوفرة: S - M - L - XL",
+            "توصيل متوفر وسريع لكافة الـ 58 ولاية 🚚",
+            "الدفع عند الاستلام مع إمكانية الفحص 📦"
         ],
         "specsFr": [
-            "Crêpe de soie Salona ultra-doux et naturellement infroissable",
-            "Broderies artisanales réalisées avec des fils de soie haute brillance",
-            "Coupe évasée noble et manches amples pour une élégance quotidienne",
-            "Voile crêpe uni assorti offert gracieusement avec l'abaya",
-            "Longueurs disponibles : 52, 54, 56, 58"
+            "Denim coton souple et chemise popeline légère",
+            "Ensemble 2 pièces : Salopette + Chemise blanche",
+            "Coupe droite très agréable pour le quotidien",
+            "Tailles disponibles : S - M - L - XL",
+            "Livraison rapide disponible 58 wilayas 🚚",
+            "Paiement à la livraison après vérification 📦"
         ],
         "specsEn": [
-            "Salona silk crepe fabric: ultra-soft, breathable and wrinkle-resistant",
-            "Handcrafted embroidery with lustrous fade-proof silk threads",
-            "Flowing relaxed cut with wide sleeves for modesty and grace",
-            "Free matching plain crepe shawl included with purchase",
-            "Available lengths: 52, 54, 56, 58"
-        ],
-        "images": [
-            "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=85"
+            "Soft breathable cotton denim and Turkish poplin blouse",
+            "2-piece set: Denim overall dress + White blouse",
+            "Relaxed straight silhouette for all-day comfort",
+            "Available sizes: S - M - L - XL",
+            "Fast express shipping to all 58 wilayas 🚚",
+            "Cash on delivery COD available 📦"
         ]
     },
     {
         "id": 3,
-        "name": "حقيبة يد جلدية فاخرة Parisienne",
-        "nameFr": "Sac à Main Cuir Parisienne",
-        "nameEn": "Parisienne Luxury Leather Handbag",
-        "price": 6400,
-        "oldPrice": 8200,
-        "badge": "الأكثر طلباً ⭐",
-        "badgeFr": "Bestseller ⭐",
-        "badgeEn": "Bestseller ⭐",
-        "category": "bags",
-        "categoryName": "حقائب نسائية",
-        "categoryNameFr": "Sacs à Main",
-        "categoryNameEn": "Women Handbags",
-        "rating": 4.8,
-        "reviews": 67,
-        "desc": "حقيبة يد كلاسيكية بتصميم فرنسي أنيق مصنوعة من الجلد الإيطالي الفاخر المقاوم للخدش. مزينة بقفل معدني مطلي بالذهب ومزودة بحزام كتف قابل للإزالة للارتداء كروس أو يدوي.",
-        "descFr": "Sac à main intemporel d'inspiration parisienne en cuir texturé résistant. Fermoir métallique plaqué or et bandoulière amovible pour un porté main ou bandoulière.",
-        "descEn": "Timeless Parisian-inspired handbag crafted from scratch-resistant textured leather. Finished with gold-plated hardware and a detachable shoulder strap.",
+        "name": "جاكيت جينز أزرق كروب بقصة مربعة وأزرار بارزة",
+        "nameFr": "Veste Jean Denim Courte Coupe Droite Boutons Dorés",
+        "nameEn": "Cropped Denim Jacket with Accent Buttons",
+        "category": "vestes",
+        "categoryName": "جاكيتات ومعاطف",
+        "categoryNameFr": "Vestes & Manteaux",
+        "categoryNameEn": "Jackets & Coats",
+        "price": 3400,
+        "oldPrice": 4000,
+        "rating": 5,
+        "reviews": 29,
+        "badge": "قطعة أساسية 💫",
+        "badgeFr": "Indispensable 💫",
+        "badgeEn": "Wardrobe Essential 💫",
+        "image": "p3.webp",
+        "images": [
+            "p3.webp",
+            "p1-2.webp",
+            "p1.jpg"
+        ],
+        "description": "جاكيت جينز أزرق ملكي بقصة بوكسي عصرية وأكمام واسعة، مزين بأزرار خشبية/معدنية بارزة أنيقة وجيب أمامي عملي. قطعة جوكر تتناسق مع مختلف التنانير والفساتين.",
+        "descriptionFr": "Veste en jean bleu profond, coupe boxy courte avec manches amples et gros boutons texturés élégants. Pièce maîtresse facile à associer avec toutes vos tenues.",
+        "descriptionEn": "Rich royal blue cropped boxy denim jacket featuring wide comfortable sleeves, prominent accent buttons, and a front pocket. Versatile layer for any modest wardrobe.",
         "specs": [
-            "جلد بولي يوريثان إيطالي نخب أول مقاوم للماء والخدش",
-            "إكسسوارات وسحاب معدني مطلي غير قابل للصدأ أو تغيير اللون",
-            "تقسيم داخلي منظم مع جيب سري لحفظ البطاقات والهاتف بأمان",
-            "حزام كتف طويل قابل للتعديل والإزالة لمرونة في الاستخدام",
-            "أبعاد مثالية: 26 سم × 18 سم × 9 سم تلبي احتياجاتك اليومية"
+            "دنيم ناعم عالي المتانة بملمس لطيف ومريح",
+            "قصة قصيرة مربعة تناسب التنانير المرتفعة والفساتين",
+            "أزرار أمامية كبيرة وزخارف خياطة متقنة",
+            "مقاس موحد فضفاض (Oversize مريح)",
+            "توصيل متوفر وسريع لكافة الـ 58 ولاية 🚚",
+            "الدفع عند الاستلام بعد المعاينة 📦"
         ],
         "specsFr": [
-            "Cuir sélectionné premium résistant aux éraflures et à l'eau",
-            "Fermetures et mousquetons dorés haute tenue anti-oxydation",
-            "Intérieur spacieux compartimenté avec pochette zippée sécurisée",
-            "Bandoulière réglable et détachable pour un porté polyvalent",
-            "Dimensions idéales : 26 × 18 × 9 cm pour tous vos essentiels"
+            "Denim coton durable au toucher souple",
+            "Coupe boxy parfaite sur jupes hautes et robes",
+            "Boutonnage avant élégant et coutures soignées",
+            "Taille unique oversize confortable",
+            "Livraison rapide disponible 58 wilayas 🚚",
+            "Paiement à la livraison après essayage 📦"
         ],
         "specsEn": [
-            "Top-grade Italian PU leather: waterproof and scratch-resistant",
-            "Electroplated rust-proof gold metal lock and durable zippers",
-            "Multi-compartment lined interior with secure zippered pockets",
-            "Detachable adjustable shoulder strap for shoulder or crossbody wear",
-            "Dimensions: 26cm x 18cm x 9cm - perfectly sized for daily luxury"
-        ],
-        "images": [
-            "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=1200&q=85"
+            "Durable soft-touch denim cotton",
+            "Flattering cropped boxy fit over high-rise skirts & dresses",
+            "Statement front buttons and fine stitching details",
+            "Relaxed comfortable oversize one-size fit",
+            "Fast shipping across all 58 Algerian wilayas 🚚",
+            "Cash on delivery after inspection 📦"
         ]
     },
     {
         "id": 4,
-        "name": "حذاء كعب عالي كلاسيك مرصع",
-        "nameFr": "Escarpins Soirée Ornés de Cristaux",
-        "nameEn": "Crystal-Embellished Classic Stilettos",
-        "price": 7200,
-        "oldPrice": 9000,
-        "badge": "حصري ⭐",
-        "badgeFr": "Exclusif ⭐",
-        "badgeEn": "Exclusive ⭐",
-        "category": "shoes",
-        "categoryName": "أحذية ومناسبات",
-        "categoryNameFr": "Chaussures de Soirée",
-        "categoryNameEn": "Evening Shoes",
+        "name": "تنورة كلوش كريمية انسيابية ماكسي مبطنة",
+        "nameFr": "Jupe Maxi Évasée Crème Doublée",
+        "nameEn": "Flowing Cream Maxi A-Line Skirt with Full Lining",
+        "category": "jupes",
+        "categoryName": "تنانير كلوش",
+        "categoryNameFr": "Jupes Évasées",
+        "categoryNameEn": "Maxi Skirts",
+        "price": 2900,
+        "oldPrice": 3500,
         "rating": 4.9,
-        "reviews": 53,
-        "desc": "حذاء كعب عالي بتصميم أنثوي ساحر مرصع بأحجار كريستالية براقة مع بطانة طبية مريحة تمكنك من ارتدائه لساعات طويلة دون إجهاد، مثالي للعرائس والسهرات الفخمة.",
-        "descFr": "Escarpins d'apparat étincelants ornés de cristaux étincelants. Semelle intérieure rembourrée Memory Foam pour danser toute la nuit sans la moindre douleur.",
-        "descEn": "Dazzling evening pumps embellished with light-catching crystal stones. Features an ergonomic padded memory-foam insole for effortless all-night glamour.",
+        "reviews": 41,
+        "badge": "قماش مريح 🕊️",
+        "badgeFr": "Tissu Confort 🕊️",
+        "badgeEn": "Pure Comfort 🕊️",
+        "image": "p4.jpg",
+        "images": [
+            "p4.jpg",
+            "p1.jpg",
+            "p1-2.webp"
+        ],
+        "description": "تنورة طويلة بقصة كلوش واسعة بلون كريمي سكري دافئ، قماش صيفي خفيف غير شفاف مع بطانة ناعمة وحزام خصر مطاطي مرن يناسب مختلف المقاسات.",
+        "descriptionFr": "Jupe longue coupe évasée en crêpe crème ivoire, doublure intégrale anti-transparence et ceinture élastique souple épousant délicatement la silhouette.",
+        "descriptionEn": "Graceful maxi A-line skirt in warm ivory cream, featuring an opaque double-lining, airy breathable fabric, and an elastic waistband for universal comfort.",
         "specs": [
-            "كعب مريح ومتوازن بارتفاع 7 سم لثبات وأناقة مميزة",
-            "نعل داخلي مبطن بتقنية Memory Foam لراحة القدمين",
-            "ترصيع كريستالي عالي التثبيت يمنح بريقاً استثنائياً تحت الإضاءة",
-            "نعل خارجي مضاد للانزلاق لأقصى درجات الأمان",
-            "متوفر بالمقاسات من 36 إلى 41 بألوان راقية"
+            "شيفون كريب تركي عالي الجودة مع بطانة كاملة",
+            "قصة كلوش انسيابية لا تلتصق ومحتشمة 100%",
+            "حزام خصر مطاطي ناعم لا يضغط على الخصر",
+            "مقاس موحد مرن يلائم من 38 حتى 46",
+            "توصيل متوفر وسريع لكافة الـ 58 ولاية 🚚",
+            "الدفع عند الاستلام مع إمكانية الفحص 📦"
         ],
         "specsFr": [
-            "Talon stable et équilibré de 7 cm pour une démarche assurée",
-            "Semelle intérieure avec mousse à mémoire de forme ultra-confort",
-            "Sertissage de cristaux scintillants résistant aux frottements",
-            "Semelle extérieure antidérapante pour une démarche sereine",
-            "Pointures disponibles du 36 au 41"
+            "Crêpe mousseline turque doublée de haute qualité",
+            "Coupe évasée vaporeuse et 100% pudique",
+            "Ceinture élastique douce et confortable",
+            "Taille unique extensible (Convient du 38 au 46)",
+            "Livraison rapide disponible 58 wilayas 🚚",
+            "Paiement à la livraison après vérification 📦"
         ],
         "specsEn": [
-            "Balanced 7cm mid-stiletto heel engineered for stability and posture",
-            "Memory-foam cushioned insole to alleviate foot fatigue",
-            "Securely set brilliant crystal gems that sparkle under evening lights",
-            "Non-slip outsole grip for safe confidence on all floors",
-            "Sizes available from 36 to 41"
-        ],
-        "images": [
-            "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=1200&q=85"
-        ]
-    },
-    {
-        "id": 5,
-        "name": "طقم مجوهرات وسلسال ذهبي مطلي",
-        "nameFr": "Parure de Bijoux Dorée 18K",
-        "nameEn": "18K Gold Plated Jewelry Set",
-        "price": 4800,
-        "oldPrice": 6000,
-        "badge": "عرض خاص",
-        "badgeFr": "Offre Spéciale",
-        "badgeEn": "Special Offer",
-        "category": "accessories",
-        "categoryName": "إكسسوارات ومجوهرات",
-        "categoryNameFr": "Bijoux & Accessoires",
-        "categoryNameEn": "Jewelry & Accessories",
-        "rating": 4.9,
-        "reviews": 91,
-        "desc": "طقم مجوهرات متكامل مكون من سلسال وأقراط وخاتم مطلي بذهب عيار 18 قيراط بتقنية PVD المتطورة التي تحافظ على اللمعان واللون الذهبي لسنوات مع أحجار الزركون الشفافة اللامعة.",
-        "descFr": "Ensemble parure raffiné comprenant collier, boucles d'oreilles et bague assortie plaqué or 18 carats PVD avec oxydes de zirconium étincelants comme des diamants.",
-        "descEn": "Complete jewelry set comprising pendant necklace, earrings and matching ring plated in 18K gold via PVD vacuum coating with brilliant diamond-like zircon crystals.",
-        "specs": [
-            "مطلي بالذهب الحقيقي عيار 18 قيراط بتقنية الفاكيوم المقاومة للماء",
-            "مرصع بأحجار الزركون السويسرية عالية النقاء بديل الألماس",
-            "خالي تماماً من النيكل والرصاص ولا يسبب أي حساسية للبشرة",
-            "سلسال قابل لتعديل الطول ليناسب مختلف ياقات الفساتين",
-            "يصلك في علبة مخملية فاخرة جاهزة للتقديم كهدية"
-        ],
-        "specsFr": [
-            "Placage or 18 carats par dépôt sous vide résistant à l'eau et aux parfums",
-            "Oxydes de zirconium suisses taille brillant d'une clarté diamant",
-            "Garanti sans nickel ni plomb, 100% hypoallergénique",
-            "Chaîne ajustable adaptée à tous vos décolletés",
-            "Livré dans un écrin de velours élégant prêt à offrir"
-        ],
-        "specsEn": [
-            "18K real gold electro-vacuum plating: water and perfume resistant",
-            "Brilliant Swiss zircon stones offering sparkling diamond clarity",
-            "100% nickel-free, lead-free and hypoallergenic for sensitive skin",
-            "Adjustable chain length to complement various dress necklines",
-            "Delivered in a velvet presentation gift box ready for gifting"
-        ],
-        "images": [
-            "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=85"
-        ]
-    },
-    {
-        "id": 6,
-        "name": "عطر ليلي فواح Laurance Nuit 100ml",
-        "nameFr": "Parfum Envoûtant Laurance Nuit 100ml",
-        "nameEn": "Laurance Nuit Eau de Parfum 100ml",
-        "price": 5600,
-        "oldPrice": 7500,
-        "badge": "الأعلى تقييماً ⭐",
-        "badgeFr": "Mieux Noté ⭐",
-        "badgeEn": "Top Rated ⭐",
-        "category": "perfumes",
-        "categoryName": "عطور فاخرة",
-        "categoryNameFr": "Parfums de Luxe",
-        "categoryNameEn": "Luxury Perfumes",
-        "rating": 5,
-        "reviews": 115,
-        "desc": "عطر أنثوي غامض وساحر صُمم للمرأة الواثقة، يفتتح برائحة التوت البري والبرغموت، يليه قلب زهري من الياسمين الدمشقي، ويستقر على قاعدة عميقة من الفانيليا والمسك والباتشولي.",
-        "descFr": "Sillage magnétique et sensuel révélant des notes de mûres sauvages, bergamote, jasmin de Damas et un fond voluptueux de vanille de Madagascar et patchouli.",
-        "descEn": "Mysterious, hypnotic signature scent opening with wild berries and bergamot, blossoming into damascena jasmine, anchored by rich Madagascar vanilla and patchouli.",
-        "specs": [
-            "تركيز Eau de Parfum فائق الثبات يدوم لأكثر من 24 ساعة على الملابس",
-            "فوحان استثنائي يترك أثراً جذاباً أينما حللتِ",
-            "زجاجة كريستالية سميكة بتصميم نخبوي سعة 100 مل",
-            "مستخلص من زيوت عطرية فرنسية طبيعية 100%",
-            "مناسب للمساء والسهرات والمناسبات الشتوية والربيعية"
-        ],
-        "specsFr": [
-            "Concentration Eau de Parfum à tenue record dépassant 24h sur les étoffes",
-            "Sillage remarquable et captivant qui attire tous les regards",
-            "Flacon bijou en verre lourd de 100 ml au bouchon facetté",
-            "Essences aromatiques précieuses 100% origine Grasse (France)",
-            "Idéal pour vos soirées, mariages et moments d'exception"
-        ],
-        "specsEn": [
-            "High Eau de Parfum concentration with 24+ hour longevity on fabrics",
-            "Captivating projection leaving an unforgettable memorable trail",
-            "100ml heavy crystal flacon with faceted sculptural cap",
-            "100% natural fragrance oils crafted in Grasse, France",
-            "Perfect for evenings, weddings, seasonal parties and formal events"
-        ],
-        "images": [
-            "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=1200&q=85",
-            "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1200&q=85"
+            "Premium lined Turkish crepe chiffon",
+            "Graceful flowing A-line cut, 100% modest and opaque",
+            "Soft non-binding elasticated waistband",
+            "Universal stretch fit (Suitable for EU 38-46)",
+            "Fast shipping across all 58 Algerian wilayas 🚚",
+            "Cash on delivery COD accepted 📦"
         ]
     }
 ];
@@ -4833,6 +4734,25 @@
 
             currentModalProductId = productId;
             currentModalQty = 1;
+
+            
+            const sizeContainer = document.querySelector('.modal-sizes-row') || document.getElementById('modalSizesContainer');
+            if (sizeContainer) {
+                if (productId === 2) {
+                    sizeContainer.innerHTML = `
+                        <button type="button" class="size-pill" onclick="selectSize(this)">S</button>
+                        <button type="button" class="size-pill active" onclick="selectSize(this)">M</button>
+                        <button type="button" class="size-pill" onclick="selectSize(this)">L</button>
+                        <button type="button" class="size-pill" onclick="selectSize(this)">XL</button>
+                    `;
+                    currentSelectedSize = 'M';
+                } else {
+                    sizeContainer.innerHTML = `
+                        <button type="button" class="size-pill active" onclick="selectSize(this)">Standard (38 - 44)</button>
+                    `;
+                    currentSelectedSize = 'Standard';
+                }
+            }
 
             // تحديث النصوص والبيانات باللغة الحالية
             updateModalLanguage(productId);
@@ -5461,7 +5381,7 @@
                 `;
 
                 setTimeout(() => {
-                    const orderRef = `#LRN-${Math.floor(10000 + Math.random() * 90000)}`;
+                    const orderRef = `#Hafssa Clothes-${Math.floor(10000 + Math.random() * 90000)}`;
                     let itemsReceiptHtml = '';
                     let totalFormatted = '';
 
@@ -5616,19 +5536,35 @@
 
         // ==================== نظام قائمة المفضلة التفاعلي ====================
         function toggleWishlist(id, name, price, img, btn) {
-            const t = translations[currentLanguage] || translations.ar;
+            if (typeof id === 'object' && id !== null) {
+                if (id.stopPropagation) id.stopPropagation();
+                if (typeof name === 'number') {
+                    const tempId = name;
+                    btn = id.currentTarget || id.target;
+                    id = tempId;
+                }
+            }
+            id = Number(id);
             const p = productsData.find(prod => prod.id === id);
+            if (p) {
+                name = name || p.name;
+                price = price || p.price;
+                img = (img && img !== 'undefined') ? img : (p.image || p.images[0]);
+            }
+            if (!id) return;
+
+            const t = translations[currentLanguage] || translations.ar;
             const localizedName = p ? ((currentLanguage === 'ar') ? p.name : ((currentLanguage === 'fr') ? p.nameFr : p.nameEn)) : name;
 
-            const index = wishlist.findIndex(item => item.id === id);
+            const index = wishlist.findIndex(item => Number(item.id) === id);
             if (index > -1) {
                 wishlist.splice(index, 1);
-                if (btn) btn.classList.remove('active');
-                showToast(`${t.toast_removed_fav}: "${localizedName}"`);
+                if (btn && btn.classList) btn.classList.remove('active');
+                showToast(`${t.toast_removed_fav || 'تمت الإزالة من المفضلة'}: "${localizedName}"`);
             } else {
                 wishlist.push({ id, name, price, img });
-                if (btn) btn.classList.add('active');
-                showToast(`${t.toast_added_fav}: "${localizedName}"`);
+                if (btn && btn.classList) btn.classList.add('active');
+                showToast(`❤️ ${t.toast_added_fav || 'تمت الإضافة للمفضلة'}: "${localizedName}"`);
             }
 
             syncProductHeartButtons();
@@ -5692,19 +5628,22 @@
             } else {
                 let html = '';
                 wishlist.forEach(item => {
-                    const p = productsData.find(prod => prod.id === item.id);
+                    const p = productsData.find(prod => prod.id === Number(item.id));
                     const itemName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : item.name;
+                    const itemPrice = p ? p.price : item.price;
+                    const itemImg = (item.img && item.img !== 'undefined') ? item.img : (p ? (p.image || p.images[0]) : 'p1.jpg');
+                    const safeName = (itemName || '').replace(/'/g, "\\'");
                     html += `
                         <div class="cart-item-row">
-                            <img src="${item.img}" alt="${itemName}" class="cart-item-img">
+                            <img src="${itemImg}" alt="${itemName}" class="cart-item-img">
                             <div class="cart-item-info">
                                 <span class="cart-item-name">${itemName}</span>
-                                <span class="cart-item-price">${formatPrice(item.price)}</span>
+                                <span class="cart-item-price">${formatPrice(itemPrice)}</span>
                             </div>
                             <button 
                                 class="add-to-cart-btn" 
                                 style="padding: 0.45rem 0.75rem; font-size: 0.75rem;" 
-                                onclick="addToCart(${item.id}, '${item.name}', ${item.price}, '${item.img}', this)"
+                                onclick="event.stopPropagation(); addToCart(${item.id}, '${safeName}', ${itemPrice}, '${itemImg}', this)"
                                 title="${t.btn_add_cart}"
                             >
                                 ${t.wishlist_btn_add_cart || '+ السلة'}
@@ -5735,31 +5674,51 @@
 
         // ==================== سلة المشتريات التفاعلية ====================
         function addToCart(id, name, price, img, btn) {
+            // معالجة مرنة للمعاملات إذا تم استدعاؤها بطرق مختلفة
+            if (typeof id === 'object' && id !== null) {
+                if (id.stopPropagation) id.stopPropagation();
+                if (typeof name === 'number') {
+                    const tempId = name;
+                    btn = id.currentTarget || id.target;
+                    id = tempId;
+                }
+            }
+            id = Number(id);
+            const p = productsData.find(prod => prod.id === id);
+            if (p) {
+                name = name || p.name;
+                price = price || p.price;
+                img = (img && img !== 'undefined') ? img : (p.image || p.images[0]);
+            }
+            if (!id || !price) return;
+
             const t = translations[currentLanguage] || translations.ar;
             const lang = currentLanguage;
-            const p = productsData.find(prod => prod.id === id);
             const localizedName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : name;
 
-            // تأثير الزر
-            btn.classList.add('added');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = `<span>✓</span>`;
+            // تأثير الزر إذا وُجد
+            if (btn && btn.classList) {
+                btn.classList.add('added');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = `<span>✓</span>`;
+                setTimeout(() => {
+                    btn.classList.remove('added');
+                    btn.innerHTML = originalText;
+                }, 1200);
+            }
 
-            setTimeout(() => {
-                btn.classList.remove('added');
-                btn.innerHTML = originalText;
-            }, 1200);
-
-            // إضافة العنصر
-            const existing = cart.find(item => item.id === id);
+            // إضافة العنصر للسلة
+            const existing = cart.find(item => Number(item.id) === id);
             if (existing) {
-                existing.quantity += 1;
+                existing.quantity = (Number(existing.quantity) || 1) + 1;
+                if (!existing.img || existing.img === 'undefined') existing.img = img;
+                if (!existing.price) existing.price = price;
             } else {
                 cart.push({ id, name, price, img, quantity: 1 });
             }
 
             updateCartUI();
-            showToast(`${t.toast_added_cart}: "${localizedName}"`);
+            showToast(`🛍️ ${t.toast_added_cart || 'تمت الإضافة للسلة'}: "${localizedName}"`);
         }
 
         function removeFromCart(id) {
@@ -5789,7 +5748,7 @@
             const lang = currentLanguage;
 
             // تحديث العداد
-            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalCount = cart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
             cartBadge.textContent = totalCount;
             if (totalCount > 0) {
                 cartBadge.classList.add('has-items', 'bump');
@@ -5819,21 +5778,24 @@
                 let total = 0;
                 const unitLabel = t.unit_price_label || 'سعر القطعة:';
                 cart.forEach(item => {
-                    const itemSubtotal = item.price * item.quantity;
+                    const p = productsData.find(prod => prod.id === Number(item.id));
+                    const itemPrice = p ? p.price : (Number(item.price) || 0);
+                    const qty = Number(item.quantity) || 1;
+                    const itemSubtotal = itemPrice * qty;
                     total += itemSubtotal;
-                    const p = productsData.find(prod => prod.id === item.id);
                     const itemName = p ? ((lang === 'ar') ? p.name : ((lang === 'fr') ? p.nameFr : p.nameEn)) : item.name;
+                    const itemImg = (item.img && item.img !== 'undefined') ? item.img : (p ? (p.image || p.images[0]) : 'p1.jpg');
                     html += `
                         <div class="cart-item-row" id="cartItem-${item.id}">
-                            <img src="${item.img}" alt="${itemName}" class="cart-item-img">
+                            <img src="${itemImg}" alt="${itemName}" class="cart-item-img">
                             <div class="cart-item-info">
                                 <span class="cart-item-name" title="${itemName}">${itemName}</span>
-                                <span class="cart-item-unit-price">${unitLabel} ${formatPrice(item.price)}</span>
+                                <span class="cart-item-unit-price">${unitLabel} ${formatPrice(itemPrice)}</span>
                                 
                                 <div class="cart-item-controls">
                                     <div class="cart-item-qty-selector">
                                         <button type="button" class="cart-qty-btn" onclick="changeCartQty(${item.id}, -1)">-</button>
-                                        <span class="cart-qty-display">${item.quantity}</span>
+                                        <span class="cart-qty-display">${qty}</span>
                                         <button type="button" class="cart-qty-btn" onclick="changeCartQty(${item.id}, 1)">+</button>
                                     </div>
                                     <div class="cart-item-subtotal">
@@ -5976,6 +5938,31 @@
         selectCurrency(currentCurrency, true);
         updateAllPrices();
         checkDeepLinkProduct();
-    </script>
+    
+        let currentSelectedSize = 'L';
+        function selectSize(btn) {
+            document.querySelectorAll('.size-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentSelectedSize = btn.textContent.trim();
+        }
+    
+        // تنظيف ومزامنة بيانات السلة والمفضلة عند تشغيل الصفحة
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // تنظيف أي عناصر غير صالحة سابقة
+                cart = (cart || []).filter(i => i && typeof i === 'object' && typeof i.id === 'number' && i.price);
+                wishlist = (wishlist || []).filter(i => i && typeof i === 'object' && typeof i.id === 'number');
+                syncProductHeartButtons();
+                updateCartUI();
+                updateWishlistUI();
+            } catch (e) {
+                console.warn('Init error:', e);
+            }
+        });
+
+</script>
+
+    
+
 </body>
 </html>

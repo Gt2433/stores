@@ -135,6 +135,22 @@ const STORAGE_KEYS = {
   SETTINGS: 'crown_store_settings'
 };
 
+// تصفير أي بيانات قديمة كانت تخص المتجر السابق لضمان ظهور متجر CROWN بنسبة 100%
+try {
+  if (!localStorage.getItem('crown_store_clean_v3')) {
+    localStorage.setItem('crown_store_clean_v3', '1');
+    localStorage.removeItem('mh_preview_products');
+    localStorage.removeItem('mh_preview_orders');
+    localStorage.removeItem('mh_preview_chats');
+    localStorage.removeItem('mh_preview_settings');
+    localStorage.removeItem('mhmanwir_cart');
+    localStorage.removeItem('mhmanwir_products');
+    localStorage.removeItem('crown_store_products');
+    localStorage.removeItem('crown_favorites');
+    localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(PREVIEW_PRODUCTS));
+  }
+} catch(e) {}
+
 function getStoredProducts() {
   try {
     const data = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
